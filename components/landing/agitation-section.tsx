@@ -31,14 +31,14 @@ const consequences = [
 
 export function AgitationSection() {
   return (
-    <section className="bg-red-50 py-20 px-6 border-y border-red-100">
+    <section className="bg-neutral-100 py-20 px-6 border-y border-neutral-200">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 text-balance mb-4">
+          <h2 className="text-3xl md:text-4xl font-title text-dark text-balance mb-4">
             Y mientras tanto, cada día que pasa...
           </h2>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto text-balance">
+          <p className="text-xl subtitle text-dark/80 max-w-2xl mx-auto text-balance">
             El caos alimentario no es solo incómodo. Es costoso, agotador y perjudicial.
           </p>
         </div>
@@ -50,20 +50,20 @@ export function AgitationSection() {
             return (
               <div 
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-sm border border-red-100"
+                className="bg-white p-6 rounded-xl shadow-sm border border-neutral-200"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
-                    <Icon className="w-6 h-6 text-red-600" />
+                  <div className="w-12 h-12 bg-neutral-200 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                    <Icon className="w-6 h-6 text-dark" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    <h3 className="text-lg font-subtitle font-semibold text-dark mb-2">
                       {consequence.title}
                     </h3>
-                    <p className="text-gray-600 mb-3 leading-relaxed">
+                    <p className="text-dark/70 mb-3 leading-relaxed">
                       {consequence.description}
                     </p>
-                    <p className="text-red-700 font-medium text-sm">
+                    <p className="text-dark font-medium text-sm font-subtitle">
                       {consequence.highlight}
                     </p>
                   </div>
@@ -74,14 +74,14 @@ export function AgitationSection() {
         </div>
 
         {/* Bottom Impact */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 text-white rounded-2xl p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">
+        <div className="bg-gradient-to-r from-dark to-dark/90 text-white rounded-2xl p-8 text-center">
+          <h3 className="text-2xl font-title mb-4">
             ¿Cuánto tiempo más vas a seguir así?
           </h3>
-          <p className="text-red-100 text-lg mb-2">
+          <p className="text-white/80 text-lg mb-2 subtitle">
             Cada semana que pasa sin un sistema es una semana perdida.
           </p>
-          <p className="text-white font-semibold">
+          <p className="text-white font-semibold subtitle">
             La alimentación caótica no mejora sola. Solo empeora.
           </p>
         </div>

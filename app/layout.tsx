@@ -5,6 +5,12 @@ import { Analytics } from '@vercel/analytics/next'
 import { Header } from '@/components/landing/header'
 import './globals.css'
 
+const bebasNeue = Geist({ 
+  subsets: ["latin"],
+  display: 'swap',
+  variable: '--font-title'
+});
+
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 

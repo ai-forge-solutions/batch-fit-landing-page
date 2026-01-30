@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { AppStoreButtons } from './app-store-buttons'
 import { Menu, X } from 'lucide-react'
 
 export function Header() {
@@ -39,7 +40,7 @@ export function Header() {
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100' 
+          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200' 
           : 'bg-transparent'
       }`}
     >
@@ -47,10 +48,12 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-gray-900">
-                BatchFit
-              </span>
+            <Link href="/" className="flex items-center">
+              <img 
+                src="/batchfit-logos-long.png" 
+                alt="BatchFit" 
+                className="h-14 w-auto"
+              />
             </Link>
           </div>
 
@@ -60,7 +63,7 @@ export function Header() {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href.substring(1))}
-                className="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors"
+                className="text-dark/70 hover:text-dark text-sm font-medium transition-colors font-subtitle"
               >
                 {link.label}
               </button>
@@ -69,12 +72,7 @@ export function Header() {
 
           {/* CTA Button Desktop */}
           <div className="hidden md:flex">
-            <Button 
-              onClick={() => scrollToSection('cta')}
-              className="bg-black text-white hover:bg-gray-800"
-            >
-              Empezar Ahora
-            </Button>
+            <AppStoreButtons size="sm" layout="horizontal" />
           </div>
 
           {/* Mobile menu button */}
@@ -83,7 +81,7 @@ export function Header() {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600"
+              className="text-dark/70"
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -97,23 +95,18 @@ export function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-neutral-200">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href.substring(1))}
-                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md"
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-dark/70 hover:text-dark hover:bg-neutral-100 rounded-md font-subtitle"
                 >
                   {link.label}
                 </button>
               ))}
               <div className="pt-2">
-                <Button 
-                  onClick={() => scrollToSection('cta')}
-                  className="w-full bg-black text-white hover:bg-gray-800"
-                >
-                  Empezar Ahora
-                </Button>
+                <AppStoreButtons size="sm" layout="vertical" />
               </div>
             </div>
           </div>
