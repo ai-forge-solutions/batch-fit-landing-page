@@ -40,9 +40,14 @@ export function Header() {
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200' 
-          : 'bg-transparent'
+          ? 'bg-white/85 backdrop-blur-xl shadow-2xl border-b border-neutral-200' 
+          : 'bg-white/70 backdrop-blur-lg shadow-xl'
       }`}
+      style={{
+        boxShadow: isScrolled 
+          ? '0 10px 40px -10px rgba(0, 0, 0, 0.25)' 
+          : '0 8px 32px -8px rgba(0, 0, 0, 0.15)'
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">

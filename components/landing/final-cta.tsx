@@ -13,7 +13,6 @@ export function FinalCTA() {
         </div>
 
         <p className="mt-8 text-sm text-muted-foreground max-w-md mx-auto">
-          Estamos validando interés. Tu clic nos ayuda a construir BatchFit.
         </p>
       </div>
     </section>
