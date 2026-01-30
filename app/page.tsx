@@ -1,5 +1,6 @@
 import { Hero } from "@/components/landing/hero"
 import { ProblemSection } from "@/components/landing/problem-section"
+import { AgitationSection } from "@/components/landing/agitation-section"
 import { WhatIsBatchFit } from "@/components/landing/what-is-batchfit"
 import { BeforeAfter } from "@/components/landing/before-after"
 import { HowItWorks } from "@/components/landing/how-it-works"
@@ -13,6 +14,9 @@ export default function Home() {
       <Hero />
       <section id="problema">
         <ProblemSection />
+      </section>
+      <section id="agitacion">
+        <AgitationSection />
       </section>
       <section id="que-es">
         <WhatIsBatchFit />
