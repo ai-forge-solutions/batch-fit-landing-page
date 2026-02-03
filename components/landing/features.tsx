@@ -1,40 +1,39 @@
 "use client"
 
-import { Check, Clock, Brain, Target, Users, Shield } from 'lucide-react'
+import { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 
 export function Features() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  // Tarjetas temporales vacías
   const features = [
     {
-      icon: Brain,
-      title: "Sin decisiones diarias",
-      description: "Tu menú semanal planificado automáticamente. No más \"¿qué voy a comer hoy?\"",
+      id: 1,
+      title: "Característica 1",
+      description: "Descripción de la primera característica",
+      image: "/placeholder.svg", // Placeholder hasta que tengas la imagen
     },
     {
-      icon: Clock,
-      title: "Ahorra tiempo",
-      description: "Una sola sesión de batch cooking te da comidas para toda la semana.",
-    },
-    {
-      icon: Target,
-      title: "Objetivos nutricionales",
-      description: "Cada menú está diseñado para cumplir tus metas específicas de alimentación.",
-    },
-    {
-      icon: Shield,
-      title: "Consistencia garantizada",
-      description: "Sistema probado que elimina la improvisación y los malos hábitos.",
-    },
-    {
-      icon: Users,
-      title: "Para toda la familia",
-      description: "Menús adaptables que funcionan para diferentes gustos y necesidades.",
-    },
-    {
-      icon: Check,
-      title: "Fácil de seguir",
-      description: "Instrucciones paso a paso, listas de compra y tiempos de preparación incluidos.",
+      id: 2,
+      title: "Característica 2", 
+      description: "Descripción de la segunda característica",
+      image: "/placeholder.svg", // Placeholder hasta que tengas la imagen
     },
   ]
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % features.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + features.length) % features.length)
+  }
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index)
+  }
 
   return (
     <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
@@ -43,36 +42,76 @@ export function Features() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Características que 
-            <span className="text-blue-600"> transforman</span> tu alimentación
+            <span style={{color: '#4fe4b7'}}> transforman</span> tu alimentación
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             BatchFit no es solo una app más. Es un sistema completo que convierte el caos alimentario en orden y simplicidad.
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon
-            return (
-              <div 
-                key={index}
-                className="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200"
+        {/* Slider Container */}
+        <div className="relative max-w-4xl mx-auto">
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-gray-200 overflow-hidden">
+            <div className="flex items-center justify-between">
+              {/* Botón Anterior */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
               >
-                <div className="flex flex-col items-start">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
-                    <Icon className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {feature.title}
+                <ChevronLeft className="w-6 h-6 text-gray-600" />
+              </button>
+
+              {/* Contenido del Slide */}
+              <div className="w-full flex items-center justify-center gap-8 md:gap-12 px-16">
+                {/* Imagen */}
+                <div className="flex-shrink-0 w-64 h-64">
+                  <Image
+                    src={features[currentSlide].image}
+                    alt={features[currentSlide].title}
+                    width={256}
+                    height={256}
+                    className="w-full h-full object-contain rounded-2xl"
+                  />
+                </div>
+
+                {/* Texto */}
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                    {features[currentSlide].title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    {features[currentSlide].description}
                   </p>
                 </div>
               </div>
-            )
-          })}
+
+              {/* Botón Siguiente */}
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
+          </div>
+
+          {/* Indicadores */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {features.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  index === currentSlide 
+                    ? '' 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                style={{
+                  backgroundColor: index === currentSlide ? '#4fe4b7' : ''
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

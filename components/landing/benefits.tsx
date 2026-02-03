@@ -8,31 +8,31 @@ export function Benefits() {
       icon: Clock,
       title: "Plan semanal de 60 minutos",
       benefit: "Cocinas una sola vez",
-      meaning: "La alimentación deja de ocupar tus domingos y tu cabeza."
+      meaning: "La alimentación deja de ocupar tus días y tu cabeza."
     },
     {
       icon: TrendingUp,
       title: "Nutrición diseñada para recomposición corporal",
       benefit: "Comes lo que necesitas para ganar músculo o perder grasa",
-      meaning: "Tu entrenamiento empieza a notarse en el espejo."
+      meaning: "Tu entrenamiento empieza a notarse en el espejo"
     },
     {
       icon: Shield,
       title: "Sistema cerrado: qué comer, cuánto y cuándo",
       benefit: "No decides nada entre semana",
-      meaning: "No gastas fuerza de voluntad en algo que ya debería estar resuelto."
+      meaning: "No gastas fuerza de voluntad en algo que ya debería estar resuelto"
     },
     {
       icon: Zap,
       title: "Recetas simples, repetibles y sin complicaciones",
       benefit: "Cocinas rápido y sin pensar",
-      meaning: "Puedes sostenerlo incluso en semanas caóticas."
+      meaning: "Puedes sostenerlo incluso en semanas caóticas"
     },
     {
       icon: Heart,
       title: "Batch cooking pensado para llevar en tupper",
       benefit: "Comes bien en casa, en el trabajo o donde toque",
-      meaning: "No improvisas ni rompes el plan cuando sales de la rutina."
+      meaning: "No improvisas ni rompes el plan cuando sales de la rutina"
     },
     {
       icon: Smile,
