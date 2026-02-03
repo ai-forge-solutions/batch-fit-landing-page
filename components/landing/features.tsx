@@ -51,26 +51,26 @@ export function Features() {
 
         {/* Slider Container */}
         <div className="relative max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-gray-200 overflow-hidden">
-            <div className="flex items-center justify-between">
-              {/* Botón Anterior */}
+          <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 shadow-lg border border-gray-200 overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center justify-between relative">
+              {/* Botón Anterior (desktop only) */}
               <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 items-center justify-center hover:bg-gray-50 transition-colors"
               >
                 <ChevronLeft className="w-6 h-6 text-gray-600" />
               </button>
 
               {/* Contenido del Slide */}
-              <div className="w-full flex items-center justify-center gap-8 md:gap-12 px-16">
+              <div className="w-full flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-2 sm:px-8 md:px-16">
                 {/* Imagen */}
-                <div className="flex-shrink-0 w-64 h-64">
+                <div className="flex-shrink-0 w-full md:w-64 h-48 md:h-64 mb-4 md:mb-0 flex items-center justify-center">
                   <Image
                     src={features[currentSlide].image}
                     alt={features[currentSlide].title}
                     width={256}
                     height={256}
-                    className="w-full h-full object-contain rounded-2xl"
+                    className="w-auto h-full object-contain rounded-2xl"
                   />
                 </div>
 
@@ -85,10 +85,25 @@ export function Features() {
                 </div>
               </div>
 
-              {/* Botón Siguiente */}
+              {/* Botón Siguiente (desktop only) */}
               <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
+            {/* Botones móviles debajo */}
+            <div className="flex md:hidden justify-between mt-6">
+              <button
+                onClick={prevSlide}
+                className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-600" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
               >
                 <ChevronRight className="w-6 h-6 text-gray-600" />
               </button>
