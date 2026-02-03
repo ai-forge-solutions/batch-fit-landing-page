@@ -34,7 +34,7 @@ const sections = [
 
 export function PASSection() {
   return (
-    <section className="bg-secondary py-20 px-6">
+    <section className="bg-gradient-to-b from-gray-100 via-orange-100 to-green-50 py-20 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="grid gap-12 md:gap-16">
           {sections.map((section, index) => {

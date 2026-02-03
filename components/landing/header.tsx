@@ -59,7 +59,7 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center outline-none focus:outline-none">
               <img 
                 src="/batchfit-logos-long.png" 
                 alt="BatchFit" 
