@@ -48,7 +48,7 @@ export function PASSection() {
                 className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-12`}
               >
                 {/* Imagen */}
-                <div className="shrink-0 w-72 h-72 md:w-64 md:h-64 bg-transparent rounded-2xl flex items-center justify-center p-2">
+                <div className="shrink-0 w-72 h-72 md:w-80 md:h-80 bg-transparent rounded-2xl flex items-center justify-center p-2">
                   {section.icon === "chart" ? (
                     <FluctuationChart className="w-full h-full" />
                   ) : section.image ? (
