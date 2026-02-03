@@ -1,7 +1,7 @@
 import { Check } from "lucide-react"
 
 const highlights = [
-  "Cocinas 1–2 veces por semana",
+  "Cocina 1 vez por semana",
   "Comes el resto sin decidir nada",
   "Todo guiado paso a paso",
   "Flexible, sin rigidez ni extremos",
