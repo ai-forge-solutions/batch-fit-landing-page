@@ -25,10 +25,10 @@ export function Hero() {
             <AppStoreButtons />
           </div>
           
-          <p className="mt-4 text-sm text-dark/60 subtitle">
+          {/* <p className="mt-4 text-sm text-dark/60 subtitle">
             Acceso anticipado · MVP cerrado
           </p>
-          
+           */}
           {/* Imagen en mobile (debajo del CTA) */}
           <div className="mt-10 lg:hidden">
             <Image 

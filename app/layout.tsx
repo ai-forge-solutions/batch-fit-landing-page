@@ -19,21 +19,8 @@ export const metadata: Metadata = {
   description: 'BatchFit convierte tu alimentación semanal en un sistema simple y guiado para comer bien sin pensar cada día. No es una dieta. No es una app de recetas. Es orden.',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/batchfit_logo.png',
+    apple: '/batchfit_logo.png',
   },
 }
 

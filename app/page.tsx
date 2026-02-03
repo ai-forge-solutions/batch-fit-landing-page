@@ -18,6 +18,9 @@ export default function Home() {
       <section id="agitacion">
         <AgitationSection />
       </section>
+      <section id="solucion">
+        <Positioning />      
+      </section>
       <section id="que-es">
         <WhatIsBatchFit />
       </section>
