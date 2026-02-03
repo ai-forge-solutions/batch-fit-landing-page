@@ -1,38 +1,56 @@
 "use client"
 
-import { TrendingUp, Heart, Zap, DollarSign, Smile, Trophy } from 'lucide-react'
+import { TrendingUp, Heart, Zap, DollarSign, Smile, Trophy, Clock, Shield } from 'lucide-react'
 
 export function Benefits() {
   const benefits = [
     {
-      icon: Heart,
-      title: "Mejor salud",
-      description: "Nutrición consistente y equilibrada que mejora tu energía y bienestar general.",
-    },
-    {
-      icon: Zap,
-      title: "Más energía",
-      description: "Comidas planificadas que mantienen tus niveles de energía estables todo el día.",
+      icon: Clock,
+      title: "Plan semanal de 60 minutos",
+      benefit: "Cocinas una sola vez",
+      meaning: "Significa que la alimentación deja de ocupar tus domingos y tu cabeza."
     },
     {
       icon: TrendingUp,
-      title: "Resultados visibles",
-      description: "Progreso constante hacia tus objetivos físicos sin sacrificar sabor.",
+      title: "Nutrición diseñada para recomposición corporal",
+      benefit: "Comes lo que necesitas para ganar músculo o perder grasa",
+      meaning: "Significa que tu entrenamiento empieza a notarse en el espejo."
     },
     {
-      icon: DollarSign,
-      title: "Ahorro económico",
-      description: "Reduce desperdicios y gastos innecesarios con compras planificadas.",
+      icon: Shield,
+      title: "Sistema cerrado: qué comer, cuánto y cuándo",
+      benefit: "No decides nada entre semana",
+      meaning: "Significa que no gastas fuerza de voluntad en algo que ya debería estar resuelto."
+    },
+    {
+      icon: Zap,
+      title: "Recetas simples, repetibles y sin complicaciones",
+      benefit: "Cocinas rápido y sin pensar",
+      meaning: "Significa que puedes sostenerlo incluso en semanas caóticas."
+    },
+    {
+      icon: Heart,
+      title: "Batch cooking pensado para llevar en tupper",
+      benefit: "Comes bien en casa, en el trabajo o donde toque",
+      meaning: "Significa que no improvisas ni rompes el plan cuando sales de la rutina."
     },
     {
       icon: Smile,
-      title: "Menos estrés",
-      description: "Elimina la ansiedad diaria de decidir qué comer y cómo prepararlo.",
+      title: "Flexibilidad real (sin extremos ni dietas rígidas)",
+      benefit: "No pesas, no mides, no vives a dieta",
+      meaning: "Significa que puedes hacerlo meses, no dos semanas."
+    },
+    {
+      icon: DollarSign,
+      title: "Menos platos, menos compra, menos decisiones",
+      benefit: "Todo está optimizado",
+      meaning: "Significa menos fricción diaria y más energía para entrenar y trabajar."
     },
     {
       icon: Trophy,
-      title: "Hábitos duraderos",
-      description: "Crea rutinas alimentarias sostenibles que se mantienen a largo plazo.",
+      title: "Un sistema que se adapta a ti, no al revés",
+      benefit: "Ajustas preferencias y restricciones",
+      meaning: "Significa que no tienes que forzarte a encajar en un plan genérico."
     },
   ]
 
@@ -51,7 +69,7 @@ export function Benefits() {
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon
             return (
@@ -63,31 +81,44 @@ export function Benefits() {
                 onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgb(243 244 246)'}
               >
                 <div className="flex flex-col items-start">
-                  <div 
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-all duration-300"
-                    style={{
-                      backgroundColor: '#4fe4b7' + '20', // 20% opacity
-                      '--hover-bg': '#4fe4b7'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#4fe4b7'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#4fe4b7' + '20'
-                    }}
-                  >
-                    <Icon 
-                      className="w-6 h-6 group-hover:text-white transition-colors" 
-                      style={{color: '#4fe4b7'}}
-                      onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
-                      onMouseLeave={(e) => e.currentTarget.style.color = '#4fe4b7'}
-                    />
+                  {/* Header con icono y título en la misma línea */}
+                  <div className="flex items-center mb-4">
+                    <div 
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-all duration-300"
+                      style={{
+                        backgroundColor: '#4fe4b7' + '20', // 20% opacity
+                        '--hover-bg': '#4fe4b7'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#4fe4b7'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#4fe4b7' + '20'
+                      }}
+                    >
+                      <Icon 
+                        className="w-6 h-6 group-hover:text-white transition-colors" 
+                        style={{color: '#4fe4b7'}}
+                        onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = '#4fe4b7'}
+                      />
+                    </div>
+                    
+                    <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
+                      {benefit.title}
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {benefit.description}
+                  
+                  {/* Beneficio */}
+                  <div className="mb-3">
+                    <span className="text-base font-semibold" style={{color: '#4fe4b7'}}>
+                      → {benefit.benefit}
+                    </span>
+                  </div>
+                  
+                  {/* Significado */}
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    <span className="font-medium">→ </span>{benefit.meaning}
                   </p>
                 </div>
               </div>
