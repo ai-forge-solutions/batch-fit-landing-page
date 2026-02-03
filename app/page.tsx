@@ -26,9 +26,6 @@ export default function Home() {
       <section id="caracteristicas">
         <Features />
       </section>
-      <section id="beneficios">
-        <Positioning />
-      </section>
       <section id="cta">
         <FinalCTA />
       </section>

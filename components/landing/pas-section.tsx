@@ -1,8 +1,10 @@
-import { Clock, Zap, CheckCircle } from "lucide-react"
+import { CheckCircle } from "lucide-react"
+import { FluctuationChart } from "@/components/ui/fluctuation-chart"
+import Image from "next/image"
 
 const sections = [
   {
-    icon: Clock,
+    icon: "image",
     title: "Problema",
     content: [
       "Entrenas, te cuidas, trabajas.",
@@ -10,7 +12,7 @@ const sections = [
     ]
   },
   {
-    icon: Zap, 
+    icon: "chart", 
     title: "Agitación",
     content: [
       "Pero semana tras semana pasa lo mismo:",
@@ -41,10 +43,22 @@ export function PASSection() {
                 key={index}
                 className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm"
               >
-                <div className="flex items-start gap-6">
+                <div className="flex flex-col md:flex-row items-center gap-6">
                   {/* Icono */}
-                  <div className="flex-shrink-0 w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center">
-                    <Icon className="w-8 h-8 text-gray-600" />
+                  <div className="flex-shrink-0 w-32 h-32 bg-gray-100 rounded-2xl flex items-center justify-center p-1">
+                    {section.icon === "chart" ? (
+                      <FluctuationChart className="w-full h-full" />
+                    ) : section.icon === "image" ? (
+                      <Image 
+                        src="/problem-img.png" 
+                        alt="Problem" 
+                        width={120} 
+                        height={120}
+                        className="w-full h-full object-contain rounded-xl"
+                      />
+                    ) : (
+                      <Icon className="w-8 h-8 text-gray-600" />
+                    )}
                   </div>
                   
                   {/* Contenido */}
