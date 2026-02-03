@@ -1,10 +1,11 @@
-import { CheckCircle } from "lucide-react"
 import { FluctuationChart } from "@/components/ui/fluctuation-chart"
 import Image from "next/image"
+import { Clock, CheckCircle } from "lucide-react"
 
 const sections = [
   {
-    icon: "image",
+    icon: Clock,
+    image: "/problem-img.png",
     title: "Problema",
     content: [
       "Entrenas, te cuidas, trabajas.",
@@ -12,7 +13,7 @@ const sections = [
     ]
   },
   {
-    icon: "chart", 
+    icon: "chart",
     title: "Agitación",
     content: [
       "Pero semana tras semana pasa lo mismo:",
@@ -35,34 +36,36 @@ export function PASSection() {
   return (
     <section className="bg-secondary py-20 px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="grid gap-6 md:gap-8">
+        <div className="grid gap-12 md:gap-16">
           {sections.map((section, index) => {
             const Icon = section.icon
+            const isEven = index % 2 === 0
+            
             return (
               <div 
                 key={index}
-                className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm"
+                className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-12`}
               >
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                  {/* Icono */}
-                  <div className="flex-shrink-0 w-32 h-32 bg-gray-100 rounded-2xl flex items-center justify-center p-1">
-                    {section.icon === "chart" ? (
-                      <FluctuationChart className="w-full h-full" />
-                    ) : section.icon === "image" ? (
-                      <Image 
-                        src="/problem-img.png" 
-                        alt="Problem" 
-                        width={120} 
-                        height={120}
-                        className="w-full h-full object-contain rounded-xl"
-                      />
-                    ) : (
-                      <Icon className="w-8 h-8 text-gray-600" />
-                    )}
-                  </div>
-                  
-                  {/* Contenido */}
-                  <div className="flex-1 text-center">
+                {/* Imagen */}
+                <div className="flex-shrink-0 w-64 h-64 bg-transparent rounded-2xl flex items-center justify-center p-2">
+                  {section.icon === "chart" ? (
+                    <FluctuationChart className="w-full h-full" />
+                  ) : section.image ? (
+                    <Image 
+                      src={section.image}
+                      alt={section.title}
+                      width={240} 
+                      height={240}
+                      className="w-full h-full object-contain rounded-xl"
+                    />
+                  ) : (
+                    <Icon className="w-24 h-24 text-gray-600" />
+                  )}
+                </div>
+                
+                {/* Caja de texto */}
+                <div className="flex-1 bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
+                  <div className="text-center">
                     <div className="space-y-2">
                       {section.content.map((text, textIndex) => (
                         <p 
