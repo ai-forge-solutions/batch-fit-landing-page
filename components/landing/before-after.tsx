@@ -2,10 +2,10 @@ import { X, Check } from "lucide-react"
 import Image from "next/image"
 
 const beforeItems = [
-  { text: "21 decisiones irrelevantes que agotan tu energía mental cada día", color: "#000000", indent: "ml-1" },
-  { text: "Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado", color: "#222222", indent: "ml-3" },
-  { text: "Estrés en la cocina: Tiempo robado a tu descanso o a tu familia", color: "#000000", indent: "ml-0" },
-  { text: "Fracaso en tus objetivos fit por falta de organización", color: "#222222", indent: "ml-2" }
+  { text: "21 decisiones irrelevantes que agotan tu energía mental cada día", style: { color: "#000000 !important" }, indent: "ml-1" },
+  { text: "Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado", style: { color: "#FF5722 !important" }, indent: "ml-3" },
+  { text: "Estrés en la cocina: Tiempo robado a tu descanso o a tu familia", style: { color: "#000000 !important" }, indent: "ml-0" },
+  { text: "Fracaso en tus objetivos fit por falta de organización", style: { color: "#D32F2F !important" }, indent: "ml-2" }
 ]
 
 const afterItems = [
@@ -43,19 +43,33 @@ export function BeforeAfter() {
             
             {/* Lista de inconvenientes con caos */}
             <div className="space-y-3">
-              {beforeItems.map((item, index) => (
-                <div key={index} className={`flex items-start gap-3 ${item.indent}`}>
-                  <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
-                    <X className={`w-3 h-3 text-red-500 transform ${
-                      index === 0 ? 'rotate-12' :
-                      index === 1 ? '-rotate-6' :
-                      index === 2 ? 'rotate-3' :
-                      '-rotate-12'
-                    }`} />
-                  </div>
-                  <p className="text-sm font-medium" style={{ color: item.color }}>{item.text}</p>
+              <div className="flex items-start gap-3 ml-1">
+                <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
+                  <X className="w-3 h-3 text-red-500 transform rotate-12" />
                 </div>
-              ))}
+                <p className="text-sm font-medium" style={{color: '#000000', fontWeight: 600}}>21 decisiones irrelevantes que agotan tu energía mental cada día</p>
+              </div>
+              
+              <div className="flex items-start gap-3 ml-3">
+                <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
+                  <X className="w-3 h-3 text-red-500 transform -rotate-6" />
+                </div>
+                <p className="text-sm font-medium" style={{color: '#FF5722', fontWeight: 600}}>Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado</p>
+              </div>
+              
+              <div className="flex items-start gap-3 ml-0">
+                <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
+                  <X className="w-3 h-3 text-red-500 transform rotate-3" />
+                </div>
+                <p className="text-sm font-medium" style={{color: '#000000', fontWeight: 600}}>Estrés en la cocina: Tiempo robado a tu descanso o a tu familia</p>
+              </div>
+              
+              <div className="flex items-start gap-3 ml-2">
+                <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
+                  <X className="w-3 h-3 text-red-500 transform -rotate-12" />
+                </div>
+                <p className="text-sm font-medium" style={{color: '#D32F2F', fontWeight: 600}}>Fracaso en tus objetivos fit por falta de organización</p>
+              </div>
             </div>
           </div>
 
