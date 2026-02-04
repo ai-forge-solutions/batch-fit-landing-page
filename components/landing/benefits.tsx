@@ -2,6 +2,9 @@
 
 import { Settings2, Clock, RefreshCw, ShoppingCart, Activity } from 'lucide-react'
 
+// Agregar fuente Inter
+const interFont = { fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }
+
 export function Benefits() {
   const benefits = [
     {
@@ -55,72 +58,60 @@ export function Benefits() {
   ]
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-gradient-to-b from-white to-gray-50" style={interFont}>
+      <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Beneficios que 
             <span style={{color: '#4fe4b7'}}> transforman</span> tu vida
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             USAR ES ALGO PARECIDO A...Más que cambiar tu alimentación, BatchFit mejora tu calidad de vida completa.
           </p>
         </div>
 
         {/* Benefits Grid */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* Primera fila - 3 elementos */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {benefits.slice(0, 3).map((benefit, index) => {
               const Icon = benefit.icon
               return (
                 <div 
                   key={index}
-                  className="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
-                  style={{'--hover-border': '#4fe4b7'}}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = '#4fe4b7'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgb(243 244 246)'}
+                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 max-w-sm mx-auto"
                 >
-                  <div className="flex flex-col items-start">
-                    {/* Header con icono y título en la misma línea */}
-                    <div className="flex items-center mb-4">
-                      <div 
-                        className="w-12 h-12 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-all duration-300"
-                        style={{
-                          backgroundColor: '#4fe4b7' + '20', // 20% opacity
-                          '--hover-bg': '#4fe4b7'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#4fe4b7'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = '#4fe4b7' + '20'
-                        }}
-                      >
-                        <Icon 
-                          className="w-6 h-6 group-hover:text-white transition-colors" 
-                          style={{color: '#4fe4b7'}}
-                          onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
-                          onMouseLeave={(e) => e.currentTarget.style.color = '#4fe4b7'}
-                        />
-                      </div>
-                      
-                      <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
-                        {benefit.title}
-                      </h3>
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    {/* Icono */}
+                    <div 
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300"
+                      style={{
+                        backgroundColor: '#4fe4b7' + '15', // 15% opacity
+                      }}
+                    >
+                      <Icon 
+                        className="w-8 h-8 transition-colors" 
+                        style={{color: '#4fe4b7'}}
+                      />
                     </div>
                     
-                    {/* Beneficio */}
-                    <div className="mb-3">
-                      <span className="text-base font-semibold" style={{color: '#4fe4b7'}}>
+                    {/* Característica (título) */}
+                    <h3 className="text-sm italic leading-relaxed px-2" style={{color: '#666'}}>
+                      {benefit.title}
+                    </h3>
+                    
+                    {/* Beneficio (hook principal) */}
+                    <div className="mb-2">
+                      <span className="text-lg font-semibold" style={{color: '#3BE6B2'}}>
                         {benefit.benefit}
                       </span>
                     </div>
                     
-                    {/* Significado */}
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      {benefit.meaning}
+                    {/* Significado (valor emocional) */}
+                    <p className="text-base leading-relaxed" style={{color: '#333'}}>
+                      {benefit.meaning.split('👉🏼')[0]}
+                      <strong>{benefit.meaning.split('👉🏼')[1]}</strong>
                     </p>
                   </div>
                 </div>
@@ -129,56 +120,44 @@ export function Benefits() {
           </div>
           
           {/* Segunda fila - 2 elementos centrados */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {benefits.slice(3, 5).map((benefit, index) => {
               const Icon = benefit.icon
               return (
                 <div 
                   key={index + 3}
-                  className="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
-                  style={{'--hover-border': '#4fe4b7'}}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = '#4fe4b7'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgb(243 244 246)'}
+                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 max-w-sm mx-auto"
                 >
-                  <div className="flex flex-col items-start">
-                    {/* Header con icono y título en la misma línea */}
-                    <div className="flex items-center mb-4">
-                      <div 
-                        className="w-12 h-12 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-all duration-300"
-                        style={{
-                          backgroundColor: '#4fe4b7' + '20', // 20% opacity
-                          '--hover-bg': '#4fe4b7'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = '#4fe4b7'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = '#4fe4b7' + '20'
-                        }}
-                      >
-                        <Icon 
-                          className="w-6 h-6 group-hover:text-white transition-colors" 
-                          style={{color: '#4fe4b7'}}
-                          onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
-                          onMouseLeave={(e) => e.currentTarget.style.color = '#4fe4b7'}
-                        />
-                      </div>
-                      
-                      <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
-                        {benefit.title}
-                      </h3>
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    {/* Icono */}
+                    <div 
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300"
+                      style={{
+                        backgroundColor: '#4fe4b7' + '15', // 15% opacity
+                      }}
+                    >
+                      <Icon 
+                        className="w-8 h-8 transition-colors" 
+                        style={{color: '#4fe4b7'}}
+                      />
                     </div>
                     
-                    {/* Beneficio */}
-                    <div className="mb-3">
-                      <span className="text-base font-semibold" style={{color: '#4fe4b7'}}>
+                    {/* Característica (título) */}
+                    <h3 className="text-sm italic leading-relaxed px-2" style={{color: '#666'}}>
+                      {benefit.title}
+                    </h3>
+                    
+                    {/* Beneficio (hook principal) */}
+                    <div className="mb-2">
+                      <span className="text-lg font-semibold" style={{color: '#3BE6B2'}}>
                         {benefit.benefit}
                       </span>
                     </div>
                     
-                    {/* Significado */}
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      {benefit.meaning}
+                    {/* Significado (valor emocional) */}
+                    <p className="text-base leading-relaxed" style={{color: '#333'}}>
+                      {benefit.meaning.split('👉🏼')[0]}
+                      <strong>{benefit.meaning.split('👉🏼')[1]}</strong>
                     </p>
                   </div>
                 </div>
