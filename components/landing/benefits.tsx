@@ -1,9 +1,15 @@
 "use client"
 
-import { TrendingUp, Heart, Zap, DollarSign, Smile, Trophy, Clock, Shield } from 'lucide-react'
+import { Settings2, Clock, RefreshCw, ShoppingCart, Activity } from 'lucide-react'
 
 export function Benefits() {
   const benefits = [
+    {
+      icon: Settings2,
+      title: "Menos platos, menos compra, menos decisiones",
+      benefit: "Todo está optimizado",
+      meaning: "Menos fricción diaria y más energía para entrenar y trabajar."
+    },
     {
       icon: Clock,
       title: "Plan semanal de 60 minutos",
@@ -11,47 +17,41 @@ export function Benefits() {
       meaning: "La alimentación deja de ocupar tus días y tu cabeza."
     },
     {
-      icon: TrendingUp,
-      title: "Nutrición diseñada para recomposición corporal",
-      benefit: "Comes lo que necesitas para ganar músculo o perder grasa",
-      meaning: "Tu entrenamiento empieza a notarse en el espejo"
-    },
-    {
-      icon: Shield,
-      title: "Sistema cerrado: qué comer, cuánto y cuándo",
-      benefit: "No decides nada entre semana",
-      meaning: "No gastas fuerza de voluntad en algo que ya debería estar resuelto"
-    },
-    {
-      icon: Zap,
-      title: "Recetas simples, repetibles y sin complicaciones",
-      benefit: "Cocinas rápido y sin pensar",
-      meaning: "Puedes sostenerlo incluso en semanas caóticas"
-    },
-    {
-      icon: Heart,
-      title: "Batch cooking pensado para llevar en tupper",
-      benefit: "Comes bien en casa, en el trabajo o donde toque",
-      meaning: "No improvisas ni rompes el plan cuando sales de la rutina"
-    },
-    {
-      icon: Smile,
+      icon: RefreshCw,
       title: "Flexibilidad real (sin extremos ni dietas rígidas)",
       benefit: "No pesas, no mides, no vives a dieta",
       meaning: "Puedes hacerlo meses, no dos semanas."
     },
     {
-      icon: DollarSign,
-      title: "Menos platos, menos compra, menos decisiones",
-      benefit: "Todo está optimizado",
-      meaning: "Menos fricción diaria y más energía para entrenar y trabajar."
+      icon: ShoppingCart,
+      title: "Recetas simples, repetibles y sin complicaciones",
+      benefit: "Cocinas rápido y sin pensar",
+      meaning: "Puedes sostenerlo incluso en semanas caóticas"
     },
     {
-      icon: Trophy,
-      title: "Un sistema que se adapta a ti, no al revés",
-      benefit: "Ajustas preferencias y restricciones",
-      meaning: "No tienes que forzarte a encajar en un plan genérico."
-    },
+      icon: Activity,
+      title: "Nutrición diseñada para recomposición corporal",
+      benefit: "Comes lo que necesitas para ganar músculo o perder grasa",
+      meaning: "Tu entrenamiento empieza a notarse en el espejo"
+    }
+    // {
+    //   icon: Shield,
+    //   title: "Sistema cerrado: qué comer, cuánto y cuándo",
+    //   benefit: "No decides nada entre semana",
+    //   meaning: "No gastas fuerza de voluntad en algo que ya debería estar resuelto"
+    // },
+    // {
+    //   icon: Heart,
+    //   title: "Batch cooking pensado para llevar en tupper",
+    //   benefit: "Comes bien en casa, en el trabajo o donde toque",
+    //   meaning: "No improvisas ni rompes el plan cuando sales de la rutina"
+    // },
+    // {
+    //   icon: Trophy,
+    //   title: "Un sistema que se adapta a ti, no al revés",
+    //   benefit: "Ajustas preferencias y restricciones",
+    //   meaning: "No tienes que forzarte a encajar en un plan genérico."
+    // },
   ]
 
   return (
@@ -64,12 +64,12 @@ export function Benefits() {
             <span style={{color: '#4fe4b7'}}> transforman</span> tu vida
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Más que cambiar tu alimentación, BatchFit mejora tu calidad de vida completa.
+            USAR ES ALGO PARECIDO A...Más que cambiar tu alimentación, BatchFit mejora tu calidad de vida completa.
           </p>
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon
             return (
