@@ -23,12 +23,14 @@ export function WhatIsBatchFit() {
         {/* Contenido dividido en dos subsecciones */}
         <div className="flex flex-col md:flex-row items-center md:items-center gap-16 md:gap-20">
           {/* Subsección izquierda - Gráfico */}
-          <div className="flex-1 w-full md:w-1/2 flex items-center justify-center">
-            <PositiveGrowthRechart className="w-[320px] h-[220px] md:w-[400px] md:h-[260px]" />
+          <div className="flex-1 w-full md:w-1/2 flex flex-col justify-center items-center min-h-[300px]">
+            <div className="relative w-full flex justify-center" style={{ top: '-35px' }}>
+              <PositiveGrowthRechart className="w-[320px] h-[220px] md:w-[400px] md:h-[260px]" />
+            </div>
           </div>
           
           {/* Subsección derecha - Subtítulo y CTA */}
-          <div className="flex-1 w-full md:w-1/2 flex flex-col justify-center items-center text-center">
+          <div className="flex-1 w-full md:w-1/2 flex flex-col justify-center items-center text-center min-h-[300px]">
             <p className="text-lg md:text-xl text-muted-foreground text-balance mb-8">
               BatchFit elimina la carga mental de la alimentación semanal convirtiéndola en un proceso claro, predecible y repetible.
             </p>
