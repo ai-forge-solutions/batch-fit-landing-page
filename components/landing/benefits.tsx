@@ -67,7 +67,7 @@ export function Benefits() {
             <span style={{color: '#4fe4b7'}}> transforman</span> tu vida
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            USAR ES ALGO PARECIDO A...Más que cambiar tu alimentación, BatchFit mejora tu calidad de vida completa.
+            es algo parecido a poner <strong>tu nutrición en piloto automático</strong>: tú marcas el destino y el sistema se encarga del camino
           </p>
         </div>
 
@@ -80,19 +80,19 @@ export function Benefits() {
               return (
                 <div 
                   key={index}
-                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 max-w-sm mx-auto"
+                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-400 max-w-sm mx-auto"
                 >
                   <div className="flex flex-col items-center text-center space-y-4">
                     {/* Icono */}
                     <div 
-                      className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300"
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:bg-green-400"
                       style={{
-                        backgroundColor: '#4fe4b7' + '15', // 15% opacity
+                        backgroundColor: '#3BE6B2' + '15', // 15% opacity
                       }}
                     >
                       <Icon 
-                        className="w-8 h-8 transition-colors" 
-                        style={{color: '#4fe4b7'}}
+                        className="w-8 h-8 transition-colors group-hover:text-white" 
+                        style={{color: '#3BE6B2'}}
                       />
                     </div>
                     
@@ -126,19 +126,19 @@ export function Benefits() {
               return (
                 <div 
                   key={index + 3}
-                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200 max-w-sm mx-auto"
+                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-400 max-w-sm mx-auto"
                 >
                   <div className="flex flex-col items-center text-center space-y-4">
                     {/* Icono */}
                     <div 
-                      className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300"
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:bg-green-400"
                       style={{
-                        backgroundColor: '#4fe4b7' + '15', // 15% opacity
+                        backgroundColor: '#3BE6B2' + '15', // 15% opacity
                       }}
                     >
                       <Icon 
-                        className="w-8 h-8 transition-colors" 
-                        style={{color: '#4fe4b7'}}
+                        className="w-8 h-8 transition-colors group-hover:text-white" 
+                        style={{color: '#3BE6B2'}}
                       />
                     </div>
                     
