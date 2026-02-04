@@ -69,61 +69,122 @@ export function Benefits() {
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
-          {benefits.map((benefit, index) => {
-            const Icon = benefit.icon
-            return (
-              <div 
-                key={index}
-                className="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
-                style={{'--hover-border': '#4fe4b7'}}
-                onMouseEnter={(e) => e.currentTarget.style.borderColor = '#4fe4b7'}
-                onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgb(243 244 246)'}
-              >
-                <div className="flex flex-col items-start">
-                  {/* Header con icono y título en la misma línea */}
-                  <div className="flex items-center mb-4">
-                    <div 
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-all duration-300"
-                      style={{
-                        backgroundColor: '#4fe4b7' + '20', // 20% opacity
-                        '--hover-bg': '#4fe4b7'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#4fe4b7'
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#4fe4b7' + '20'
-                      }}
-                    >
-                      <Icon 
-                        className="w-6 h-6 group-hover:text-white transition-colors" 
-                        style={{color: '#4fe4b7'}}
-                        onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
-                        onMouseLeave={(e) => e.currentTarget.style.color = '#4fe4b7'}
-                      />
+        <div className="max-w-6xl mx-auto">
+          {/* Primera fila - 3 elementos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+            {benefits.slice(0, 3).map((benefit, index) => {
+              const Icon = benefit.icon
+              return (
+                <div 
+                  key={index}
+                  className="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  style={{'--hover-border': '#4fe4b7'}}
+                  onMouseEnter={(e) => e.currentTarget.style.borderColor = '#4fe4b7'}
+                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgb(243 244 246)'}
+                >
+                  <div className="flex flex-col items-start">
+                    {/* Header con icono y título en la misma línea */}
+                    <div className="flex items-center mb-4">
+                      <div 
+                        className="w-12 h-12 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-all duration-300"
+                        style={{
+                          backgroundColor: '#4fe4b7' + '20', // 20% opacity
+                          '--hover-bg': '#4fe4b7'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#4fe4b7'
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = '#4fe4b7' + '20'
+                        }}
+                      >
+                        <Icon 
+                          className="w-6 h-6 group-hover:text-white transition-colors" 
+                          style={{color: '#4fe4b7'}}
+                          onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
+                          onMouseLeave={(e) => e.currentTarget.style.color = '#4fe4b7'}
+                        />
+                      </div>
+                      
+                      <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
+                        {benefit.title}
+                      </h3>
                     </div>
                     
-                    <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
-                      {benefit.title}
-                    </h3>
+                    {/* Beneficio */}
+                    <div className="mb-3">
+                      <span className="text-base font-semibold" style={{color: '#4fe4b7'}}>
+                        → {benefit.benefit}
+                      </span>
+                    </div>
+                    
+                    {/* Significado */}
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      <span className="font-medium">→ </span>{benefit.meaning}
+                    </p>
                   </div>
-                  
-                  {/* Beneficio */}
-                  <div className="mb-3">
-                    <span className="text-base font-semibold" style={{color: '#4fe4b7'}}>
-                      → {benefit.benefit}
-                    </span>
-                  </div>
-                  
-                  {/* Significado */}
-                  <p className="text-gray-600 leading-relaxed text-sm">
-                    <span className="font-medium">→ </span>{benefit.meaning}
-                  </p>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
+          
+          {/* Segunda fila - 2 elementos centrados */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            {benefits.slice(3, 5).map((benefit, index) => {
+              const Icon = benefit.icon
+              return (
+                <div 
+                  key={index + 3}
+                  className="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  style={{'--hover-border': '#4fe4b7'}}
+                  onMouseEnter={(e) => e.currentTarget.style.borderColor = '#4fe4b7'}
+                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgb(243 244 246)'}
+                >
+                  <div className="flex flex-col items-start">
+                    {/* Header con icono y título en la misma línea */}
+                    <div className="flex items-center mb-4">
+                      <div 
+                        className="w-12 h-12 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-all duration-300"
+                        style={{
+                          backgroundColor: '#4fe4b7' + '20', // 20% opacity
+                          '--hover-bg': '#4fe4b7'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#4fe4b7'
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = '#4fe4b7' + '20'
+                        }}
+                      >
+                        <Icon 
+                          className="w-6 h-6 group-hover:text-white transition-colors" 
+                          style={{color: '#4fe4b7'}}
+                          onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
+                          onMouseLeave={(e) => e.currentTarget.style.color = '#4fe4b7'}
+                        />
+                      </div>
+                      
+                      <h3 className="text-lg font-bold text-gray-900 leading-tight flex-1">
+                        {benefit.title}
+                      </h3>
+                    </div>
+                    
+                    {/* Beneficio */}
+                    <div className="mb-3">
+                      <span className="text-base font-semibold" style={{color: '#4fe4b7'}}>
+                        → {benefit.benefit}
+                      </span>
+                    </div>
+                    
+                    {/* Significado */}
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      <span className="font-medium">→ </span>{benefit.meaning}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
