@@ -47,28 +47,28 @@ export function BeforeAfter() {
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform rotate-12" />
                 </div>
-                <p className="text-sm font-medium" style={{color: '#888888', fontWeight: 600}}>21 decisiones irrelevantes que agotan tu energía mental cada día</p>
+                <p className="text-sm font-medium transform rotate-2" style={{color: '#888888', fontWeight: 600}}>21 decisiones irrelevantes que agotan tu energía mental cada día</p>
               </div>
               
               <div className="flex items-start gap-3 ml-3">
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform -rotate-6" />
                 </div>
-                <p className="text-sm font-medium" style={{color: '#666666', fontWeight: 600}}>Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado</p>
+                <p className="text-sm font-medium transform -rotate-1" style={{color: '#666666', fontWeight: 600}}>Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado</p>
               </div>
               
               <div className="flex items-start gap-3 ml-0">
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform rotate-3" />
                 </div>
-                <p className="text-sm font-medium" style={{color: '#777777', fontWeight: 600}}>Estrés en la cocina: Tiempo robado a tu descanso o a tu familia</p>
+                <p className="text-sm font-medium transform rotate-3" style={{color: '#777777', fontWeight: 600}}>Estrés en la cocina: Tiempo robado a tu descanso o a tu familia</p>
               </div>
               
               <div className="flex items-start gap-3 ml-2">
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform -rotate-12" />
                 </div>
-                <p className="text-sm font-medium" style={{color: '#999999', fontWeight: 600}}>Fracaso en tus objetivos fit por falta de organización</p>
+                <p className="text-sm font-medium transform -rotate-2" style={{color: '#999999', fontWeight: 600}}>Fracaso en tus objetivos fit por falta de organización</p>
               </div>
             </div>
           </div>
@@ -96,14 +96,30 @@ export function BeforeAfter() {
             
             {/* Lista de beneficios */}
             <div className="space-y-3">
-              {afterItems.map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-primary" />
-                  </div>
-                  <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>{item}</p>
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-primary" />
                 </div>
-              ))}
+                <p className="text-foreground text-sm font-bold transform rotate-1" style={{color: '#1a1a1a', fontWeight: 700}}>Cero decisiones: Tu alimentación entra en piloto automático para que te centres en tu éxito</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-primary" />
+                </div>
+                <p className="text-foreground text-sm font-bold transform -rotate-1" style={{color: '#1a1a1a', fontWeight: 700}}>Foco total: recuperas 60 minutos cada día para tus prioridades más importantes</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-primary" />
+                </div>
+                <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>Ejecución mecánica: Una sola sesión de 60 min. y te olvidas de cocinar el resto de la semana</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-primary" />
+                </div>
+                <p className="text-foreground text-sm font-bold transform rotate-1" style={{color: '#1a1a1a', fontWeight: 700}}>Constancia garantizada: Ahora el espejo refleja tu esfuerzo en el gimnasio.</p>
+              </div>
             </div>
           </div>
         </div>
