@@ -47,28 +47,28 @@ export function BeforeAfter() {
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform rotate-12" />
                 </div>
-                <p className="text-sm font-medium" style={{color: '#000000', fontWeight: 600}}>21 decisiones irrelevantes que agotan tu energía mental cada día</p>
+                <p className="text-sm font-medium" style={{color: '#888888', fontWeight: 600}}>21 decisiones irrelevantes que agotan tu energía mental cada día</p>
               </div>
               
               <div className="flex items-start gap-3 ml-3">
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform -rotate-6" />
                 </div>
-                <p className="text-sm font-medium" style={{color: '#FF5722', fontWeight: 600}}>Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado</p>
+                <p className="text-sm font-medium" style={{color: '#666666', fontWeight: 600}}>Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado</p>
               </div>
               
               <div className="flex items-start gap-3 ml-0">
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform rotate-3" />
                 </div>
-                <p className="text-sm font-medium" style={{color: '#000000', fontWeight: 600}}>Estrés en la cocina: Tiempo robado a tu descanso o a tu familia</p>
+                <p className="text-sm font-medium" style={{color: '#777777', fontWeight: 600}}>Estrés en la cocina: Tiempo robado a tu descanso o a tu familia</p>
               </div>
               
               <div className="flex items-start gap-3 ml-2">
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform -rotate-12" />
                 </div>
-                <p className="text-sm font-medium" style={{color: '#D32F2F', fontWeight: 600}}>Fracaso en tus objetivos fit por falta de organización</p>
+                <p className="text-sm font-medium" style={{color: '#999999', fontWeight: 600}}>Fracaso en tus objetivos fit por falta de organización</p>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@ export function BeforeAfter() {
                   <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                     <Check className="w-3 h-3 text-primary" />
                   </div>
-                  <p className="text-foreground text-sm font-medium">{item}</p>
+                  <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>{item}</p>
                 </div>
               ))}
             </div>
