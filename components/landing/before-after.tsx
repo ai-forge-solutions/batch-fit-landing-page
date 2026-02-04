@@ -17,7 +17,7 @@ const afterItems = [
 
 export function BeforeAfter() {
   return (
-    <section className="bg-gradient-to-r from-secondary to-orange-100 py-20 px-6">
+    <section className="bg-gradient-to-b md:bg-gradient-to-r from-secondary to-orange-100 py-20 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Before */}
