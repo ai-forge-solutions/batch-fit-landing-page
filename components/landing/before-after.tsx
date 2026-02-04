@@ -124,9 +124,13 @@ export function BeforeAfter() {
           </div>
         </div>
 
-        <p className="mt-10 text-xl md:text-2xl text-foreground font-medium text-center">
-          Menos decisiones. Más control.
-        </p>
+        <div className="mt-10 text-center">
+          <p className="text-xl md:text-2xl text-foreground" style={{fontFamily: "'Bebas Neue', sans-serif"}}>
+            menos decisiones
+            <br />
+            más control
+          </p>
+        </div>
       </div>
     </section>
   )
