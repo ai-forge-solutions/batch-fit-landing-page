@@ -8,31 +8,31 @@ export function Benefits() {
       icon: Settings2,
       title: "Menos platos, menos compra, menos decisiones",
       benefit: "Todo está optimizado",
-      meaning: "Menos fricción diaria y más energía para entrenar y trabajar."
+      meaning: "👉🏼 Menos fricción diaria y más energía para entrenar y trabajar."
     },
     {
       icon: Clock,
       title: "Plan semanal de 60 minutos",
       benefit: "Cocinas una sola vez",
-      meaning: "La alimentación deja de ocupar tus días y tu cabeza."
+      meaning: "👉🏼 La alimentación deja de ocupar tus días y tu cabeza."
     },
     {
       icon: RefreshCw,
       title: "Flexibilidad real (sin extremos ni dietas rígidas)",
       benefit: "No pesas, no mides, no vives a dieta",
-      meaning: "Puedes hacerlo meses, no dos semanas."
+      meaning: "👉🏼 Puedes hacerlo meses, no dos semanas."
     },
     {
       icon: ShoppingCart,
       title: "Recetas simples, repetibles y sin complicaciones",
       benefit: "Cocinas rápido y sin pensar",
-      meaning: "Puedes sostenerlo incluso en semanas caóticas"
+      meaning: "👉🏼 Puedes sostenerlo incluso en semanas caóticas"
     },
     {
       icon: Activity,
       title: "Nutrición diseñada para recomposición corporal",
       benefit: "Comes lo que necesitas para ganar músculo o perder grasa",
-      meaning: "Tu entrenamiento empieza a notarse en el espejo"
+      meaning: "👉🏼 Tu entrenamiento empieza a notarse en el espejo"
     }
     // {
     //   icon: Shield,
@@ -114,13 +114,13 @@ export function Benefits() {
                     {/* Beneficio */}
                     <div className="mb-3">
                       <span className="text-base font-semibold" style={{color: '#4fe4b7'}}>
-                        → {benefit.benefit}
+                        {benefit.benefit}
                       </span>
                     </div>
                     
                     {/* Significado */}
                     <p className="text-gray-600 leading-relaxed text-sm">
-                      <span className="font-medium">→ </span>{benefit.meaning}
+                      {benefit.meaning}
                     </p>
                   </div>
                 </div>
@@ -172,13 +172,13 @@ export function Benefits() {
                     {/* Beneficio */}
                     <div className="mb-3">
                       <span className="text-base font-semibold" style={{color: '#4fe4b7'}}>
-                        → {benefit.benefit}
+                        {benefit.benefit}
                       </span>
                     </div>
                     
                     {/* Significado */}
                     <p className="text-gray-600 leading-relaxed text-sm">
-                      <span className="font-medium">→ </span>{benefit.meaning}
+                      {benefit.meaning}
                     </p>
                   </div>
                 </div>
