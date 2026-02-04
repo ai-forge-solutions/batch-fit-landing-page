@@ -1,4 +1,19 @@
-import { X, Check, Shuffle, LayoutGrid } from "lucide-react"
+import { X, Check } from "lucide-react"
+import Image from "next/image"
+
+const beforeItems = [
+  "21 decisiones irrelevantes que agotan tu energía mental cada día",
+  "Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado",
+  "Estrés en la cocina: Tiempo robado a tu descanso o a tu familia",
+  "Fracaso en tus objetivos fit por falta de organización"
+]
+
+const afterItems = [
+  "Cero decisiones: Tu alimentación entra en piloto automático para que te centres en tu éxito",
+  "Foco total: recuperas 60 minutos cada día para tus prioridades más importantes",
+  "Ejecución mecánica: Una sola sesión de 60 min. y te olvidas de cocinar el resto de la semana",
+  "Constancia garantizada: Ahora el espejo refleja tu esfuerzo en el gimnasio."
+]
 
 export function BeforeAfter() {
   return (
@@ -15,22 +30,28 @@ export function BeforeAfter() {
             
             <h3 className="text-xl font-semibold text-foreground mb-6">Sin sistema</h3>
             
-            <div className="aspect-[4/3] bg-secondary rounded-xl flex items-center justify-center relative overflow-hidden">
-              <div className="grid grid-cols-3 gap-2 p-4 opacity-60">
-                {[...Array(9)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-12 h-12 rounded-lg bg-muted-foreground/20"
-                    style={{
-                      transform: `rotate(${Math.random() * 20 - 10}deg)`,
-                    }}
-                  />
-                ))}
-              </div>
-              <Shuffle className="absolute w-16 h-16 text-muted-foreground/40" />
+            {/* Foto de persona con problemas */}
+            <div className="mb-6 flex justify-center">
+              <Image 
+                src="/cons-person.png" 
+                alt="Persona con problemas de organización"
+                width={200} 
+                height={200}
+                className="rounded-lg"
+              />
             </div>
             
-            <p className="mt-4 text-muted-foreground text-center">Caos, decisiones diarias, estrés</p>
+            {/* Lista de inconvenientes */}
+            <div className="space-y-3">
+              {beforeItems.map((item, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5">
+                    <X className="w-3 h-3 text-red-500" />
+                  </div>
+                  <p className="text-muted-foreground text-sm">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* After */}
@@ -43,19 +64,28 @@ export function BeforeAfter() {
             
             <h3 className="text-xl font-semibold text-foreground mb-6">Con BatchFit</h3>
             
-            <div className="aspect-[4/3] bg-secondary rounded-xl flex items-center justify-center relative overflow-hidden">
-              <div className="grid grid-cols-3 gap-3 p-4">
-                {[...Array(9)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-12 h-12 rounded-lg bg-primary/30 border-2 border-primary/50"
-                  />
-                ))}
-              </div>
-              <LayoutGrid className="absolute w-16 h-16 text-primary/30" />
+            {/* Foto de persona exitosa */}
+            <div className="mb-6 flex justify-center">
+              <Image 
+                src="/pros-person.png" 
+                alt="Persona organizada y exitosa"
+                width={200} 
+                height={200}
+                className="rounded-lg"
+              />
             </div>
             
-            <p className="mt-4 text-foreground text-center font-medium">Orden, claridad, control</p>
+            {/* Lista de beneficios */}
+            <div className="space-y-3">
+              {afterItems.map((item, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                    <Check className="w-3 h-3 text-primary" />
+                  </div>
+                  <p className="text-foreground text-sm font-medium">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
