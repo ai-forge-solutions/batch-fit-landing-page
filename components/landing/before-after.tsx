@@ -100,13 +100,13 @@ export function BeforeAfter() {
                 <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                   <Check className="w-3 h-3 text-primary" />
                 </div>
-                <p className="text-foreground text-sm font-bold transform rotate-1" style={{color: '#1a1a1a', fontWeight: 700}}>Cero decisiones: Tu alimentación entra en piloto automático para que te centres en tu éxito</p>
+                <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>Cero decisiones: Tu alimentación entra en piloto automático para que te centres en tu éxito</p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                   <Check className="w-3 h-3 text-primary" />
                 </div>
-                <p className="text-foreground text-sm font-bold transform -rotate-1" style={{color: '#1a1a1a', fontWeight: 700}}>Foco total: recuperas 60 minutos cada día para tus prioridades más importantes</p>
+                <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>Foco total: recuperas 60 minutos cada día para tus prioridades más importantes</p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
@@ -118,7 +118,7 @@ export function BeforeAfter() {
                 <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                   <Check className="w-3 h-3 text-primary" />
                 </div>
-                <p className="text-foreground text-sm font-bold transform rotate-1" style={{color: '#1a1a1a', fontWeight: 700}}>Constancia garantizada: Ahora el espejo refleja tu esfuerzo en el gimnasio.</p>
+                <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>Constancia garantizada: Ahora el espejo refleja tu esfuerzo en el gimnasio.</p>
               </div>
             </div>
           </div>
