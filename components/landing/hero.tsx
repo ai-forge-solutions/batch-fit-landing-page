@@ -14,7 +14,7 @@ export function Hero() {
           </h1>
           
           <p className="mt-6 text-lg md:text-xl subtitle text-dark/80 max-w-2xl mx-auto text-balance">
-            Nutrición de alto rendimiento automatizada en una sola sesión semanal de 60 minutos.
+            Nutrición de alto rendimiento automatizada en una sola sesión semanal de <span className="font-bold text-xl md:text-2xl text-dark">60 minutos</span>.
           </p>
           
           {/* <p className="mt-4 text-base text-dark/90 font-medium subtitle">

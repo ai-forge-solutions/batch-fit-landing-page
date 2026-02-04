@@ -8,18 +8,20 @@ const sections = [
     image: "/problem-img.png",
     title: "Problema",
     content: [
-      "Entrenas, te cuidas, trabajas.",
-      "Sabes perfectamente lo que hay que hacer."
+"Sabes exactamente qué macros necesitas para ganar músculo, pero...",
+"🚫 Te bloqueas ante la nevera sin saber qué menú toca hoy", 
+"📱 Acumulas recetas en Instagram que nunca cocinas por falta de un método real", 
+"💔 Rompes tu dieta comiendo fuera porque no te dio tiempo a cocinar"
     ]
   },
   {
     icon: "chart",
     title: "Agitación",
     content: [
-      "Pero semana tras semana pasa lo mismo:",
-      "la alimentación empieza a robarte foco, tiempo y energía.",
-      "Decidir qué comer, organizarte, cocinar…",
-      "y cuando todo se acumula, la constancia se resiente y el progreso se estanca."
+      "Esa fatiga de decisión no se queda en la cocina.",
+      <>❓ Cada minuto que pasas pensando  <span className="font-bold text-lg text-gray-800">'qué toca hoy'</span> es energía que le robas a tu próximo entrenamiento o a la concentración que exige tu profesión.</>, 
+      <>Estás pagando un precio de indecisión <span className="font-bold text-lg text-gray-800">altísimo</span>:</>, 
+      <>tu foco se diluye en <span className="font-bold text-gray-800">21 decisiones irrelevantes</span> a la semana 📉</>,
     ]
   },
   {
@@ -27,6 +29,8 @@ const sections = [
     image: "/quiero-un-plan-nutricional-que-de-verdad-funcione.png",
     title: "Solución",
     content: [
+      <>Por suerte, existe un sistema para poner tu nutrición en piloto automático.</>,
+      <>Imagina liberar tu jornada y tu mente de la comida para siempre y dedicar ese <span className="font-bold text-gray-800">100% 💯 de energía</span> a tus metas fit y profesionales.</>,
       "No es falta de disciplina.",
       "Es falta de un sistema que encaje con tu vida."
     ]
@@ -73,7 +77,7 @@ export function PASSection() {
                           key={textIndex} 
                           className="text-gray-600 leading-relaxed"
                         >
-                          {text}
+                          {typeof text === 'string' ? text : text}
                         </p>
                       ))}
                     </div>

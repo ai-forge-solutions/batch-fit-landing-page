@@ -1,5 +1,6 @@
 import { Check } from "lucide-react"
 import { PositiveGrowthRechart } from "@/components/ui/positive-growth-rechart"
+import { AppStoreButtons } from "./app-store-buttons"
 
 const highlights = [
   "Cocina 1 vez por semana",
@@ -11,32 +12,30 @@ const highlights = [
 export function WhatIsBatchFit() {
   return (
     <section className="bg-background py-20 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12">
-        {/* Bloque de texto a la izquierda */}
-        <div className="flex-1 w-full md:w-1/2">
-          <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-left md:text-left text-balance">
+      <div className="max-w-6xl mx-auto">
+        {/* Título principal centrado */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-title text-foreground text-balance">
             BatchFit es un sistema, no una dieta
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground text-left md:text-left max-w-2xl text-balance">
-            BatchFit elimina la carga mental de la alimentación semanal convirtiéndola en un proceso claro, predecible y repetible.
-          </p>
-          <div className="mt-12 grid sm:grid-cols-2 gap-4">
-            {highlights.map((highlight, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-3 p-4 rounded-xl border border-border bg-background"
-              >
-                <div className="shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                  <Check className="w-4 h-4 text-primary-foreground" />
-                </div>
-                <p className="text-foreground font-medium">{highlight}</p>
-              </div>
-            ))}
-          </div>
+          </h1>
         </div>
-        {/* Gráfico a la derecha (interactivo) */}
-        <div className="flex-1 w-full md:w-1/2 flex items-center justify-center">
-          <PositiveGrowthRechart className="w-[320px] h-[220px] md:w-[400px] md:h-[260px]" />
+
+        {/* Contenido dividido en dos subsecciones */}
+        <div className="flex flex-col md:flex-row items-center md:items-center gap-16 md:gap-20">
+          {/* Subsección izquierda - Gráfico */}
+          <div className="flex-1 w-full md:w-1/2 flex items-center justify-center">
+            <PositiveGrowthRechart className="w-[320px] h-[220px] md:w-[400px] md:h-[260px]" />
+          </div>
+          
+          {/* Subsección derecha - Subtítulo y CTA */}
+          <div className="flex-1 w-full md:w-1/2 flex flex-col justify-center items-center text-center">
+            <p className="text-lg md:text-xl text-muted-foreground text-balance mb-8">
+              BatchFit elimina la carga mental de la alimentación semanal convirtiéndola en un proceso claro, predecible y repetible.
+            </p>
+            <div>
+              <AppStoreButtons />
+            </div>
+          </div>
         </div>
       </div>
     </section>
