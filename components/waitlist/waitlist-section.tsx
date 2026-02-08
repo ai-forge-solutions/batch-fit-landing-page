@@ -54,10 +54,10 @@ export function WaitlistSection() {
               <Image 
                 src="/batchfit_logo.png" 
                 alt="BatchFit Logo" 
-                width={28} 
-                height={28}
-                className="absolute top-1/2 -translate-y-1/2 ml-2"
-                style={{ left: '100%' }}
+                width={64} 
+                height={64}
+                className="absolute -translate-y-1/2 ml-3"
+                style={{ left: '100%', top: '45%' }}
               />
             </span>
           </h1>
