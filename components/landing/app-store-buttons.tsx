@@ -117,7 +117,7 @@ export function AppStoreButtons({
     <div className={`flex ${finalSingle ? 'justify-center' : layoutClass} items-center justify-center ${sizeClasses[size].container}`}>
       <motion.button
         onClick={finalConfig.primary.action}
-        className={`group flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
+        className={`group relative overflow-hidden flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
         whileHover={{
           y: -2,
           boxShadow: "0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
@@ -142,12 +142,31 @@ export function AppStoreButtons({
           )}
           <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{finalConfig.primary.label}</p>
         </div>
+        
+        {/* Efecto destello */}
+        <motion.div
+          className="absolute inset-0 -top-2 -bottom-2"
+          style={{
+            background: "linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.7) 50%, transparent 75%)",
+            transform: "translateX(-100%)",
+            width: "200%"
+          }}
+          animate={{
+            transform: ["translateX(-100%)", "translateX(100%)"]
+          }}
+          transition={{
+            duration: 2,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 3
+          }}
+        />
       </motion.button>
 
       {!finalSingle && (
         <motion.button
           onClick={finalConfig.secondary.action}
-          className={`group flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
+          className={`group relative overflow-hidden flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
           whileHover={{
             y: -2,
             boxShadow: "0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
@@ -170,6 +189,25 @@ export function AppStoreButtons({
             <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>{finalConfig.secondary.sublabel}</p>
             <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{finalConfig.secondary.label}</p>
           </div>
+          
+          {/* Efecto destello */}
+          <motion.div
+            className="absolute inset-0 -top-2 -bottom-2"
+            style={{
+              background: "linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.7) 50%, transparent 75%)",
+              transform: "translateX(-100%)",
+              width: "200%"
+            }}
+            animate={{
+              transform: ["translateX(-100%)", "translateX(100%)"]
+            }}
+            transition={{
+              duration: 2,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatDelay: 3.5
+            }}
+          />
         </motion.button>
       )}
     </div>

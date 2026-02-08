@@ -1,6 +1,10 @@
+"use client"
+
 import { Check } from "lucide-react"
 import { PositiveGrowthRechart } from "@/components/ui/positive-growth-rechart"
 import { AppStoreButtons } from "./app-store-buttons"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
 const highlights = [
   "Cocina 1 vez por semana",
@@ -10,8 +14,26 @@ const highlights = [
 ]
 
 export function WhatIsBatchFit() {
+  const [ref, inView] = useInView({
+    threshold: 0.3,
+    triggerOnce: true
+  })
+
+  const ctaVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6, 
+        delay: 1.5, // 1.5 segundos de delay
+        ease: "easeOut" 
+      }
+    }
+  }
+
   return (
-    <section className="bg-background py-20 px-6">
+    <section ref={ref} className="bg-background py-20 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Título principal centrado */}
         <div className="text-center mb-16">
@@ -34,9 +56,13 @@ export function WhatIsBatchFit() {
             <p className="text-lg md:text-xl text-muted-foreground text-balance mb-8">
               BatchFit elimina la carga mental de la alimentación semanal convirtiéndola en un proceso claro, predecible y repetible.
             </p>
-            <div>
+            <motion.div
+              variants={ctaVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+            >
               <AppStoreButtons />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
