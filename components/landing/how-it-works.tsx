@@ -1,3 +1,8 @@
+"use client"
+
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+
 const steps = [
   {
     number: "1",
@@ -21,19 +26,55 @@ const steps = [
   },
 ]
 
+// Variants para barrido elegante como en before-after
+const titleVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { duration: 0.3, ease: "easeOut" }
+  }
+}
+
+const stepVariants = {
+  hidden: { opacity: 0, y: -12 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: 0.2 + (index * 0.15), // Barrido secuencial elegante
+      ease: "easeOut"
+    }
+  })
+}
+
 export function HowItWorks() {
+  const { ref, inView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true
+  })
+  
   return (
-    <section className="bg-background py-20 px-6">
+    <section ref={ref} className="bg-background py-20 px-6">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-semibold text-foreground text-center text-balance">
+        <motion.h2 
+          className="text-3xl md:text-4xl font-semibold text-foreground text-center text-balance"
+          variants={titleVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
           Cómo funciona en la vida real
-        </h2>
+        </motion.h2>
 
         <div className="mt-12 space-y-6">
           {steps.map((step, index) => (
-            <div
+            <motion.div
               key={index}
               className="flex items-start gap-5 p-6 rounded-xl bg-secondary"
+              variants={stepVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              custom={index}
             >
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
                 <span className="text-xl font-bold text-primary-foreground">
@@ -46,7 +87,7 @@ export function HowItWorks() {
                 </h3>
                 <p className="mt-1 text-muted-foreground">{step.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

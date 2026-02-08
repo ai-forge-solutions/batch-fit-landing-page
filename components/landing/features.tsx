@@ -4,9 +4,32 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
+import { useInView } from 'react-intersection-observer'
+
+// Variants para animación del header
+const titleVariants = {
+  hidden: { opacity: 0, x: -60 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
+
+const subtitleVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { duration: 0.4, delay: 1.2, ease: "easeOut" }
+  }
+}
 
 export function Features() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const { ref, inView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  })
 
   // Tarjetas temporales vacías
   const features = [
@@ -31,17 +54,27 @@ export function Features() {
   }
 
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+    <section ref={ref} className="py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <motion.h2 
+            className="text-4xl font-bold text-gray-900 mb-4"
+            variants={titleVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+          >
             Características que
             <span style={{ color: '#4fe4b7' }}> transforman</span> tu alimentación
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            variants={subtitleVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+          >
             BatchFit no es solo una app más. Es un sistema completo que convierte el caos alimentario en orden y simplicidad.
-          </p>
+          </motion.p>
         </div>
         {/* Slider Container */}
         <div className="relative max-w-4xl mx-auto">

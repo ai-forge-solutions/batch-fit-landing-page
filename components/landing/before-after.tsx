@@ -101,7 +101,7 @@ const conclusionVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.3, delay: 3.4, ease: "easeOut" }
+    transition: { duration: 0.3, delay: 4.2, ease: "easeOut" }
   }
 }
 
