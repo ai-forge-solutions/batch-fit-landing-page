@@ -48,9 +48,9 @@ export function PricingSection() {
   
   const getCardClasses = (plan: any) => {
     if (plan.popular) {
-      return 'border-primary shadow-xl scale-105 hover:shadow-2xl hover:scale-[1.06]'
+      return 'border-primary border-2 shadow-2xl scale-110 hover:shadow-3xl hover:scale-[1.11] transform transition-all duration-300'
     }
-    return 'border-gray-200 hover:border-primary hover:shadow-xl hover:scale-[1.02] shadow-md'
+    return 'border-gray-200 hover:border-primary/50 hover:shadow-lg hover:scale-[1.02] shadow-sm transition-all duration-300'
   }
   
   const plans = [
@@ -58,7 +58,7 @@ export function PricingSection() {
       id: 'free',
       name: 'Free',
       price: '0€',
-      period: 'para siempre',
+      period: '',
       description: 'Perfecto para probar BatchFit',
       features: [
         'Acceso a la app básica',
@@ -68,13 +68,13 @@ export function PricingSection() {
       ],
       icon: Star,
       popular: false,
-      buttonText: 'Empezar Gratis'
+      buttonText: 'Obtener acceso GRATIS'
     },
     {
       id: 'monthly',
       name: 'Monthly',
       price: '15€',
-      period: 'por mes',
+      period: '',
       description: 'Ideal para usuarios regulares',
       features: [
         'Todo lo del plan Free',
@@ -86,35 +86,33 @@ export function PricingSection() {
       ],
       icon: Zap,
       popular: true,
-      buttonText: 'Empezar Ahora'
+      buttonText: 'Empezar a mi ritmo'
     },
     {
       id: 'annual',
       name: 'Annual',
       price: '60€',
-      period: 'por año',
+      period: '',
       originalPrice: '180€',
       description: 'El mejor valor para usuarios comprometidos',
       features: [
         'Todo lo del plan Monthly',
         'Descuento del 67%',
-        'Acceso temprano a nuevas funciones',
-        'Consultas nutricionales mensuales',
-        'Recetas personalizadas',
+        'Funciones premium',
         'Soporte 24/7'
       ],
       icon: Check,
       popular: false,
-      buttonText: 'Ahorrar Ahora'
+      buttonText: '¡SÍ! Quiero el plan Premium'
     }
   ]
   
   return (
-    <section ref={ref} className="py-24 px-6 bg-background">
+    <section ref={ref} className="py-16 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-10"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -156,46 +154,76 @@ export function PricingSection() {
                 
                 <motion.div
                   variants={cardVariants}
-                  className={`relative bg-white rounded-xl border-2 transition-all duration-300 overflow-hidden cursor-pointer ${getCardClasses(plan)} ${plan.popular ? 'pt-6' : ''}`}
+                  className={`relative bg-white rounded-xl border-2 transition-all duration-300 overflow-hidden cursor-pointer ${
+                    plan.popular 
+                      ? 'h-[460px]' // Monthly se mantiene igual
+                      : 'h-[440px]' // Free y Annual más altas para mejor spacing
+                  } ${getCardClasses(plan)} ${plan.popular ? 'pt-6' : ''}`}
                   onMouseEnter={() => handleHover(plan.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className="p-5">
-                    {/* Icon & Name */}
-                    <div className="flex items-center justify-center mb-4">
-                      <div className={`p-2 rounded-full ${
-                        plan.popular ? 'bg-primary/10' : 'bg-gray-100'
-                      }`}>
-                        <Icon className={`w-6 h-6 ${
-                          plan.popular ? 'text-primary' : 'text-dark/60'
-                        }`} />
+                  <div className="p-5 pb-6 h-full flex flex-col justify-between">
+                    <div>
+                      {/* Icon & Name */}
+                      <div className="flex items-center justify-center mb-4">
+                        <div className={`p-3 rounded-full ${
+                          plan.popular ? 'bg-primary/10' : 'bg-gray-100'
+                        }`}>
+                          <Icon className={`w-7 h-7 ${
+                            plan.popular ? 'text-primary' : 'text-dark/60'
+                          }`} />
+                        </div>
                       </div>
-                    </div>
                     
                     <div className="text-center mb-4">
                       <h3 className="text-xl font-title text-dark mb-1">{plan.name}</h3>
-                      <div className="mb-1">
-                        <span className="text-3xl font-title text-dark">{plan.price}</span>
-                        <span className="text-dark/60 ml-1 text-sm">{plan.period}</span>
-                      </div>
-                      {plan.originalPrice && (
-                        <div className="text-xs text-dark/50">
-                          <span className="line-through">{plan.originalPrice}</span>
-                          <span className="ml-1 text-primary font-semibold">Ahorra 67%</span>
-                        </div>
+                      {plan.originalPrice && plan.id === 'annual' ? (
+                        // Versión especial para el plan anual: precio original arriba
+                        <>
+                          <div className="mb-2">
+                            <span className="relative text-3xl font-title text-dark/60">
+                              {plan.originalPrice}
+                              <span className="absolute top-1/2 left-0 w-full h-0.5 bg-red-500 transform -translate-y-1/2 rotate-12 origin-center"></span>
+                            </span>
+                          </div>
+                          <div className="mb-1 flex items-center justify-center gap-2">
+                            <span className="text-2xl font-title text-primary">{plan.price}</span>
+                            <span className="text-xs text-primary font-semibold bg-primary/10 px-2 py-1 rounded-full">
+                              Ahorra 67%
+                            </span>
+                          </div>
+                        </>
+                      ) : (
+                        // Versión normal para otros planes
+                        <>
+                          <div className="mb-1">
+                            <span className="text-3xl font-title text-dark">{plan.price}</span>
+                          </div>
+                          {plan.originalPrice && (
+                            <div className="text-xs text-dark/50">
+                              <span className="relative">
+                                {plan.originalPrice}
+                                <span className="absolute top-1/2 left-0 w-full h-0.5 bg-red-500 transform -translate-y-1/2 rotate-12 origin-center"></span>
+                              </span>
+                              <span className="ml-1 text-primary font-semibold">Ahorra 67%</span>
+                            </div>
+                          )}
+                        </>
                       )}
-                      <p className="text-dark/70 text-xs mt-1">{plan.description}</p>
+                      <p className="text-gray-500 text-xs mt-1">{plan.description}</p>
                     </div>
-                    
-                    {/* Features */}
-                    <ul className="space-y-2 mb-5">
-                      {plan.features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span className="text-dark/80 text-xs">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div>
+                      {/* Features */}
+                      <ul className="space-y-2 mb-6">
+                        {plan.features.map((feature, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                            <span className="text-dark/80 text-xs">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    </div>
                     
                     {/* CTA Button */}
                     <motion.button
@@ -203,7 +231,9 @@ export function PricingSection() {
                       className={`w-full py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-200 ${
                         plan.popular
                           ? 'bg-primary text-dark hover:bg-primary/90 shadow-md hover:shadow-lg'
-                          : 'bg-dark text-white hover:bg-dark/90'
+                          : hoveredCard === plan.id
+                          ? 'bg-primary text-dark shadow-md hover:shadow-lg'
+                          : 'bg-gray-400 text-white hover:bg-gray-500'
                       }`}
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.98 }}
@@ -219,12 +249,12 @@ export function PricingSection() {
         
         {/* Footer */}
         <motion.div 
-          className="text-center mt-12"
+          className="text-center mt-8"
           variants={cardVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <p className="text-dark/60 text-xs mb-2">
+          <p className="text-dark/60 text-xs mb-1">
             Todos los planes incluyen garantía de satisfacción de 14 días
           </p>
           <p className="text-dark/50 text-xs">
