@@ -69,14 +69,18 @@ const iconVariants = {
 // 5️⃣ Bullets - Primero sufres, luego alivio
 const chaosBulletVariants = {
   hidden: { opacity: 0 },
-  visible: (index: number) => ({
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-      delay: 0.8 + (index * 0.1), // Empiezan en 0.8s, cada 100ms
-      ease: "easeOut"
+  visible: (index: number) => {
+    // Delays irregulares para aumentar sensación de caos
+    const irregularDelays = [0.9, 1.3, 1.9, 1.5] // [primero, segundo, tercero, último]
+    return {
+      opacity: 1,
+      transition: {
+        duration: 0.2,
+        delay: irregularDelays[index],
+        ease: "easeOut"
+      }
     }
-  })
+  }
 }
 
 const orderBulletVariants = {
@@ -85,7 +89,7 @@ const orderBulletVariants = {
     opacity: 1,
     transition: {
       duration: 0.2,
-      delay: 1.2 + (index * 0.08), // Empiezan cuando termina izquierda, más fluidas
+      delay: 2.5 + (index * 0.1), // Mayor separación - empiezan después del caos
       ease: "easeOut"
     }
   })
@@ -96,7 +100,7 @@ const conclusionVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.3, delay: 1.5, ease: "easeOut" }
+    transition: { duration: 0.3, delay: 3.1, ease: "easeOut" }
   }
 }
 
