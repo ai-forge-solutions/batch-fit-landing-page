@@ -1,5 +1,9 @@
+"use client"
+
 import { X, Check } from "lucide-react"
 import Image from "next/image"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
 const beforeItems = [
   { text: "21 decisiones irrelevantes que agotan tu energía mental cada día", style: { color: "#000000 !important" }, indent: "ml-1" },
@@ -15,23 +19,131 @@ const afterItems = [
   "Constancia garantizada: Ahora el espejo refleja tu esfuerzo en el gimnasio."
 ]
 
+// 1️⃣ Títulos - Control y objetividad
+const titleVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { duration: 0.2, ease: "easeOut" }
+  }
+}
+
+// 2️⃣ Contenedores - El sistema se revela
+const containerVariants = {
+  hidden: { opacity: 0, scale: 0.98 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.3, delay: 0.2, ease: "easeOut" }
+  }
+}
+
+// 3️⃣ Imágenes - Caos vs Orden
+const chaosImageVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, delay: 0.5, ease: "easeOut" }
+  }
+}
+
+const orderImageVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.3, delay: 0.58, ease: "easeOut" } // 80ms después
+  }
+}
+
+// 4️⃣ Iconos ❌ / ✅ - Golpe semántico
+const iconVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.15, delay: 0.7, ease: "easeOut" }
+  }
+}
+
+// 5️⃣ Bullets - Primero sufres, luego alivio
+const chaosBulletVariants = {
+  hidden: { opacity: 0 },
+  visible: (index: number) => ({
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      delay: 0.8 + (index * 0.1), // Empiezan en 0.8s, cada 100ms
+      ease: "easeOut"
+    }
+  })
+}
+
+const orderBulletVariants = {
+  hidden: { opacity: 0 },
+  visible: (index: number) => ({
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      delay: 1.2 + (index * 0.08), // Empiezan cuando termina izquierda, más fluidas
+      ease: "easeOut"
+    }
+  })
+}
+
+// 6️⃣ Frase final - Conclusión lógica
+const conclusionVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.3, delay: 1.5, ease: "easeOut" }
+  }
+}
+
 export function BeforeAfter() {
+  const { ref, inView } = useInView({
+    threshold: 0.4,
+    triggerOnce: true
+  })
+  
   return (
-    <section className="bg-gradient-to-b md:bg-gradient-to-r from-secondary to-orange-100 py-20 px-6">
+    <section ref={ref} className="bg-gradient-to-b md:bg-gradient-to-r from-secondary to-orange-100 py-20 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Before */}
-          <div className="bg-background rounded-2xl p-8 relative overflow-hidden">
-            <div className="absolute top-3 right-5">
+          {/* Before - CAOS */}
+          <motion.div 
+            className="bg-background rounded-2xl p-8 relative overflow-hidden"
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+          >
+            <motion.div 
+              className="absolute top-3 right-5"
+              variants={iconVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+            >
               <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center transform rotate-2">
                 <X className="w-5 h-5 text-red-500 transform -rotate-1" />
               </div>
-            </div>
+            </motion.div>
             
-            <h3 className="text-xl font-semibold text-foreground mb-6">Sin sistema</h3>
+            <motion.h3 
+              className="text-xl font-semibold text-foreground mb-6"
+              variants={titleVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+            >
+              Sin sistema
+            </motion.h3>
             
-            {/* Foto de persona con problemas - girada */}
-            <div className="mb-6 flex justify-center">
+            {/* Foto de persona con problemas - CON FRICCIÓN */}
+            <motion.div 
+              className="mb-6 flex justify-center"
+              variants={chaosImageVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+            >
               <Image 
                 src="/cons-person.png" 
                 alt="Persona con problemas de organización"
@@ -39,52 +151,106 @@ export function BeforeAfter() {
                 height={200}
                 className="rounded-lg transform -rotate-3"
               />
-            </div>
+            </motion.div>
             
-            {/* Lista de inconvenientes con caos */}
+            {/* Lista de inconvenientes - UNO A UNO CAÓTICO */}
             <div className="space-y-3">
-              <div className="flex items-start gap-3 ml-1">
+              <motion.div 
+                className="flex items-start gap-3 ml-1"
+                variants={chaosBulletVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                custom={1} // Aparece 2do
+              >
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform rotate-12" />
                 </div>
-                <p className="text-sm font-medium transform rotate-2" style={{color: '#888888', fontWeight: 600}}>21 decisiones irrelevantes que agotan tu energía mental cada día</p>
-              </div>
+                <p className="text-sm font-medium transform rotate-2" style={{color: '#888888', fontWeight: 600}}>
+                  21 decisiones irrelevantes que agotan tu energía mental cada día
+                </p>
+              </motion.div>
               
-              <div className="flex items-start gap-3 ml-3">
+              <motion.div 
+                className="flex items-start gap-3 ml-3"
+                variants={chaosBulletVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                custom={3} // Aparece último
+              >
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform -rotate-6" />
                 </div>
-                <p className="text-sm font-medium transform -rotate-1" style={{color: '#666666', fontWeight: 600}}>Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado</p>
-              </div>
+                <p className="text-sm font-medium transform -rotate-1" style={{color: '#666666', fontWeight: 600}}>
+                  Fatiga de decisión constante: Llegas al trabajo con el cerebro ya cansado
+                </p>
+              </motion.div>
               
-              <div className="flex items-start gap-3 ml-0">
+              <motion.div 
+                className="flex items-start gap-3 ml-0"
+                variants={chaosBulletVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                custom={0} // Aparece PRIMERO
+              >
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform rotate-3" />
                 </div>
-                <p className="text-sm font-medium transform rotate-3" style={{color: '#777777', fontWeight: 600}}>Estrés en la cocina: Tiempo robado a tu descanso o a tu familia</p>
-              </div>
+                <p className="text-sm font-medium transform rotate-3" style={{color: '#777777', fontWeight: 600}}>
+                  Estrés en la cocina: Tiempo robado a tu descanso o a tu familia
+                </p>
+              </motion.div>
               
-              <div className="flex items-start gap-3 ml-2">
+              <motion.div 
+                className="flex items-start gap-3 ml-2"
+                variants={chaosBulletVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                custom={2} // Aparece 3ro
+              >
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
                   <X className="w-3 h-3 text-red-500 transform -rotate-12" />
                 </div>
-                <p className="text-sm font-medium transform -rotate-2" style={{color: '#999999', fontWeight: 600}}>Fracaso en tus objetivos fit por falta de organización</p>
-              </div>
+                <p className="text-sm font-medium transform -rotate-2" style={{color: '#999999', fontWeight: 600}}>
+                  Fracaso en tus objetivos fit por falta de organización
+                </p>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* After */}
-          <div className="bg-background rounded-2xl p-8 relative overflow-hidden">
-            <div className="absolute top-4 right-4">
+          {/* After - ORDEN */}
+          <motion.div 
+            className="bg-background rounded-2xl p-8 relative overflow-hidden"
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+          >
+            <motion.div 
+              className="absolute top-4 right-4"
+              variants={iconVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+            >
               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                 <Check className="w-5 h-5 text-primary" />
               </div>
-            </div>
+            </motion.div>
             
-            <h3 className="text-xl font-semibold text-foreground mb-6">Con BatchFit</h3>
+            <motion.h3 
+              className="text-xl font-semibold text-foreground mb-6"
+              variants={titleVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+            >
+              Con BatchFit
+            </motion.h3>
             
-            {/* Foto de persona exitosa */}
-            <div className="mb-6 flex justify-center">
+            {/* Foto de persona exitosa - ESTABLE */}
+            <motion.div 
+              className="mb-6 flex justify-center"
+              variants={orderImageVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+            >
               <Image 
                 src="/pros-person.png" 
                 alt="Persona organizada y exitosa"
@@ -92,45 +258,44 @@ export function BeforeAfter() {
                 height={200}
                 className="rounded-lg"
               />
-            </div>
+            </motion.div>
             
-            {/* Lista de beneficios */}
+            {/* Lista de beneficios - FLUIDA */}
             <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
-                  <Check className="w-3 h-3 text-primary" />
-                </div>
-                <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>Cero decisiones: Tu alimentación entra en piloto automático para que te centres en tu éxito</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
-                  <Check className="w-3 h-3 text-primary" />
-                </div>
-                <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>Foco total: recuperas 60 minutos cada día para tus prioridades más importantes</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
-                  <Check className="w-3 h-3 text-primary" />
-                </div>
-                <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>Ejecución mecánica: Una sola sesión de 60 min. y te olvidas de cocinar el resto de la semana</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
-                  <Check className="w-3 h-3 text-primary" />
-                </div>
-                <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>Constancia garantizada: Ahora el espejo refleja tu esfuerzo en el gimnasio.</p>
-              </div>
+              {afterItems.map((text, index) => (
+                <motion.div 
+                  key={index}
+                  className="flex items-start gap-3"
+                  variants={orderBulletVariants}
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  custom={index}
+                >
+                  <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                    <Check className="w-3 h-3 text-primary" />
+                  </div>
+                  <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>
+                    {text}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="mt-10 text-center">
+        {/* Frase final - CONCLUSIÓN LÓGICA */}
+        <motion.div 
+          className="mt-10 text-center"
+          variants={conclusionVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
           <p className="text-xl md:text-2xl text-foreground" style={{fontFamily: "'Bebas Neue', sans-serif"}}>
             menos decisiones
             <br />
             más control
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
