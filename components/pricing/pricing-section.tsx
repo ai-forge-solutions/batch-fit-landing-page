@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Check, Star, Zap } from "lucide-react"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export function PricingSection() {
   const [ref, inView] = useInView({
@@ -13,6 +14,7 @@ export function PricingSection() {
   
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'monthly' | 'annual'>('monthly')
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
+  const router = useRouter()
   
   const containerVariants = {
     hidden: {},
@@ -39,7 +41,8 @@ export function PricingSection() {
   const handleSelectPlan = (plan: 'free' | 'monthly' | 'annual') => {
     setSelectedPlan(plan)
     console.log(`[BatchFit] ${plan} plan selected`)
-    // TODO: Integrate with payment system
+    // Navegar a la página de waitlist
+    router.push('/waitlist')
   }
   
   const handleHover = (planId: string) => {
