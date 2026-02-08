@@ -1,22 +1,44 @@
 "use client"
 
-import { Apple, Play } from "lucide-react"
+import { Apple, Play, BookOpen, Video, Lock, Bell } from "lucide-react"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import { defaultCTAConfig, type CTAConfig } from "@/lib/cta-config"
 
 interface AppStoreButtonsProps {
   size?: 'sm' | 'md' | 'lg'
   layout?: 'vertical' | 'horizontal'
   inView?: boolean
+  config?: CTAConfig
 }
 
-export function AppStoreButtons({ size = 'lg', layout = 'vertical', inView = false }: AppStoreButtonsProps) {
+export function AppStoreButtons({ 
+  size = 'lg', 
+  layout = 'vertical', 
+  inView = false,
+  config = defaultCTAConfig
+}: AppStoreButtonsProps) {
   const [shouldPulse, setShouldPulse] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   
-  const handleClick = (store: string) => {
-    // Track click for MVP validation
-    console.log(`[BatchFit] ${store} button clicked`)
+  // Icon mapping
+  const getIcon = (iconName: string, className: string) => {
+    switch(iconName) {
+      case 'apple':
+        return <Apple className={className} />
+      case 'play':
+        return <Play className={`${className} fill-current`} />
+      case 'book':
+        return <BookOpen className={className} />
+      case 'video':
+        return <Video className={className} />
+      case 'lock':
+        return <Lock className={className} />
+      case 'bell':
+        return <Bell className={className} />
+      default:
+        return <Apple className={className} />
+    }
   }
   
   // Detect reduced motion preference
@@ -73,7 +95,7 @@ export function AppStoreButtons({ size = 'lg', layout = 'vertical', inView = fal
   return (
     <div className={`flex ${layoutClass} items-center justify-center ${sizeClasses[size].container}`}>
       <motion.button
-        onClick={() => handleClick("App Store")}
+        onClick={config.primary.action}
         className={`group flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
         whileHover={{
           y: -2,
@@ -90,15 +112,17 @@ export function AppStoreButtons({ size = 'lg', layout = 'vertical', inView = fal
           willChange: 'transform'
         }}
       >
-        <Apple className={sizeClasses[size].icon} />
+        <span className={sizeClasses[size].icon}>
+          {getIcon(config.primary.iconName, sizeClasses[size].icon)}
+        </span>
         <div className="text-left">
-          <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>Descarga en</p>
-          <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>App Store</p>
+          <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>{config.primary.sublabel}</p>
+          <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{config.primary.label}</p>
         </div>
       </motion.button>
 
       <motion.button
-        onClick={() => handleClick("Google Play")}
+        onClick={config.secondary.action}
         className={`group flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
         whileHover={{
           y: -2,
@@ -115,10 +139,12 @@ export function AppStoreButtons({ size = 'lg', layout = 'vertical', inView = fal
           willChange: 'transform'
         }}
       >
-        <Play className={`${sizeClasses[size].icon} fill-current`} />
+        <span className={sizeClasses[size].icon}>
+          {getIcon(config.secondary.iconName, sizeClasses[size].icon)}
+        </span>
         <div className="text-left">
-          <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>Disponible en</p>
-          <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>Google Play</p>
+          <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>{config.secondary.sublabel}</p>
+          <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{config.secondary.label}</p>
         </div>
       </motion.button>
     </div>
