@@ -4,6 +4,7 @@ import { X, Check } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 const beforeItems = [
   { text: "21 decisiones irrelevantes que agotan tu energía mental cada día", style: { color: "#000000 !important" }, indent: "ml-1" },
@@ -106,8 +107,21 @@ const conclusionVariants = {
 }
 
 export function BeforeAfter() {
+  const isMobile = useIsMobile()
+  
   const { ref, inView } = useInView({
-    threshold: 0.4,
+    threshold: isMobile ? 0.6 : 0.4, // Más threshold en móvil para que aparezca más tarde
+    triggerOnce: true
+  })
+
+  // Separar los triggers para las tarjetas en móvil
+  const { ref: leftCardRef, inView: leftCardInView } = useInView({
+    threshold: isMobile ? 0.3 : 0.4,
+    triggerOnce: true
+  })
+
+  const { ref: rightCardRef, inView: rightCardInView } = useInView({
+    threshold: isMobile ? 0.8 : 0.4, // La tarjeta derecha aparece mucho más tarde en móvil
     triggerOnce: true
   })
   
@@ -117,16 +131,17 @@ export function BeforeAfter() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Before - CAOS */}
           <motion.div 
+            ref={leftCardRef}
             className="bg-background rounded-2xl p-8 relative overflow-hidden"
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? "visible" : "hidden"}
+            animate={isMobile ? (leftCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
           >
             <motion.div 
               className="absolute top-3 right-5"
               variants={iconVariants}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
+              animate={isMobile ? (leftCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
             >
               <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center transform rotate-2">
                 <X className="w-5 h-5 text-red-500 transform -rotate-1" />
@@ -147,7 +162,7 @@ export function BeforeAfter() {
               className="mb-6 flex justify-center"
               variants={chaosImageVariants}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
+              animate={isMobile ? (leftCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
             >
               <Image 
                 src="/cons-person.png" 
@@ -164,7 +179,7 @@ export function BeforeAfter() {
                 className="flex items-start gap-3 ml-1"
                 variants={chaosBulletVariants}
                 initial="hidden"
-                animate={inView ? "visible" : "hidden"}
+                animate={isMobile ? (leftCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
                 custom={1} // Aparece 2do
               >
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
@@ -179,7 +194,7 @@ export function BeforeAfter() {
                 className="flex items-start gap-3 ml-3"
                 variants={chaosBulletVariants}
                 initial="hidden"
-                animate={inView ? "visible" : "hidden"}
+                animate={isMobile ? (leftCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
                 custom={3} // Aparece último
               >
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
@@ -194,7 +209,7 @@ export function BeforeAfter() {
                 className="flex items-start gap-3 ml-0"
                 variants={chaosBulletVariants}
                 initial="hidden"
-                animate={inView ? "visible" : "hidden"}
+                animate={isMobile ? (leftCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
                 custom={0} // Aparece PRIMERO
               >
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
@@ -209,7 +224,7 @@ export function BeforeAfter() {
                 className="flex items-start gap-3 ml-2"
                 variants={chaosBulletVariants}
                 initial="hidden"
-                animate={inView ? "visible" : "hidden"}
+                animate={isMobile ? (leftCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
                 custom={2} // Aparece 3ro
               >
                 <div className="shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 transform rotate-1">
@@ -224,16 +239,17 @@ export function BeforeAfter() {
 
           {/* After - ORDEN */}
           <motion.div 
+            ref={rightCardRef}
             className="bg-background rounded-2xl p-8 relative overflow-hidden"
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? "visible" : "hidden"}
+            animate={isMobile ? (rightCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
           >
             <motion.div 
               className="absolute top-4 right-4"
               variants={iconVariants}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
+              animate={isMobile ? (rightCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
             >
               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                 <Check className="w-5 h-5 text-primary" />
@@ -254,7 +270,7 @@ export function BeforeAfter() {
               className="mb-6 flex justify-center"
               variants={orderImageVariants}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
+              animate={isMobile ? (rightCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
             >
               <Image 
                 src="/pros-person.png" 
@@ -273,7 +289,7 @@ export function BeforeAfter() {
                   className="flex items-start gap-3"
                   variants={orderBulletVariants}
                   initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
+                  animate={isMobile ? (rightCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
                   custom={index}
                 >
                   <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
@@ -293,7 +309,7 @@ export function BeforeAfter() {
           className="mt-10 text-center"
           variants={conclusionVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={isMobile ? (rightCardInView ? "visible" : "hidden") : (inView ? "visible" : "hidden")}
         >
           <p className="text-xl md:text-2xl text-foreground" style={{fontFamily: "'Bebas Neue', sans-serif"}}>
             menos decisiones

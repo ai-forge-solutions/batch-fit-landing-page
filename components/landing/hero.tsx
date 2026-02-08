@@ -151,7 +151,7 @@ export function Hero() {
   const shouldShowParallax = !prefersReducedMotion && !isTouch && !isMobile
   
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-background px-6 py-8">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-20 pb-8">
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-12">
         {/* Contenido de texto */}

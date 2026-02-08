@@ -34,9 +34,9 @@ const sections = [
     title: "Solución",
     content: [
       <>Por suerte, existe un sistema para poner tu nutrición en piloto automático.</>,
-      <>Imagina liberar tu jornada y tu mente de la comida para siempre y dedicar ese <span className="font-bold text-gray-800">100% 💯 de energía</span> a tus metas fit y profesionales.</>,
-      "No es falta de disciplina.",
-      "Es falta de un sistema que encaje con tu vida."
+      <>Imagina liberar tu jornada y tu mente de la comida para siempre y dedicar ese <span className="font-bold text-gray-800"> 💯% de energía</span> a tus metas fit y profesionales.</>,
+      <>No es falta de <span className="font-bold text-lg text-gray-800">disciplina</span></>,
+      <>Es falta de un <span className="font-bold text-lg text-gray-800">sistema</span> que encaje con tu vida.</>
     ]
   }
 ]
