@@ -8,12 +8,39 @@ import Image from "next/image"
 export function WaitlistSection() {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Integrate with email service
-    console.log('[BatchFit] Waitlist email:', email)
-    setIsSubmitted(true)
+    setIsSubmitting(true)
+    
+    try {
+      // Usar URLSearchParams en lugar de FormData
+      const params = new URLSearchParams()
+      params.append('email', email)
+      params.append('source', 'waitlist-page')
+      params.append('timestamp', new Date().toISOString())
+      
+      const response = await fetch('https://script.google.com/macros/s/AKfycby959tLSIttdvnLNIutsY2ACa7Rj8fDcuMexS1WPBifeF9UnPFGVauK_16JkMI4zs-X/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params.toString()
+      })
+      
+      // Con mode: 'no-cors', asumimos que funcionó si no hubo error
+      console.log('[BatchFit] Email enviado a Google Sheets:', email)
+      setIsSubmitted(true)
+      setEmail('')
+      
+    } catch (error) {
+      console.error('[BatchFit] Error completo:', error)
+      alert(`Error: ${error.message || 'Error desconocido'}`)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const containerVariants = {
@@ -48,15 +75,16 @@ export function WaitlistSection() {
       >
         {/* Título principal */}
         <motion.div variants={itemVariants} className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-title text-dark mb-4 text-center leading-tight relative">
+          <h1 className="text-4xl md:text-5xl text-dark mb-4 text-center leading-tight relative">
+            <span className="font-sans">Gana salud, tiempo y energía con </span>
             <span className="relative inline-block">
-              Gana salud, tiempo y energía con BatchFit
+              <span className="font-title">BatchFit</span>
               <Image 
                 src="/batchfit_logo.png" 
                 alt="BatchFit Logo" 
                 width={64} 
                 height={64}
-                className="absolute -translate-y-1/2 ml-3"
+                className="absolute -translate-y-1/2"
                 style={{ left: '100%', top: '45%' }}
               />
             </span>
@@ -72,7 +100,7 @@ export function WaitlistSection() {
           <div className="space-y-4 text-dark/80 leading-relaxed">
             <p>
               Estamos terminando los últimos detalles para que BatchFit funcione como debe:
-              planificar, cocinar y comer bien sin pensar cada día.
+              planificar, cocinar y comer bien de la manera más sencilla posible.
             </p>
             
             <p>
@@ -103,11 +131,16 @@ export function WaitlistSection() {
                 </div>
                 <motion.button
                   type="submit"
-                  className="bg-primary text-dark px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting}
+                  className={`px-6 py-3 rounded-lg font-semibold transition-colors shadow-md hover:shadow-lg ${
+                    isSubmitting 
+                      ? 'bg-gray-400 text-gray-700 cursor-not-allowed' 
+                      : 'bg-primary text-dark hover:bg-primary/90'
+                  }`}
+                  whileHover={!isSubmitting ? { y: -2 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
-                  Avisar cuando esté listo
+                  {isSubmitting ? 'Guardando...' : 'Avisar cuando esté listo'}
                 </motion.button>
               </div>
             </form>
