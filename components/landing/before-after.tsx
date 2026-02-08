@@ -84,12 +84,13 @@ const chaosBulletVariants = {
 }
 
 const orderBulletVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: -12 },
   visible: (index: number) => ({
     opacity: 1,
+    y: 0,
     transition: {
-      duration: 0.2,
-      delay: 2.5 + (index * 0.1), // Mayor separación - empiezan después del caos
+      duration: 0.5,
+      delay: 2.5 + (index * 0.15), // Barrido más pausado
       ease: "easeOut"
     }
   })
@@ -100,7 +101,7 @@ const conclusionVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.3, delay: 3.1, ease: "easeOut" }
+    transition: { duration: 0.3, delay: 3.4, ease: "easeOut" }
   }
 }
 
