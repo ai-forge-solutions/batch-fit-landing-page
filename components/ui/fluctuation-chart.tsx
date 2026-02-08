@@ -30,7 +30,7 @@ export function FluctuationChart({ className }: { className?: string }) {
           y={bar.positive ? 20 - bar.height : 20}
           width="3"
           height={bar.height}
-          fill="#10B981"
+          fill="#6B7280"
           rx="0.5"
         />
       ))}

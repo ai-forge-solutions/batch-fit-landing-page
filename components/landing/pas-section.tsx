@@ -182,7 +182,7 @@ function PASCard({ section, index }: { section: any, index: number }) {
 
 export function PASSection() {
   return (
-    <section className="bg-gradient-to-b from-white via-gray-100 via-orange-100 via-green-50 to-white py-20 px-6">
+    <section className="bg-gradient-to-b from-white via-gray-200 to-orange-100 py-20 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="grid gap-12 md:gap-16">
           {sections.map((section, index) => (

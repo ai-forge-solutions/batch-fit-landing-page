@@ -48,12 +48,12 @@ export function PositiveGrowthRechart({ className }: { className?: string }) {
           <XAxis dataKey="name" hide />
           <YAxis hide domain={[0, 40]} />
           <Tooltip
-            cursor={{ fill: "rgba(79,228,183,0.08)" }}
+            cursor={{ fill: "rgba(107,114,128,0.08)" }}
             contentStyle={{ borderRadius: 8, fontSize: 14 }}
           />
           <Bar
             dataKey="bar"
-            fill="#10B981"
+            fill="#6B7280"
             barSize={16}
             radius={[4, 4, 0, 0]}
             isAnimationActive={animate}
