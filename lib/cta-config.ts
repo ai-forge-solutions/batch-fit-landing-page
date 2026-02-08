@@ -5,14 +5,14 @@ export interface CTAConfig {
     label: string
     sublabel: string
     action: () => void
-    iconName: 'apple' | 'play' | 'book' | 'video' | 'lock' | 'bell'
+    iconName: 'apple' | 'play' | 'book' | 'video' | 'lock' | 'bell' | 'trending-up'
     trackingName: string
   }
   secondary: {
     label: string
     sublabel: string
     action: () => void
-    iconName: 'apple' | 'play' | 'book' | 'video' | 'lock' | 'bell'
+    iconName: 'apple' | 'play' | 'book' | 'video' | 'lock' | 'bell' | 'trending-up'
     trackingName: string
   }
 }
@@ -38,6 +38,27 @@ export const defaultCTAConfig: CTAConfig = {
     },
     iconName: "play",
     trackingName: "Google Play"
+  }
+}
+
+// Configuración de Pricing (Single Button)
+export const pricingCTAConfig: CTAConfig = {
+  primary: {
+    label: "Quiero optimizar mi semana",
+    sublabel: "",
+    action: () => {
+      console.log("[BatchFit] Pricing CTA clicked")
+      window.location.href = '/pricing'
+    },
+    iconName: "trending-up",
+    trackingName: "Pricing CTA"
+  },
+  secondary: {
+    label: "",
+    sublabel: "",
+    action: () => {},
+    iconName: "trending-up",
+    trackingName: ""
   }
 }
 

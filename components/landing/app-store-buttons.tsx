@@ -1,25 +1,44 @@
 "use client"
 
-import { Apple, Play, BookOpen, Video, Lock, Bell } from "lucide-react"
+import { Apple, Play, BookOpen, Video, Lock, Bell, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { defaultCTAConfig, type CTAConfig } from "@/lib/cta-config"
+import { useCTA } from "@/lib/cta-context"
 
 interface AppStoreButtonsProps {
   size?: 'sm' | 'md' | 'lg'
   layout?: 'vertical' | 'horizontal'
   inView?: boolean
   config?: CTAConfig
+  single?: boolean
+  useGlobal?: boolean
 }
 
 export function AppStoreButtons({ 
   size = 'lg', 
   layout = 'vertical', 
   inView = false,
-  config = defaultCTAConfig
+  config,
+  single,
+  useGlobal = true
 }: AppStoreButtonsProps) {
   const [shouldPulse, setShouldPulse] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  
+  // Use global context or fallback to props/default
+  let finalConfig = config || defaultCTAConfig
+  let finalSingle = single || false
+  
+  if (useGlobal) {
+    try {
+      const globalCTA = useCTA()
+      finalConfig = globalCTA.config
+      finalSingle = globalCTA.isSingle
+    } catch {
+      // No global context available, use props/default
+    }
+  }
   
   // Icon mapping
   const getIcon = (iconName: string, className: string) => {
@@ -36,6 +55,8 @@ export function AppStoreButtons({
         return <Lock className={className} />
       case 'bell':
         return <Bell className={className} />
+      case 'trending-up':
+        return <TrendingUp className={className} />
       default:
         return <Apple className={className} />
     }
@@ -69,21 +90,21 @@ export function AppStoreButtons({
   const sizeClasses = {
     sm: {
       container: 'gap-2',
-      button: 'px-3 py-2 rounded-lg min-w-[140px]',
+      button: single ? 'px-6 py-2 rounded-lg min-w-fit' : 'px-3 py-2 rounded-lg min-w-[140px]',
       icon: 'w-5 h-5',
       textSmall: 'text-[10px]',
       textLarge: 'text-sm'
     },
     md: {
       container: 'gap-3',
-      button: 'px-4 py-2.5 rounded-lg min-w-[160px]',
+      button: single ? 'px-8 py-2.5 rounded-lg min-w-fit' : 'px-4 py-2.5 rounded-lg min-w-[160px]',
       icon: 'w-6 h-6',
       textSmall: 'text-xs',
       textLarge: 'text-sm'
     },
     lg: {
       container: 'gap-4',
-      button: 'px-6 py-3.5 rounded-xl min-w-[200px]',
+      button: single ? 'px-10 py-3.5 rounded-xl min-w-fit' : 'px-6 py-3.5 rounded-xl min-w-[200px]',
       icon: 'w-7 h-7',
       textSmall: 'text-xs',
       textLarge: 'text-base'
@@ -93,9 +114,9 @@ export function AppStoreButtons({
   const layoutClass = layout === 'horizontal' ? 'flex-row' : 'flex-col sm:flex-row'
 
   return (
-    <div className={`flex ${layoutClass} items-center justify-center ${sizeClasses[size].container}`}>
+    <div className={`flex ${finalSingle ? 'justify-center' : layoutClass} items-center justify-center ${sizeClasses[size].container}`}>
       <motion.button
-        onClick={config.primary.action}
+        onClick={finalConfig.primary.action}
         className={`group flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
         whileHover={{
           y: -2,
@@ -113,40 +134,44 @@ export function AppStoreButtons({
         }}
       >
         <span className={sizeClasses[size].icon}>
-          {getIcon(config.primary.iconName, sizeClasses[size].icon)}
+          {getIcon(finalConfig.primary.iconName, sizeClasses[size].icon)}
         </span>
         <div className="text-left">
-          <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>{config.primary.sublabel}</p>
-          <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{config.primary.label}</p>
+          {finalConfig.primary.sublabel && (
+            <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>{finalConfig.primary.sublabel}</p>
+          )}
+          <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{finalConfig.primary.label}</p>
         </div>
       </motion.button>
 
-      <motion.button
-        onClick={config.secondary.action}
-        className={`group flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
-        whileHover={{
-          y: -2,
-          boxShadow: "0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
-          backgroundColor: "hsl(var(--primary) / 0.9)",
-          transition: { duration: 0.2 }
-        }}
-        whileTap={{ scale: 0.98 }}
-        animate={shouldPulse ? {
-          scale: [1, 1.03, 1],
-          transition: { duration: 0.6, ease: "easeOut" }
-        } : {}}
-        style={{
-          willChange: 'transform'
-        }}
-      >
-        <span className={sizeClasses[size].icon}>
-          {getIcon(config.secondary.iconName, sizeClasses[size].icon)}
-        </span>
-        <div className="text-left">
-          <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>{config.secondary.sublabel}</p>
-          <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{config.secondary.label}</p>
-        </div>
-      </motion.button>
+      {!finalSingle && (
+        <motion.button
+          onClick={finalConfig.secondary.action}
+          className={`group flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
+          whileHover={{
+            y: -2,
+            boxShadow: "0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+            backgroundColor: "hsl(var(--primary) / 0.9)",
+            transition: { duration: 0.2 }
+          }}
+          whileTap={{ scale: 0.98 }}
+          animate={shouldPulse ? {
+            scale: [1, 1.03, 1],
+            transition: { duration: 0.6, ease: "easeOut" }
+          } : {}}
+          style={{
+            willChange: 'transform'
+          }}
+        >
+          <span className={sizeClasses[size].icon}>
+            {getIcon(finalConfig.secondary.iconName, sizeClasses[size].icon)}
+          </span>
+          <div className="text-left">
+            <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>{finalConfig.secondary.sublabel}</p>
+            <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{finalConfig.secondary.label}</p>
+          </div>
+        </motion.button>
+      )}
     </div>
   )
 }

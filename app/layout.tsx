@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Header } from '@/components/landing/header'
+import { CTAProvider } from '@/lib/cta-context'
 import './globals.css'
 
 const bebasNeue = Geist({ 
@@ -32,8 +33,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`font-sans antialiased`}>
-        <Header />
-        {children}
+        <CTAProvider mode="pricing" single={true}>
+          <Header />
+          {children}
+        </CTAProvider>
         <Analytics />
       </body>
     </html>
