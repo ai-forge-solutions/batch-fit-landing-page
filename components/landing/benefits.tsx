@@ -58,16 +58,16 @@ export function Benefits() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50" style={interFont}>
+    <section className="py-20 bg-gradient-to-b from-slate-900 to-black" style={interFont}>
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Beneficios que 
             <span style={{color: '#4fe4b7'}}> transforman</span> tu vida
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            es algo parecido a poner <strong>tu nutrición en piloto automático</strong>: tú marcas el destino y el sistema se encarga del camino
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+            es algo parecido a poner <strong className="text-white">tu nutrición en piloto automático</strong>: tú marcas el destino y el sistema se encarga del camino
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export function Benefits() {
               return (
                 <div 
                   key={index}
-                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-400 max-w-sm mx-auto"
+                  className="group p-8 bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-600 hover:border-green-400 max-w-sm mx-auto"
                 >
                   <div className="flex flex-col items-center text-center space-y-4">
                     {/* Icono */}
@@ -97,7 +97,7 @@ export function Benefits() {
                     </div>
                     
                     {/* Característica (título) */}
-                    <h3 className="text-sm italic leading-relaxed px-2" style={{color: '#666'}}>
+                    <h3 className="text-sm italic leading-relaxed px-2 text-gray-300">
                       {benefit.title}
                     </h3>
                     
@@ -109,9 +109,9 @@ export function Benefits() {
                     </div>
                     
                     {/* Significado (valor emocional) */}
-                    <p className="text-base leading-relaxed" style={{color: '#333'}}>
+                    <p className="text-base leading-relaxed text-gray-200">
                       {benefit.meaning.split('👉🏼')[0]}
-                      <strong>{benefit.meaning.split('👉🏼')[1]}</strong>
+                      <strong className="text-white">{benefit.meaning.split('👉🏼')[1]}</strong>
                     </p>
                   </div>
                 </div>
@@ -126,7 +126,7 @@ export function Benefits() {
               return (
                 <div 
                   key={index + 3}
-                  className="group p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-400 max-w-sm mx-auto"
+                  className="group p-8 bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-600 hover:border-green-400 max-w-sm mx-auto"
                 >
                   <div className="flex flex-col items-center text-center space-y-4">
                     {/* Icono */}
@@ -143,7 +143,7 @@ export function Benefits() {
                     </div>
                     
                     {/* Característica (título) */}
-                    <h3 className="text-sm italic leading-relaxed px-2" style={{color: '#666'}}>
+                    <h3 className="text-sm italic leading-relaxed px-2 text-gray-300">
                       {benefit.title}
                     </h3>
                     
@@ -155,9 +155,9 @@ export function Benefits() {
                     </div>
                     
                     {/* Significado (valor emocional) */}
-                    <p className="text-base leading-relaxed" style={{color: '#333'}}>
+                    <p className="text-base leading-relaxed text-gray-200">
                       {benefit.meaning.split('👉🏼')[0]}
-                      <strong>{benefit.meaning.split('👉🏼')[1]}</strong>
+                      <strong className="text-white">{benefit.meaning.split('👉🏼')[1]}</strong>
                     </p>
                   </div>
                 </div>

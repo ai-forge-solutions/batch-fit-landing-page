@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import { FaInstagram, FaTiktok } from "react-icons/fa"
+import { MdEmail } from "react-icons/md"
 import Image from "next/image"
 
 const footerVariants = {
@@ -28,7 +30,7 @@ export function Footer() {
       animate={inView ? "visible" : "hidden"}
     >
       <div className="max-w-4xl mx-auto">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Image 
@@ -39,6 +41,35 @@ export function Footer() {
               className="w-6 h-6"
             />
             <span className="text-sm font-semibold text-gray-700">BatchFit</span>
+          </div>
+          
+          {/* Redes Sociales */}
+          <div className="flex items-center gap-6">
+            <a 
+              href="https://www.instagram.com/batchfit.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-primary transition-colors"
+              aria-label="Síguenos en Instagram"
+            >
+              <FaInstagram className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://www.tiktok.com/@batchfit.app" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-primary transition-colors"
+              aria-label="Síguenos en TikTok"
+            >
+              <FaTiktok className="w-5 h-5" />
+            </a>
+            <a 
+              href="mailto:support@batchfit.app" 
+              className="text-gray-600 hover:text-primary transition-colors"
+              aria-label="Envíanos un correo"
+            >
+              <MdEmail className="w-5 h-5" />
+            </a>
           </div>
           
           {/* Enlaces legales */}
