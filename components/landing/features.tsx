@@ -31,19 +31,37 @@ export function Features() {
     triggerOnce: true
   })
 
-  // Tarjetas temporales vacías
+  // Características principales de BatchFit
   const features = [
     {
       id: 1,
-      title: "Característica 1",
-      description: "Descripción de la primera característica",
-      image: "/placeholder.svg", // Placeholder hasta que tengas la imagen
+      title: "Interfaz Intuitiva",
+      description: "Una pantalla principal clara y organizada donde puedes ver todas tus comidas planificadas, seguir tu progreso y acceder a todas las funcionalidades de manera sencilla.",
+      image: "/feature-bacthscreen.png",
     },
     {
       id: 2,
-      title: "Característica 2", 
-      description: "Descripción de la segunda característica",
-      image: "/placeholder.svg", // Placeholder hasta que tengas la imagen
+      title: "Batch Cooking Inteligente", 
+      description: "Planifica y organiza tu batch cooking de forma eficiente. Recibe guías paso a paso para preparar múltiples comidas de una vez y ahorrar tiempo durante toda la semana.",
+      image: "/feature-batchcooking-step.png",
+    },
+    {
+      id: 3,
+      title: "Creación de Objetivos",
+      description: "Define tus metas nutricionales personalizadas. Configura objetivos de peso, masa muscular, o bienestar general y recibe un plan alimentario adaptado a tus necesidades específicas.",
+      image: "/feature-goals-creation.png",
+    },
+    {
+      id: 4,
+      title: "Seguimiento de Progreso",
+      description: "Visualiza tu evolución con gráficos detallados y estadísticas. Monitorea tu peso, medidas, consumo nutricional y cómo te acercas a tus objetivos día a día.",
+      image: "/feature-progress.png",
+    },
+    {
+      id: 5,
+      title: "Planificación Semanal",
+      description: "Organiza todas tus comidas de la semana de un vistazo. Planifica desayunos, comidas, cenas y snacks con un calendario intuitivo que te ayuda a mantener una alimentación consistente.",
+      image: "/feature-weekmeals.png",
     },
   ]
 
@@ -92,12 +110,12 @@ export function Features() {
                     className="w-full flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12"
                   >
                     {/* Imagen */}
-                    <div className="flex-shrink-0 w-full md:w-64 h-48 md:h-64 mb-4 md:mb-0 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-full md:w-96 h-80 md:h-96 mb-4 md:mb-0 flex items-center justify-center">
                       <Image
                         src={features[currentSlide].image}
                         alt={features[currentSlide].title}
-                        width={256}
-                        height={256}
+                        width={400}
+                        height={400}
                         className="w-auto h-full object-contain rounded-2xl"
                       />
                     </div>

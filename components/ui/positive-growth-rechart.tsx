@@ -53,7 +53,7 @@ export function PositiveGrowthRechart({ className }: { className?: string }) {
           />
           <Bar
             dataKey="bar"
-            fill="#6B7280"
+            fill="#9CA3AF"
             barSize={16}
             radius={[4, 4, 0, 0]}
             isAnimationActive={animate}
