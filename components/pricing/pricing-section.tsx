@@ -12,6 +12,7 @@ export function PricingSection() {
   })
   
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'monthly' | 'annual'>('monthly')
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
   
   const containerVariants = {
     hidden: {},
@@ -39,6 +40,10 @@ export function PricingSection() {
     setSelectedPlan(plan)
     console.log(`[BatchFit] ${plan} plan selected`)
     // TODO: Integrate with payment system
+  }
+  
+  const handleHover = (planId: string) => {
+    setHoveredCard(planId)
   }
   
   const getCardClasses = (plan: any) => {
