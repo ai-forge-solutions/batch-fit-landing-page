@@ -52,7 +52,7 @@ export function Hero() {
             }
             return prev + 1
           })
-        }, 5) // 300ms total (60 * 5ms)
+        }, 33) // 33ms por número = 2 segundos total (60 * 33ms ≈ 2000ms)
       }, 800) // Start after text animations
       
       return () => clearTimeout(timer)
@@ -100,6 +100,40 @@ export function Hero() {
         }
       }
   }
+
+  const subtitleVariants = {
+    hidden: prefersReducedMotion ? 
+      { opacity: 0 } : 
+      { opacity: 0, y: 30 },
+    visible: prefersReducedMotion ?
+      { opacity: 1, transition: { duration: 0.3, delay: 2 } } :
+      { 
+        opacity: 1, 
+        y: 0, 
+        transition: { 
+          duration: 0.6, 
+          ease: "easeOut",
+          delay: 2
+        }
+      }
+  }
+
+  const ctaVariants = {
+    hidden: prefersReducedMotion ? 
+      { opacity: 0 } : 
+      { opacity: 0, y: 30 },
+    visible: prefersReducedMotion ?
+      { opacity: 1, transition: { duration: 0.3, delay: 4.3 } } :
+      { 
+        opacity: 1, 
+        y: 0, 
+        transition: { 
+          duration: 0.6, 
+          ease: "easeOut",
+          delay: 4.3
+        }
+      }
+  }
   
   const imageVariants = {
     hidden: { opacity: 0, scale: 0.98 },
@@ -117,7 +151,7 @@ export function Hero() {
   const shouldShowParallax = !prefersReducedMotion && !isTouch && !isMobile
   
   return (
-    <section ref={ref} className="relative min-h-[85vh] flex items-center justify-center bg-background px-6 py-16 pb-24">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-background px-6 py-8">
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-12">
         {/* Contenido de texto */}
@@ -137,7 +171,7 @@ export function Hero() {
           
           <motion.p 
             className="mt-6 text-lg md:text-xl subtitle text-dark/80 max-w-2xl mx-auto text-balance"
-            variants={textVariants}
+            variants={subtitleVariants}
           >
             Tu nutrición de alto rendimiento <span className="font-bold text-xl md:text-2xl text-dark">automatizada</span> en una sola sesión semanal de{" "}
             <span className="font-bold text-xl md:text-2xl text-dark inline-flex items-center gap-1">
@@ -152,7 +186,7 @@ export function Hero() {
                   ✓
                 </motion.span>
               )}
-            </span>.
+            </span>
           </motion.p>
           
           {/* <p className="mt-4 text-base text-dark/90 font-medium subtitle">
@@ -161,7 +195,7 @@ export function Hero() {
           
           <motion.div 
             className="mt-10"
-            variants={textVariants}
+            variants={ctaVariants}
           >
             <AppStoreButtons inView={inView} />
           </motion.div>
@@ -199,7 +233,7 @@ export function Hero() {
         
         {/* Imagen en desktop (a la derecha) */}
         <motion.div 
-          className="hidden lg:block flex-shrink-0"
+          className="hidden lg:block flex-shrink-0 mt-4"
           variants={imageVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -229,7 +263,7 @@ export function Hero() {
       {/* Scroll indicator - Desktop only */}
       {!isMobile && (
         <motion.div
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-10"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: inView ? 1 : 0 }}
           transition={{ delay: 1.5, duration: 0.5 }}
