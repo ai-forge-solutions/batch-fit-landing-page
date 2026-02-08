@@ -2,7 +2,6 @@ import React from "react"
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { Header } from '@/components/landing/header'
 import { CTAProvider } from '@/lib/cta-context'
 import './globals.css'
 
@@ -34,7 +33,6 @@ export default function RootLayout({
     <html lang="es">
       <body className={`font-sans antialiased`}>
         <CTAProvider mode="pricing" single={true}>
-          <Header />
           {children}
         </CTAProvider>
         <Analytics />

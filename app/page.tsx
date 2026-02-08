@@ -1,3 +1,4 @@
+import { Header } from "@/components/landing/header"
 import { Hero } from "@/components/landing/hero"
 import { PASSection } from "@/components/landing/pas-section"
 import { WhatIsBatchFit } from "@/components/landing/what-is-batchfit"
@@ -9,7 +10,8 @@ import { FinalCTA } from "@/components/landing/final-cta"
 
 export default function Home() {
   return (
-    <main className="pt-16">
+    <main>
+      <Header />
       <Hero />
       <section id="pas">
         <PASSection />
