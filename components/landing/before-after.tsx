@@ -14,10 +14,10 @@ const beforeItems = [
 ]
 
 const afterItems = [
-  "Cero decisiones: Tu alimentación entra en piloto automático para que te centres en tu éxito",
-  "Foco total: recuperas 60 minutos cada día para tus prioridades más importantes",
-  "Ejecución mecánica: Una sola sesión de 60 min. y te olvidas de cocinar el resto de la semana",
-  "Constancia garantizada: Ahora el espejo refleja tu esfuerzo en el gimnasio."
+  { bold: "✨ Cero decisiones:", normal: " Tu alimentación entra en piloto automático para que te centres en tu éxito" },
+  { bold: "🎯 Foco total:", normal: " recuperas 60 minutos cada día para tus prioridades más importantes" },
+  { bold: "⚙️ Ejecución mecánica:", normal: " Una sola sesión de 60 min. y te olvidas de cocinar el resto de la semana" },
+  { bold: "📈 Constancia garantizada:", normal: " Ahora el espejo refleja tu esfuerzo en el gimnasio." }
 ]
 
 // 1️⃣ Títulos - Control y objetividad
@@ -283,7 +283,7 @@ export function BeforeAfter() {
             
             {/* Lista de beneficios - FLUIDA */}
             <div className="space-y-3">
-              {afterItems.map((text, index) => (
+              {afterItems.map((item, index) => (
                 <motion.div 
                   key={index}
                   className="flex items-start gap-3"
@@ -295,8 +295,8 @@ export function BeforeAfter() {
                   <div className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                     <Check className="w-3 h-3 text-primary" />
                   </div>
-                  <p className="text-foreground text-sm font-bold" style={{color: '#1a1a1a', fontWeight: 700}}>
-                    {text}
+                  <p className="text-foreground text-sm" style={{color: '#1a1a1a'}}>
+                    <span className="font-bold">{item.bold}</span><span>{item.normal}</span>
                   </p>
                 </motion.div>
               ))}
