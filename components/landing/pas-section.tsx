@@ -22,9 +22,9 @@ const sections = [
     icon: "chart",
     title: "Agitación",
     content: [
-      "Esa fatiga de decisión no se queda en la cocina.",
-      <>❓ Cada minuto que pasas pensando  <span className="font-bold text-lg text-gray-800">'qué toca hoy'</span> es energía que le robas a tu próximo entrenamiento o a la concentración que exige tu profesión.</>, 
-      <>Estás pagando un precio de indecisión <span className="font-bold text-lg text-gray-800">altísimo</span>:</>, 
+      "Esa fatiga de decisión no se queda en la cocina",
+      <>❓ Cada minuto que pasas pensando  <span className="font-bold text-lg text-gray-800">'¿qué toca hoy?'</span> es energía que le robas a tu próximo entrenamiento o a la concentración que exige tu profesión</>, 
+      <>El coste cognitivo es <span className="font-bold text-lg text-red-600">ALTÍSIMO</span></>, 
       <>tu foco se diluye en <span className="font-bold text-gray-800">21 decisiones irrelevantes</span> a la semana 📉</>,
     ]
   },
@@ -33,10 +33,10 @@ const sections = [
     image: "/quiero-un-plan-nutricional-que-de-verdad-funcione.png",
     title: "Solución",
     content: [
-      <>Por suerte, existe un sistema para poner tu nutrición en piloto automático.</>,
-      <>Imagina liberar tu jornada y tu mente de la comida para siempre y dedicar ese <span className="font-bold text-gray-800"> 💯% de energía</span> a tus metas fit y profesionales.</>,
-      <>No es falta de <span className="font-bold text-lg text-gray-800">disciplina</span></>,
-      <>Es falta de un <span className="font-bold text-lg text-gray-800">sistema</span> que encaje con tu vida.</>
+      <>🍀 Por suerte, existe un sistema para poner tu nutrición en piloto automático</>,
+      <>Imagina liberar tu jornada y tu mente de la comida para siempre y dedicar ese <span className="font-bold text-gray-800"> ⚡ 💯% de energía</span> a tus metas fit y profesionales</>,
+      <>No es falta de <span className="font-bold text-lg text-gray-800">disciplina 💪</span></>,
+      <>Es falta de un <span className="font-bold text-lg text-gray-800">sistema</span> que encaje con tu vida 🎯</>
     ]
   }
 ]

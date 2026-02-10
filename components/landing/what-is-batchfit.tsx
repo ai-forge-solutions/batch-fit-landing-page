@@ -54,7 +54,7 @@ export function WhatIsBatchFit() {
           {/* Subsección derecha - Subtítulo y CTA */}
           <div className="flex-1 w-full md:w-1/2 flex flex-col justify-center items-center text-center min-h-[200px] md:min-h-[300px]">
             <p className="text-base md:text-xl text-muted-foreground text-balance mb-6 md:mb-8">
-              BatchFit elimina la carga mental de la alimentación semanal convirtiéndola en un proceso claro, predecible y repetible.
+              BatchFit elimina la carga mental de la alimentación semanal convirtiéndola en un proceso claro, fácil y automático.
             </p>
             <motion.div
               variants={ctaVariants}
