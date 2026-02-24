@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     icon: '/batchfit_logo.png',
     apple: '/batchfit_logo.png',
   },
+  other: {
+    'facebook-domain-verification': 'j7a4xhxxbp1wuzv9bzj0ce9o1o56qq'
+  }
 }
 
 export default function RootLayout({
