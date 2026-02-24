@@ -1,4 +1,5 @@
 import { Apple, Play } from "lucide-react"
+import { trackEvent } from './analytics'
 
 export interface CTAConfig {
   primary: {
@@ -24,6 +25,11 @@ export const defaultCTAConfig: CTAConfig = {
     sublabel: "Descarga en",
     action: () => {
       console.log("[BatchFit] App Store button clicked")
+      trackEvent('cta_click', {
+        cta_id: 'app-store',
+        cta_text: 'App Store',
+        cta_location: 'default'
+      })
       // TODO: window.open('https://apps.apple.com/app/batchfit', '_blank')
     },
     iconName: "apple",
@@ -34,6 +40,11 @@ export const defaultCTAConfig: CTAConfig = {
     sublabel: "Disponible en",
     action: () => {
       console.log("[BatchFit] Google Play button clicked")
+      trackEvent('cta_click', {
+        cta_id: 'google-play',
+        cta_text: 'Google Play',
+        cta_location: 'default'
+      })
       // TODO: window.open('https://play.google.com/store/apps/details?id=com.batchfit', '_blank')
     },
     iconName: "play",
@@ -48,6 +59,11 @@ export const pricingCTAConfig: CTAConfig = {
     sublabel: "",
     action: () => {
       console.log("[BatchFit] Pricing CTA clicked")
+      trackEvent('cta_click', {
+        cta_id: 'pricing-main',
+        cta_text: 'Quiero optimizar mi semana',
+        cta_location: 'pricing'
+      })
       window.location.href = '/pricing'
     },
     iconName: "trending-up",
@@ -69,6 +85,11 @@ export const ebookCTAConfig: CTAConfig = {
     sublabel: "Descarga el",
     action: () => {
       console.log("[BatchFit] Ebook download clicked")
+      trackEvent('cta_click', {
+        cta_id: 'ebook-download',
+        cta_text: 'Ebook Gratuito',
+        cta_location: 'ebook'
+      })
       // TODO: window.open('/ebook-batchfit.pdf', '_blank')
     },
     iconName: "book",
@@ -79,6 +100,11 @@ export const ebookCTAConfig: CTAConfig = {
     sublabel: "Reserva una",
     action: () => {
       console.log("[BatchFit] Live demo clicked")
+      trackEvent('cta_click', {
+        cta_id: 'live-demo',
+        cta_text: 'Demo en Vivo',
+        cta_location: 'ebook'
+      })
       // TODO: window.open('https://cal.com/batchfit/demo', '_blank')
     },
     iconName: "video",
@@ -93,6 +119,11 @@ export const waitlistCTAConfig: CTAConfig = {
     sublabel: "Únete a la",
     action: () => {
       console.log("[BatchFit] Waitlist signup clicked")
+      trackEvent('cta_click', {
+        cta_id: 'waitlist-signup',
+        cta_text: 'Lista de Espera',
+        cta_location: 'waitlist'
+      })
       // TODO: window.open('https://forms.gle/batchfit-waitlist', '_blank')
     },
     iconName: "lock",
@@ -103,6 +134,11 @@ export const waitlistCTAConfig: CTAConfig = {
     sublabel: "Quiero que me",
     action: () => {
       console.log("[BatchFit] Notify me clicked")
+      trackEvent('cta_click', {
+        cta_id: 'notify-me',
+        cta_text: 'Avísame',
+        cta_location: 'waitlist'
+      })
       // TODO: window.open('https://forms.gle/batchfit-notify', '_blank')
     },
     iconName: "bell",

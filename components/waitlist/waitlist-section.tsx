@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Mail } from "lucide-react"
 import Image from "next/image"
+import { trackEvent } from '@/lib/analytics'
 
 export function WaitlistSection() {
   const [email, setEmail] = useState('')
@@ -32,6 +33,14 @@ export function WaitlistSection() {
       
       // Con mode: 'no-cors', asumimos que funcionó si no hubo error
       console.log('[BatchFit] Email enviado a Google Sheets:', email)
+      
+      // Track successful form submission
+      trackEvent('lead_submit', {
+        form_id: 'waitlist-form',
+        lead_type: 'waitlist',
+        email_domain: email.split('@')[1] || 'unknown'
+      })
+      
       setIsSubmitted(true)
       setEmail('')
       

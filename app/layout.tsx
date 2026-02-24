@@ -2,8 +2,9 @@ import React from "react"
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next'
 import { CTAProvider } from '@/lib/cta-context'
+import { Analytics } from '@/components/analytics'
 import './globals.css'
 
 const bebasNeue = Geist({ 
@@ -33,6 +34,20 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TY6H1011EB"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TY6H1011EB');
+          `}
+        </Script>
+
         {/* Meta Pixel Code */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
@@ -62,8 +77,9 @@ export default function RootLayout({
       <body className={`font-sans antialiased`}>
         <CTAProvider mode="pricing" single={true}>
           {children}
+          <Analytics />
         </CTAProvider>
-        <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   )
