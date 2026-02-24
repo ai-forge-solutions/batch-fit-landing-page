@@ -1,5 +1,6 @@
 // GA4 Analytics utilities for BatchFit
 // Measurement ID: G-TY6H1011EB
+// Meta Pixel ID: 915438308012120
 
 declare global {
   interface Window {
@@ -13,11 +14,12 @@ declare global {
       }
     ) => void
     dataLayer: any[]
+    fbq: (command: string, eventName: string, parameters?: Record<string, any>) => void
   }
 }
 
 /**
- * Track custom events in GA4
+ * Track custom events in both GA4 and Meta Pixel
  * @param eventName - The event name (e.g., 'cta_click', 'lead_submit')
  * @param parameters - Event parameters object
  */
@@ -25,35 +27,53 @@ export const trackEvent = (
   eventName: string, 
   parameters: Record<string, string | number | boolean> = {}
 ) => {
-  if (!window.gtag) {
-    console.warn('[Analytics] gtag not available - event not tracked:', eventName, parameters)
-    return
+  // Track in GA4
+  if (window.gtag) {
+    console.log('[Analytics] GA4 Tracking event:', eventName, parameters)
+    window.gtag('event', eventName, parameters)
+  } else {
+    console.warn('[Analytics] gtag not available - GA4 event not tracked:', eventName, parameters)
   }
 
-  console.log('[Analytics] Tracking event:', eventName, parameters)
-  window.gtag('event', eventName, parameters)
+  // Track in Meta Pixel
+  if (window.fbq) {
+    console.log('[Analytics] Meta Pixel Tracking event:', eventName, parameters)
+    
+    // Use consistent event names across both platforms
+    window.fbq('trackCustom', eventName, parameters)
+  } else {
+    console.warn('[Analytics] fbq not available - Meta Pixel event not tracked:', eventName, parameters)
+  }
 }
 
 /**
- * Track page views for App Router navigation
+ * Track page views for App Router navigation in both GA4 and Meta Pixel
  * @param path - The page path
  * @param title - Optional page title
  */
 export const trackPageView = (path: string, title?: string) => {
-  if (!window.gtag) {
-    console.warn('[Analytics] gtag not available - pageview not tracked:', path)
-    return
+  // Track in GA4
+  if (window.gtag) {
+    console.log('[Analytics] GA4 Tracking pageview:', path, title || 'No title')
+    window.gtag('config', 'G-TY6H1011EB', {
+      page_path: path,
+      page_title: title
+    })
+  } else {
+    console.warn('[Analytics] gtag not available - GA4 pageview not tracked:', path)
   }
 
-  console.log('[Analytics] Tracking pageview:', path, title || 'No title')
-  window.gtag('config', 'G-TY6H1011EB', {
-    page_path: path,
-    page_title: title
-  })
+  // Track in Meta Pixel
+  if (window.fbq) {
+    console.log('[Analytics] Meta Pixel Tracking pageview:', path)
+    window.fbq('track', 'PageView')
+  } else {
+    console.warn('[Analytics] fbq not available - Meta Pixel pageview not tracked:', path)
+  }
 }
 
 /**
- * Track CTA clicks with standard parameters
+ * Track CTA clicks with standard parameters in both GA4 and Meta Pixel
  * @param ctaId - Unique identifier for the CTA
  * @param ctaText - Visible text of the CTA
  * @param ctaLocation - Location/section where CTA appears
@@ -74,7 +94,7 @@ export const trackCtaClick = (
 }
 
 /**
- * Track form submissions
+ * Track form submissions in both GA4 and Meta Pixel
  * @param formId - Unique identifier for the form
  * @param leadType - Type of lead (waitlist, demo, etc.)
  * @param additionalParams - Any additional parameters
