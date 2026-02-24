@@ -1,14 +1,11 @@
 import React from "react"
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import dynamic from 'next/dynamic'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next'
 import { CTAProvider } from '@/lib/cta-context'
+import ClientAnalytics from '@/components/client-analytics'
 import './globals.css'
-
-// Dynamic import Analytics to prevent SSR issues with useSearchParams
-const Analytics = dynamic(() => import('@/components/analytics'), { ssr: false })
 
 const bebasNeue = Geist({ 
   subsets: ["latin"],
@@ -80,7 +77,7 @@ export default function RootLayout({
       <body className={`font-sans antialiased`} suppressHydrationWarning={true}>
         <CTAProvider mode="pricing" single={true}>
           {children}
-          <Analytics />
+          <ClientAnalytics />
         </CTAProvider>
         <VercelAnalytics />
       </body>
