@@ -14,7 +14,22 @@ export function WaitlistSection({ searchParams }: Props) {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const selectedPlan = (searchParams.plan as string) || 'not-specified'
+  
+  // Debug: Log what we're receiving
+  console.log('[BatchFit] Received searchParams:', searchParams)
+  console.log('[BatchFit] searchParams.plan:', searchParams.plan)
+  console.log('[BatchFit] searchParams type:', typeof searchParams.plan)
+  
+  // Handle different possible formats of searchParams
+  let selectedPlan: string
+  if (Array.isArray(searchParams.plan)) {
+    selectedPlan = searchParams.plan[0] || 'not-specified'
+  } else {
+    selectedPlan = searchParams.plan || 'not-specified'
+  }
+  
+  // Debug: Log what plan we extracted
+  console.log('[BatchFit] Final selected plan:', selectedPlan)
   
   // Map plan IDs to readable names
   const planNames = {
@@ -32,21 +47,19 @@ export function WaitlistSection({ searchParams }: Props) {
       // Usar URLSearchParams en lugar de FormData
       const params = new URLSearchParams()
       params.append('email', email)
-      params.append('source', 'pricing-page')
       params.append('timestamp', new Date().toISOString())
       params.append('plan', planNames[selectedPlan as keyof typeof planNames] || selectedPlan)
       
       // Debug: Log what we're sending
       console.log('[BatchFit] Sending to Google Sheets:', {
         email: email,
-        source: 'pricing-page',
         plan: planNames[selectedPlan as keyof typeof planNames] || selectedPlan,
         selectedPlan: selectedPlan,
         timestamp: new Date().toISOString()
       })
       console.log('[BatchFit] URL Params:', params.toString())
       
-      const response = await fetch('https://script.google.com/macros/s/AKfycbyl7nVukAULyAqhgScCtgcg1EfeMso2-w-A3V7CfCVhwXN0pZE-JNzpEyGq01PkBXDvx/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzLk6T_w-EgWVNvBrv_tET9M8GK7C4orhYoHaHi-XSpoE6Xn3MV72zvHcNzIOAQ2FFH/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
