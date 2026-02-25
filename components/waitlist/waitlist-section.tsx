@@ -36,7 +36,17 @@ export function WaitlistSection({ searchParams }: Props) {
       params.append('timestamp', new Date().toISOString())
       params.append('plan', planNames[selectedPlan as keyof typeof planNames] || selectedPlan)
       
-      const response = await fetch('https://script.google.com/macros/s/AKfycby959tLSIttdvnLNIutsY2ACa7Rj8fDcuMexS1WPBifeF9UnPFGVauK_16JkMI4zs-X/exec', {
+      // Debug: Log what we're sending
+      console.log('[BatchFit] Sending to Google Sheets:', {
+        email: email,
+        source: 'pricing-page',
+        plan: planNames[selectedPlan as keyof typeof planNames] || selectedPlan,
+        selectedPlan: selectedPlan,
+        timestamp: new Date().toISOString()
+      })
+      console.log('[BatchFit] URL Params:', params.toString())
+      
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyl7nVukAULyAqhgScCtgcg1EfeMso2-w-A3V7CfCVhwXN0pZE-JNzpEyGq01PkBXDvx/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
