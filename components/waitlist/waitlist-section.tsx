@@ -4,12 +4,23 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Mail } from "lucide-react"
 import Image from "next/image"
+import { useSearchParams } from 'next/navigation'
 import { trackEvent } from '@/lib/analytics'
 
 export function WaitlistSection() {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const searchParams = useSearchParams()
+  const selectedPlan = searchParams.get('plan') || 'not-specified'
+  
+  // Map plan IDs to readable names
+  const planNames = {
+    'free': 'Free Plan',
+    'monthly': 'Monthly Plan', 
+    'annual': 'Annual Plan',
+    'not-specified': 'No Plan Selected'
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -19,8 +30,9 @@ export function WaitlistSection() {
       // Usar URLSearchParams en lugar de FormData
       const params = new URLSearchParams()
       params.append('email', email)
-      params.append('source', 'waitlist-page')
+      params.append('source', 'pricing-page')
       params.append('timestamp', new Date().toISOString())
+      params.append('plan', planNames[selectedPlan as keyof typeof planNames] || selectedPlan)
       
       const response = await fetch('https://script.google.com/macros/s/AKfycby959tLSIttdvnLNIutsY2ACa7Rj8fDcuMexS1WPBifeF9UnPFGVauK_16JkMI4zs-X/exec', {
         method: 'POST',
@@ -38,7 +50,9 @@ export function WaitlistSection() {
       trackEvent('lead_submit', {
         form_id: 'waitlist-form',
         lead_type: 'waitlist',
-        email_domain: email.split('@')[1] || 'unknown'
+        email_domain: email.split('@')[1] || 'unknown',
+        selected_plan: selectedPlan,
+        plan_name: planNames[selectedPlan as keyof typeof planNames] || selectedPlan
       })
       
       setIsSubmitted(true)

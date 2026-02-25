@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer"
 import { Check, Star, Zap } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { trackEvent } from '@/lib/analytics'
 
 export function PricingSection() {
   const [ref, inView] = useInView({
@@ -41,8 +42,16 @@ export function PricingSection() {
   const handleSelectPlan = (plan: 'free' | 'monthly' | 'annual') => {
     setSelectedPlan(plan)
     console.log(`[BatchFit] ${plan} plan selected`)
-    // Navegar a la página de waitlist
-    router.push('/waitlist')
+    
+    // Track plan selection in GA4 and Meta Pixel
+    trackEvent('plan_selected', {
+      plan_type: plan,
+      plan_name: plans.find(p => p.id === plan)?.name || plan,
+      plan_price: plans.find(p => p.id === plan)?.price || '0€'
+    })
+    
+    // Navigate to waitlist with plan parameter
+    router.push(`/waitlist?plan=${plan}`)
   }
   
   const handleHover = (planId: string) => {
