@@ -4,15 +4,17 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Mail } from "lucide-react"
 import Image from "next/image"
-import { useSearchParams } from 'next/navigation'
 import { trackEvent } from '@/lib/analytics'
 
-export function WaitlistSection() {
+type Props = {
+  searchParams: Record<string, string | string[] | undefined>
+}
+
+export function WaitlistSection({ searchParams }: Props) {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const searchParams = useSearchParams()
-  const selectedPlan = searchParams.get('plan') || 'not-specified'
+  const selectedPlan = (searchParams.plan as string) || 'not-specified'
   
   // Map plan IDs to readable names
   const planNames = {
