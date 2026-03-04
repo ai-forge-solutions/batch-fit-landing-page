@@ -35,11 +35,14 @@ export async function POST(request: NextRequest) {
         customer_name: name,
         customer_email: email,
       },
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/payment_success`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
     })
 
-    return NextResponse.json({ url: session.url })
+    return NextResponse.json({ 
+      url: session.url,
+      sessionId: session.id 
+    })
     
   } catch (error) {
     console.error('[BatchFit] Stripe session error:', error)

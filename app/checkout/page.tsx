@@ -20,18 +20,16 @@ export default function CheckoutPage() {
     setError('')
     
     try {
-      // Track checkout initiation
       trackEvent('begin_checkout', {
         currency: 'EUR',
-        value: 19,
+        value: 17.9,
         items: [{
           item_name: 'BatchFit Lifetime Access',
-          price: 19,
+          price: 17.9,
           quantity: 1
         }]
       })
 
-      // Create Stripe Checkout Session
       const response = await fetch('/api/checkout/create-session', {
         method: 'POST',
         headers: {
@@ -48,6 +46,9 @@ export default function CheckoutPage() {
       if (!response.ok) {
         throw new Error(data.error || 'Error al crear la sesión de pago')
       }
+
+      // Store session ID in sessionStorage before redirect
+      sessionStorage.setItem('stripe_session_id', data.sessionId)
 
       // Redirect to Stripe Checkout
       window.location.href = data.url
@@ -89,7 +90,6 @@ export default function CheckoutPage() {
         initial="hidden"
         animate="visible"
       >
-        {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl text-dark mb-4 leading-tight relative">
             <span className="font-sans">Consigue acceso de por vida a </span>
@@ -106,11 +106,10 @@ export default function CheckoutPage() {
             </span>
           </h1>
           <p className="text-xl text-dark/70 mt-4">
-            Pago único de <span className="font-bold text-primary">19€</span>
+            Pago único de <span className="font-bold text-primary">17.9€</span>
           </p>
         </motion.div>
 
-        {/* Product Benefits */}
         <motion.div variants={itemVariants} className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <h2 className="text-2xl font-title text-dark mb-6">
             ¿Qué incluye el acceso de por vida?
@@ -139,7 +138,6 @@ export default function CheckoutPage() {
           </ul>
         </motion.div>
 
-        {/* Checkout Form */}
         <motion.div variants={itemVariants} className="bg-white rounded-2xl shadow-lg p-8">
           <h3 className="text-2xl font-title text-dark mb-6">
             Completa tu compra
@@ -152,7 +150,6 @@ export default function CheckoutPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name Field */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-dark mb-2">
                 Nombre completo
@@ -171,7 +168,6 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* Email Field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-dark mb-2">
                 Email
@@ -190,7 +186,6 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* Submit Button */}
             <motion.button
               type="submit"
               disabled={isSubmitting}
@@ -202,7 +197,7 @@ export default function CheckoutPage() {
               whileHover={!isSubmitting ? { y: -2 } : {}}
               whileTap={!isSubmitting ? { scale: 0.98 } : {}}
             >
-              {isSubmitting ? 'Procesando...' : 'Continuar al pago seguro (19€)'}
+              {isSubmitting ? 'Procesando...' : 'Continuar al pago seguro (17.9€)'}
             </motion.button>
 
             <p className="text-center text-sm text-dark/60">
@@ -211,7 +206,6 @@ export default function CheckoutPage() {
           </form>
         </motion.div>
 
-        {/* Security Badge */}
         <motion.div variants={itemVariants} className="text-center mt-8 text-sm text-dark/60">
           <p>🔒 Pago 100% seguro y encriptado</p>
         </motion.div>

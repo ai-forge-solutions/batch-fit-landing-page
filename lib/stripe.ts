@@ -7,7 +7,7 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export const PRODUCT_CONFIG = {
   name: 'BatchFit Lifetime Access',
-  price: 1900, // €19 in cents
+  price: 1790, // €17.9 in cents
   currency: 'eur',
   description: 'Acceso de por vida a BatchFit - Tu sistema de nutrición inteligente'
 }

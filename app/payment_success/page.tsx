@@ -1,43 +1,70 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useSearchParams } from "next/navigation"
 import { Suspense, useEffect, useState } from "react"
 import Image from "next/image"
-import { CheckCircle } from "lucide-react"
+import { CheckCircle, AlertTriangle } from "lucide-react"
 import { trackEvent } from '@/lib/analytics'
 
-function SuccessContent() {
-  const searchParams = useSearchParams()
-  const sessionId = searchParams.get('session_id')
+function PaymentSuccessContent() {
   const [isRecorded, setIsRecorded] = useState(false)
+  const [recordError, setRecordError] = useState(false)
+  const [sessionId, setSessionId] = useState<string | null>(null)
 
   useEffect(() => {
-    if (sessionId && !isRecorded) {
+    // Get session ID from sessionStorage
+    const storedSessionId = sessionStorage.getItem('stripe_session_id')
+    setSessionId(storedSessionId)
+
+    if (storedSessionId && !isRecorded) {
       // Record the purchase in Google Sheets
       fetch('/api/checkout/record-purchase', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ sessionId }),
-      }).then(() => {
-        setIsRecorded(true)
-        
-        // Track purchase event
-        trackEvent('purchase', {
-          transaction_id: sessionId,
-          value: 19,
-          currency: 'EUR',
-          items: [{
-            item_name: 'BatchFit Lifetime Access',
-            price: 19,
-            quantity: 1
-          }]
-        })
+        body: JSON.stringify({ sessionId: storedSessionId }),
       })
+        .then((res) => {
+          if (!res.ok) throw new Error('Failed to record')
+          return res.json()
+        })
+        .then(() => {
+          setIsRecorded(true)
+          
+          // Track purchase event for Meta Pixel
+          trackEvent('purchase', {
+            transaction_id: storedSessionId,
+            value: 17.9,
+            currency: 'EUR',
+            items: [{
+              item_name: 'BatchFit Lifetime Access',
+              price: 17.9,
+              quantity: 1
+            }]
+          })
+
+          // Clear session storage after successful recording
+          sessionStorage.removeItem('stripe_session_id')
+        })
+        .catch((error) => {
+          console.error('[BatchFit] Failed to record purchase:', error)
+          setRecordError(true)
+          
+          // Still track the event even if recording failed
+          trackEvent('purchase', {
+            transaction_id: storedSessionId,
+            value: 17.9,
+            currency: 'EUR',
+            items: [{
+              item_name: 'BatchFit Lifetime Access',
+              price: 17.9,
+              quantity: 1
+            }]
+          })
+        })
     }
-  }, [sessionId, isRecorded])
+  }, [isRecorded])
 
   const containerVariants = {
     hidden: {},
@@ -69,7 +96,6 @@ function SuccessContent() {
         initial="hidden"
         animate="visible"
       >
-        {/* Success Icon */}
         <motion.div variants={itemVariants} className="mb-8">
           <CheckCircle className="w-24 h-24 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl text-dark mb-4 leading-tight relative">
@@ -77,7 +103,25 @@ function SuccessContent() {
           </h1>
         </motion.div>
 
-        {/* Success Message */}
+        {recordError && (
+          <motion.div variants={itemVariants} className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
+              <div className="text-left">
+                <p className="text-sm text-yellow-800">
+                  <strong>Nota:</strong> Tu pago se procesó correctamente, pero hubo un problema al registrar tu compra. 
+                  No te preocupes, tu acceso está garantizado. Recibirás tu email de confirmación.
+                </p>
+                {sessionId && (
+                  <p className="text-xs text-yellow-700 mt-2">
+                    ID de transacción: <code className="bg-yellow-100 px-1 rounded">{sessionId}</code>
+                  </p>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         <motion.div variants={itemVariants} className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <h2 className="text-2xl font-title text-dark mb-6">
             Bienvenido a <span className="relative inline-block">
@@ -109,7 +153,6 @@ function SuccessContent() {
           </div>
         </motion.div>
 
-        {/* Next Steps */}
         <motion.div variants={itemVariants} className="bg-primary/10 border border-primary/20 rounded-lg p-6">
           <h3 className="text-xl font-semibold text-dark mb-4">
             Próximos pasos
@@ -130,7 +173,6 @@ function SuccessContent() {
           </ol>
         </motion.div>
 
-        {/* Home Button */}
         <motion.div variants={itemVariants} className="mt-8">
           <motion.a
             href="/"
@@ -146,10 +188,10 @@ function SuccessContent() {
   )
 }
 
-export default function SuccessPage() {
+export default function PaymentSuccessPage() {
   return (
     <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Cargando...</div>}>
-      <SuccessContent />
+      <PaymentSuccessContent />
     </Suspense>
   )
 }
