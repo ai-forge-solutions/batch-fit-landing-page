@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
+import { sendPurchaseConfirmation } from '@/lib/email'
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,7 +30,7 @@ export async function POST(request: NextRequest) {
       email: session.customer_email || session.metadata?.customer_email || '',
       paymentStatus: session.payment_status,
       transactionId: session.payment_intent as string,
-      amount: (session.amount_total || 0) / 100, // Convert from cents
+      amount: (session.amount_total || 0) / 100,
       currency: session.currency?.toUpperCase() || 'EUR',
       timestamp: new Date().toISOString(),
       date: new Date().toLocaleDateString('es-ES'),
@@ -37,30 +38,23 @@ export async function POST(request: NextRequest) {
 
     console.log('[BatchFit] Purchase data ready:', purchaseData)
 
+    // Send confirmation email
+    try {
+      await sendPurchaseConfirmation({
+        to: purchaseData.email,
+        name: purchaseData.name,
+        transactionId: purchaseData.transactionId,
+        amount: purchaseData.amount,
+        currency: purchaseData.currency,
+      })
+      console.log('[BatchFit] Confirmation email sent to:', purchaseData.email)
+    } catch (emailError) {
+      console.error('[BatchFit] Failed to send email:', emailError)
+      // Don't fail the whole request if email fails
+    }
+
     // TODO: Send to Google Sheets
-    // When you provide the Google Sheets URL, we'll add the fetch call here
-    // Similar to the waitlist implementation
-    
-    /*
-    const params = new URLSearchParams()
-    params.append('name', purchaseData.name)
-    params.append('email', purchaseData.email)
-    params.append('paymentStatus', purchaseData.paymentStatus)
-    params.append('transactionId', purchaseData.transactionId)
-    params.append('amount', purchaseData.amount.toString())
-    params.append('currency', purchaseData.currency)
-    params.append('timestamp', purchaseData.timestamp)
-    params.append('date', purchaseData.date)
-    
-    await fetch('YOUR_GOOGLE_SHEETS_URL_HERE', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: params.toString()
-    })
-    */
+    // ... existing code ...
 
     return NextResponse.json({ success: true, data: purchaseData })
     
