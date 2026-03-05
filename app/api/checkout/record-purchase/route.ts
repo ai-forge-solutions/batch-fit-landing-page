@@ -14,8 +14,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Retrieve session details from Stripe
-    const session = await stripe.checkout.sessions.retrieve(sessionId)
+    // Retrieve session details from Stripe with custom fields
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ['custom_fields']
+    })
 
     if (session.payment_status !== 'paid') {
       return NextResponse.json(
@@ -24,10 +26,24 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Get name from custom fields
+    let customerName = 'Cliente'
+    if (session.custom_fields && session.custom_fields.length > 0) {
+      const nameField = session.custom_fields.find(
+        field => field.key === 'nombre_completo'
+      )
+      if (nameField && nameField.text) {
+        customerName = nameField.text.value
+      }
+    }
+
+    // Get email from Stripe session
+    const customerEmail = session.customer_email || session.customer_details?.email || ''
+
     // Prepare data for Google Sheets
     const purchaseData = {
-      name: session.metadata?.customer_name || '',
-      email: session.customer_email || session.metadata?.customer_email || '',
+      name: customerName,
+      email: customerEmail,
       paymentStatus: session.payment_status,
       transactionId: session.payment_intent as string,
       amount: (session.amount_total || 0) / 100,
@@ -54,9 +70,16 @@ export async function POST(request: NextRequest) {
     }
 
     // TODO: Send to Google Sheets
-    // ... existing code ...
 
-    return NextResponse.json({ success: true, data: purchaseData })
+    // IMPORTANT: Return both data and customer objects
+    return NextResponse.json({ 
+      success: true, 
+      data: purchaseData,
+      customer: {
+        name: customerName,
+        email: customerEmail
+      }
+    })
     
   } catch (error) {
     console.error('[BatchFit] Record purchase error:', error)

@@ -10,6 +10,7 @@ function PaymentSuccessContent() {
   const [isRecorded, setIsRecorded] = useState(false)
   const [recordError, setRecordError] = useState(false)
   const [sessionId, setSessionId] = useState<string | null>(null)
+  const [customerData, setCustomerData] = useState<{name: string, email: string} | null>(null)
 
   useEffect(() => {
     // Get session ID from sessionStorage
@@ -29,19 +30,36 @@ function PaymentSuccessContent() {
           if (!res.ok) throw new Error('Failed to record')
           return res.json()
         })
-        .then(() => {
+        .then((response) => {
           setIsRecorded(true)
           
-          // Track purchase event for Meta Pixel
+          // Store customer data
+          if (response.customer) {
+            setCustomerData(response.customer)
+          }
+          
+          // Track purchase event for Meta Pixel with customer data
           trackEvent('purchase', {
             transaction_id: storedSessionId,
-            value: 17.9,
-            currency: 'EUR',
+            value: response.data.amount,
+            currency: response.data.currency,
             items: [{
               item_name: 'BatchFit Lifetime Access',
-              price: 17.9,
+              price: response.data.amount,
               quantity: 1
-            }]
+            }],
+            // Add customer data to tracking
+            customer_email: response.customer?.email || '',
+            customer_name: response.customer?.name || '',
+            content_name: 'BatchFit Lifetime Access',
+            content_category: 'fitness_nutrition'
+          })
+
+          console.log('[BatchFit] Purchase tracked with customer data:', {
+            email: response.customer?.email,
+            name: response.customer?.name,
+            transactionId: storedSessionId,
+            amount: response.data.amount
           })
 
           // Clear session storage after successful recording
@@ -51,7 +69,7 @@ function PaymentSuccessContent() {
           console.error('[BatchFit] Failed to record purchase:', error)
           setRecordError(true)
           
-          // Still track the event even if recording failed
+          // Still track the event even if recording failed (without customer data)
           trackEvent('purchase', {
             transaction_id: storedSessionId,
             value: 17.9,
@@ -101,6 +119,11 @@ function PaymentSuccessContent() {
           <h1 className="text-4xl md:text-5xl text-dark mb-4 leading-tight relative">
             <span className="font-title">¡Pago completado!</span>
           </h1>
+          {customerData && (
+            <p className="text-lg text-dark/70">
+              Gracias, <span className="font-semibold">{customerData.name}</span>
+            </p>
+          )}
         </motion.div>
 
         {recordError && (
@@ -143,7 +166,7 @@ function PaymentSuccessContent() {
             </p>
             
             <p>
-              Recibirás un email de confirmación con todos los detalles de tu compra 
+              Recibirás un email de confirmación en <span className="font-semibold">{customerData?.email || 'tu correo'}</span> con todos los detalles de tu compra 
               y las instrucciones para acceder a BatchFit.
             </p>
             

@@ -3,16 +3,6 @@ import { stripe, PRODUCT_CONFIG } from '@/lib/stripe'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { name, email } = body
-
-    if (!name || !email) {
-      return NextResponse.json(
-        { error: 'Nombre y email son requeridos' },
-        { status: 400 }
-      )
-    }
-
     // Create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -30,11 +20,20 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: 'payment',
-      customer_email: email,
-      metadata: {
-        customer_name: name,
-        customer_email: email,
-      },
+      billing_address_collection: 'required',
+      
+      // Add custom field for name collection
+      custom_fields: [
+        {
+          key: 'nombre_completo',
+          label: {
+            type: 'custom',
+            custom: 'Nombre completo',
+          },
+          type: 'text',
+        },
+      ],
+      
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/payment_success`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
     })
