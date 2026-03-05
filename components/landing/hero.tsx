@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { AppStoreButtons } from "./app-store-buttons"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { CountdownTimer } from "@/components/ui/countdown-timer"
 
 export function Hero() {
   const [ref, inView] = useInView({
@@ -151,9 +152,9 @@ export function Hero() {
   const shouldShowParallax = !prefersReducedMotion && !isTouch && !isMobile
   
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-20 pb-8">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-16 pb-6">
       {/* Container principal con layout responsive */}
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-12">
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
         <motion.div 
           className="flex-1 text-center"
@@ -162,7 +163,7 @@ export function Hero() {
           animate={inView ? "visible" : "hidden"}
         >
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-title tracking-tight text-dark text-balance leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight"
             variants={textVariants}
           >
             Consigue tu objetivo fit<br />
@@ -170,11 +171,11 @@ export function Hero() {
           </motion.h1>
           
           <motion.p 
-            className="mt-6 text-lg md:text-xl subtitle text-dark/80 max-w-2xl mx-auto text-balance"
+            className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance"
             variants={subtitleVariants}
           >
-            Tu nutrición de alto rendimiento <span className="font-bold text-xl md:text-2xl text-dark">automatizada</span> en una sola sesión semanal de{" "}
-            <span className="font-bold text-xl md:text-2xl text-dark inline-flex items-center gap-1">
+            Tu nutrición de alto rendimiento <span className="font-bold text-lg md:text-xl text-dark">automatizada</span> en una sola sesión semanal de{" "}
+            <span className="font-bold text-lg md:text-xl text-dark inline-flex items-center gap-1">
               {counter} minutos
               {showCheckmark && (
                 <motion.span
@@ -194,10 +195,26 @@ export function Hero() {
           </p> */}
           
           <motion.div 
-            className="mt-10"
+            className="mt-6"
             variants={ctaVariants}
           >
             <AppStoreButtons inView={inView} />
+          </motion.div>
+
+          {/* Countdown Timer */}
+          <motion.div
+            className="mt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 4.8 }}
+          >
+            <p className="text-sm text-dark/70 mb-4 font-medium">
+              Acceso fundador termina en:
+            </p>
+            <CountdownTimer 
+              targetDate={new Date('2026-03-15T23:59:59')} 
+              className=""
+            />
           </motion.div>
           
           {/* <p className="mt-4 text-sm text-dark/60 subtitle">
@@ -206,7 +223,7 @@ export function Hero() {
            */}
           {/* Imagen en mobile (debajo del CTA) */}
           <motion.div 
-            className="mt-10 lg:hidden"
+            className="mt-8 lg:hidden"
             variants={imageVariants}
           >
             <motion.div
@@ -251,8 +268,8 @@ export function Hero() {
             <Image 
               src="/hero-page.png" 
               alt="BatchFit App" 
-              width={450} 
-              height={340}
+              width={380} 
+              height={285}
               className="rounded-lg shadow-xl"
               priority
             />

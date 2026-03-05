@@ -55,13 +55,13 @@ export const defaultCTAConfig: CTAConfig = {
 // Configuración de Pricing (Single Button)
 export const pricingCTAConfig: CTAConfig = {
   primary: {
-    label: "Quiero optimizar mi semana",
+    label: "Quiero acceso fundador",
     sublabel: "",
     action: () => {
       console.log("[BatchFit] Pricing CTA clicked")
       trackEvent('cta_click', {
         cta_id: 'pricing-main',
-        cta_text: 'Quiero optimizar mi semana',
+        cta_text: 'Quiero acceso fundador',
         cta_location: 'pricing'
       })
       window.location.href = '/pricing'
