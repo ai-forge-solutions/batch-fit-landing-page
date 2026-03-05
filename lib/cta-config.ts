@@ -64,7 +64,7 @@ export const pricingCTAConfig: CTAConfig = {
         cta_text: 'Quiero acceso fundador',
         cta_location: 'pricing'
       })
-      window.location.href = '/pricing'
+      window.location.href = '/checkout'
     },
     iconName: "trending-up",
     trackingName: "Pricing CTA"
