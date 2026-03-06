@@ -212,7 +212,7 @@ export function Hero() {
               Acceso fundador termina en:
             </p>
             <CountdownTimer 
-              targetDate={new Date('2026-03-15T23:59:59')} 
+              targetDate={new Date('2026-03-19T23:59:59')} 
               className=""
             />
           </motion.div>
@@ -237,7 +237,7 @@ export function Hero() {
               } : {}}
             >
               <Image 
-                src="/hero-page.png" 
+                src="/hero-page.webp" 
                 alt="BatchFit App" 
                 width={350} 
                 height={265}
@@ -266,7 +266,7 @@ export function Hero() {
             } : {}}
           >
             <Image 
-              src="/hero-page.png" 
+              src="/hero-page.webp" 
               alt="BatchFit App" 
               width={380} 
               height={285}

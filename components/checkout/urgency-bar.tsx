@@ -8,8 +8,8 @@ interface UrgencyBarProps {
   spotsLeft?: number
 }
 
-export function UrgencyBar({ variants, spotsLeft = 7 }: UrgencyBarProps) {
-  const totalSpots = 20
+export function UrgencyBar({ variants, spotsLeft = 45 }: UrgencyBarProps) {
+  const totalSpots = 50
   const spotsSold = totalSpots - spotsLeft
   const progressPercentage = (spotsSold / totalSpots) * 100
 
@@ -20,7 +20,7 @@ export function UrgencyBar({ variants, spotsLeft = 7 }: UrgencyBarProps) {
           🔥 Precio fundador termina en:
         </p>
         <CountdownTimer 
-          targetDate={new Date('2026-03-15T23:59:59')} 
+          targetDate={new Date('2026-03-19T23:59:59')} 
           className="mb-4"
         />
         <p className="text-sm text-dark/70 mb-4">
@@ -30,7 +30,7 @@ export function UrgencyBar({ variants, spotsLeft = 7 }: UrgencyBarProps) {
         {/* Progress bar */}
         <div className="mb-3">
           <div className="flex justify-between text-sm text-dark/60 mb-2">
-            <span>{spotsSold}/20 plazas ocupadas</span>
+            <span>{spotsSold}/50 plazas ocupadas</span>
             <span>Quedan {spotsLeft}</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-3">

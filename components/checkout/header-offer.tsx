@@ -25,7 +25,7 @@ export function HeaderOffer({ variants }: HeaderOfferProps) {
         Hoy: pago único · sin suscripción
       </p>
       <p className="text-sm text-dark/70 bg-blue-50 rounded-lg px-4 py-2 inline-block">
-        Acceso activado en 7 días (beta)
+        Acceso activado en 7 días
       </p>
     </motion.div>
   )

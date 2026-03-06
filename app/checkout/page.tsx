@@ -13,14 +13,14 @@ import { TrustFooter } from "@/components/checkout/trust-footer"
 import { FAQCard } from "@/components/checkout/faq-card"
 
 export default function CheckoutPage() {
-  const [spotsLeft, setSpotsLeft] = useState(7) // Configurable
+  const [spotsLeft, setSpotsLeft] = useState(45) // Configurable
   const [offerExpired, setOfferExpired] = useState(false)
 
   // Check if offer has expired
   useEffect(() => {
     const checkOfferExpiry = () => {
       const now = new Date().getTime()
-      const endDate = new Date('2026-03-15T23:59:59').getTime()
+      const endDate = new Date('2026-03-19T23:59:59').getTime()
       setOfferExpired(now > endDate)
     }
 
