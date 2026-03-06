@@ -1,64 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import { motion, useSpring, useMotionValue } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { AppStoreButtons } from "./app-store-buttons"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { CountdownTimer } from "@/components/ui/countdown-timer"
 
 export function Hero() {
-  const [ref, inView] = useInView({
-    threshold: 0.35,
-    triggerOnce: true,
-    rootMargin: "-10% 0px"
-  })
-  
   const isMobile = useIsMobile()
-  const [isTouch, setIsTouch] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-  const [counter, setCounter] = useState(0)
-  const [showCheckmark, setShowCheckmark] = useState(false)
-  
-  // Detect touch device
-  useEffect(() => {
-    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0)
-  }, [])
-  
-  // Detect reduced motion preference
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
-    }
-    
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
-  
-  // Counter animation from 0 to 60
-  useEffect(() => {
-    if (inView) {
-      const timer = setTimeout(() => {
-        const interval = setInterval(() => {
-          setCounter(prev => {
-            if (prev >= 60) {
-              clearInterval(interval)
-              setShowCheckmark(true)
-              return 60
-            }
-            return prev + 1
-          })
-        }, 33) // 33ms por número = 2 segundos total (60 * 33ms ≈ 2000ms)
-      }, 800) // Start after text animations
-      
-      return () => clearTimeout(timer)
-    }
-  }, [inView])
   
   // Scroll to next section function
   const scrollToNextSection = () => {
@@ -76,138 +25,32 @@ export function Hero() {
       })
     }
   }
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  }
-  
-  const textVariants = {
-    hidden: prefersReducedMotion ? 
-      { opacity: 0 } : 
-      { opacity: 0, y: 30 },
-    visible: prefersReducedMotion ?
-      { opacity: 1, transition: { duration: 0.3 } } :
-      { 
-        opacity: 1, 
-        y: 0, 
-        transition: { 
-          duration: 0.6, 
-          ease: "easeOut" 
-        }
-      }
-  }
-
-  const subtitleVariants = {
-    hidden: prefersReducedMotion ? 
-      { opacity: 0 } : 
-      { opacity: 0, y: 30 },
-    visible: prefersReducedMotion ?
-      { opacity: 1, transition: { duration: 0.3, delay: 2 } } :
-      { 
-        opacity: 1, 
-        y: 0, 
-        transition: { 
-          duration: 0.6, 
-          ease: "easeOut",
-          delay: 2
-        }
-      }
-  }
-
-  const ctaVariants = {
-    hidden: prefersReducedMotion ? 
-      { opacity: 0 } : 
-      { opacity: 0, y: 30 },
-    visible: prefersReducedMotion ?
-      { opacity: 1, transition: { duration: 0.3, delay: 4.3 } } :
-      { 
-        opacity: 1, 
-        y: 0, 
-        transition: { 
-          duration: 0.6, 
-          ease: "easeOut",
-          delay: 4.3
-        }
-      }
-  }
-  
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.98 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { 
-        duration: 0.8,
-        ease: "easeOut",
-        delay: 0.4
-      }
-    }
-  }
-  
-  const shouldShowParallax = !prefersReducedMotion && !isTouch && !isMobile
   
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-16 pb-6">
+    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-16 pb-6">
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
-        <motion.div 
-          className="flex-1 text-center"
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          <motion.h1 
-            className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight"
-            variants={textVariants}
-          >
+        <div className="flex-1 text-center">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight">
             Consigue tu objetivo fit<br />
             sin perder el foco ni tu tiempo en la cocina
-          </motion.h1>
+          </h1>
           
-          <motion.p 
-            className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance"
-            variants={subtitleVariants}
-          >
+          <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
             Tu nutrición de alto rendimiento <span className="font-bold text-lg md:text-xl text-dark">automatizada</span> en una sola sesión semanal de{" "}
             <span className="font-bold text-lg md:text-xl text-dark inline-flex items-center gap-1">
-              {counter} minutos
-              {showCheckmark && (
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, ease: "backOut" }}
-                  className="text-primary ml-1"
-                >
-                  ✓
-                </motion.span>
-              )}
+              60 minutos
+              <span className="text-primary ml-1">✓</span>
             </span>
-          </motion.p>
+          </p>
           
-          {/* <p className="mt-4 text-base text-dark/90 font-medium subtitle">
-            No es una dieta. No es una app de recetas. Es orden.
-          </p> */}
-          
-          <motion.div 
-            className="mt-6"
-            variants={ctaVariants}
-          >
-            <AppStoreButtons inView={inView} />
-          </motion.div>
+          <div className="mt-6">
+            <AppStoreButtons inView={true} />
+          </div>
 
           {/* Countdown Timer */}
-          <motion.div
-            className="mt-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 4.8 }}
-          >
+          <div className="mt-6">
             <p className="text-sm text-dark/70 mb-4 font-medium">
               Acceso fundador termina en:
             </p>
@@ -215,91 +58,44 @@ export function Hero() {
               targetDate={new Date('2026-03-19T23:59:59')} 
               className=""
             />
-          </motion.div>
+          </div>
           
-          {/* <p className="mt-4 text-sm text-dark/60 subtitle">
-            Acceso anticipado · MVP cerrado
-          </p>
-           */}
           {/* Imagen en mobile (debajo del CTA) */}
-          <motion.div 
-            className="mt-8 lg:hidden"
-            variants={imageVariants}
-          >
-            <motion.div
-              animate={shouldShowParallax ? {
-                y: [0, -3, 0],
-                transition: {
-                  duration: 6,
-                  ease: "easeInOut",
-                  repeat: Infinity
-                }
-              } : {}}
-            >
-              <Image 
-                src="/hero-page.webp" 
-                alt="BatchFit App" 
-                width={350} 
-                height={265}
-                className="mx-auto rounded-lg shadow-lg"
-                priority
-              />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-        
-        {/* Imagen en desktop (a la derecha) */}
-        <motion.div 
-          className="hidden lg:block flex-shrink-0 mt-4"
-          variants={imageVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          <motion.div
-            animate={shouldShowParallax ? {
-              y: [0, -4, 0],
-              transition: {
-                duration: 8,
-                ease: "easeInOut",
-                repeat: Infinity
-              }
-            } : {}}
-          >
+          <div className="mt-8 lg:hidden">
             <Image 
               src="/hero-page.webp" 
               alt="BatchFit App" 
-              width={380} 
-              height={285}
-              className="rounded-lg shadow-xl"
+              width={350} 
+              height={265}
+              className="mx-auto rounded-lg shadow-lg"
               priority
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
+        
+        {/* Imagen en desktop (a la derecha) */}
+        <div className="hidden lg:block flex-shrink-0 mt-4">
+          <Image 
+            src="/hero-page.webp" 
+            alt="BatchFit App" 
+            width={380} 
+            height={285}
+            className="rounded-lg shadow-xl"
+            priority
+          />
+        </div>
       </div>
       
       {/* Scroll indicator - Desktop only */}
       {!isMobile && (
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: inView ? 1 : 0 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-        >
-          <motion.div
-            animate={{
-              y: [0, 8, 0],
-              transition: {
-                duration: 2,
-                ease: "easeInOut",
-                repeat: Infinity
-              }
-            }}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <div
             onClick={scrollToNextSection}
             className="flex flex-col items-center text-dark cursor-pointer hover:text-dark/80 transition-colors bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
           >
             <ChevronDown className="w-8 h-8" />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
     </section>
   )
