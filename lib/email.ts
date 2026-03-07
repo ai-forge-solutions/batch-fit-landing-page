@@ -34,25 +34,26 @@ export async function sendPurchaseConfirmation({
         .content { background: #f9f9f9; padding: 30px; }
         .details { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; }
         .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .cta-button { background: #FFE047; color: #1a1a1a; padding: 15px 30px; text-decoration: none; display: inline-block; margin: 20px 0; border-radius: 8px; font-weight: bold; }
+        .steps { background: white; padding: 25px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #FFE047; }
         .footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+        .highlight { background: #FFE047; padding: 2px 6px; border-radius: 4px; color: #1a1a1a; font-weight: bold; }
       </style>
     </head>
     <body>
       <div class="container">
         <div class="header">
-          <h1>🎉 ¡Bienvenido a BatchFit!</h1>
+          <h1>🎉 Ya eres parte de BatchFit</h1>
         </div>
         
         <div class="content">
           <h2>Hola ${name},</h2>
-          <p>¡Gracias por tu compra! Tu pago ha sido procesado correctamente.</p>
+          <p>Estamos construyendo esto <strong>contigo</strong>.</p>
           
           <div class="details">
             <h3>Detalles de la compra</h3>
             <div class="detail-row">
               <span><strong>Producto:</strong></span>
-              <span>BatchFit Lifetime Access</span>
+              <span>BatchFit Acceso Fundador</span>
             </div>
             <div class="detail-row">
               <span><strong>Monto:</strong></span>
@@ -68,26 +69,33 @@ export async function sendPurchaseConfirmation({
             </div>
           </div>
 
-          <h3>¿Qué sigue?</h3>
-          <ol>
-            <li>Accede a tu cuenta de BatchFit</li>
-            <li>Completa tu perfil nutricional</li>
-            <li>Genera tu primer plan de comidas</li>
-            <li>¡Empieza a comer saludable!</li>
-          </ol>
+          <div class="steps">
+            <h3>📋 Próximos pasos</h3>
+            <ol style="margin: 15px 0; padding-left: 20px;">
+              <li style="margin: 10px 0;"><strong>Te contactaremos en 24-48h</strong></li>
+              <li style="margin: 10px 0;"><strong>Te pediremos tus preferencias</strong></li>
+              <li style="margin: 10px 0;"><strong>Recibirás tu primer plan personalizado</strong></li>
+            </ol>
+          </div>
 
-          <center>
-            <a href="https://batchfit.com/login" class="cta-button">Acceder a BatchFit</a>
-          </center>
+          <p>Como miembro fundador, tienes garantizado:</p>
+          <ul style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <li>✅ <span class="highlight">Acceso de por vida</span> en la versión final</li>
+            <li>✅ Participación en el beta testing</li>
+            <li>✅ Influencia directa en las características finales</li>
+            <li>✅ Soporte prioritario</li>
+          </ul>
 
-          <p>Si tienes alguna pregunta, responde a este email y te ayudaremos encantados.</p>
+          <p><strong>Estimado de lanzamiento:</strong> Q2 2026</p>
           
-          <p>¡Bienvenido a la comunidad BatchFit! 🚀</p>
+          <p>¿Preguntas o sugerencias? Escríbenos a <strong>support@batchfit.app</strong> - ¡nos encanta escuchar de nuestros miembros fundadores!</p>
+          
+          <p>¡Gracias por ser parte de los fundadores! 🚀</p>
         </div>
 
         <div class="footer">
-          <p>BatchFit - Tu sistema de nutrición inteligente</p>
-          <p>Este es un email automático, por favor no respondas.</p>
+          <p>BatchFit - Tu sistema de nutrición inteligente (próximamente)</p>
+          <p>¿Dudas? Escríbenos a support@batchfit.app</p>
         </div>
       </div>
     </body>
@@ -98,7 +106,7 @@ export async function sendPurchaseConfirmation({
     const info = await transporter.sendMail({
       from: process.env.EMAIL_FROM,
       to: to,
-      subject: '✅ Confirmación de compra - BatchFit',
+      subject: '🎉 Ya eres parte de BatchFit',
       html: emailHTML,
     })
 
