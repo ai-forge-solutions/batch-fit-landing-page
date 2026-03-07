@@ -176,26 +176,6 @@ function PaymentSuccessContent() {
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="bg-primary/10 border border-primary/20 rounded-lg p-6">
-          <h3 className="text-xl font-semibold text-dark mb-4">
-            Próximos pasos
-          </h3>
-          <ol className="text-left space-y-3 text-dark/80">
-            <li className="flex items-start">
-              <span className="font-bold text-primary mr-3">1.</span>
-              <span>Revisa tu email (incluye spam por si acaso)</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-bold text-primary mr-3">2.</span>
-              <span>Accede a BatchFit con tus credenciales</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-bold text-primary mr-3">3.</span>
-              <span>Crea tu primer plan de comidas</span>
-            </li>
-          </ol>
-        </motion.div>
-
         <motion.div variants={itemVariants} className="mt-8">
           <motion.a
             href="/"
