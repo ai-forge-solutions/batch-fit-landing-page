@@ -32,70 +32,60 @@ export async function sendPurchaseConfirmation({
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
         .header { background: #1a1a1a; color: white; padding: 30px; text-align: center; }
         .content { background: #f9f9f9; padding: 30px; }
-        .details { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; }
-        .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .steps { background: white; padding: 25px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #FFE047; }
+        .section { background: white; padding: 25px; margin: 20px 0; border-radius: 8px; }
+        .benefits { background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0; }
         .footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
         .highlight { background: #FFE047; padding: 2px 6px; border-radius: 4px; color: #1a1a1a; font-weight: bold; }
+        .signature { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
       </style>
     </head>
     <body>
       <div class="container">
         <div class="header">
-          <h1>🎉 Ya eres parte de BatchFit</h1>
+          <h1>Bienvenido a BatchFit 🚀</h1>
         </div>
         
         <div class="content">
           <h2>Hola ${name},</h2>
-          <p>Estamos construyendo esto <strong>contigo</strong>.</p>
           
-          <div class="details">
-            <h3>Detalles de la compra</h3>
-            <div class="detail-row">
-              <span><strong>Producto:</strong></span>
-              <span>BatchFit Acceso Fundador</span>
-            </div>
-            <div class="detail-row">
-              <span><strong>Monto:</strong></span>
-              <span>${amount} ${currency}</span>
-            </div>
-            <div class="detail-row">
-              <span><strong>ID de transacción:</strong></span>
-              <span>${transactionId}</span>
-            </div>
-            <div class="detail-row">
-              <span><strong>Fecha:</strong></span>
-              <span>${new Date().toLocaleDateString('es-ES')}</span>
-            </div>
+          <p>¡Gracias por confiar en BatchFit y formar parte de los miembros fundadores!</p>
+          
+          <p>BatchFit nace con una idea simple:<br>
+          <strong>que no tengas que volver a perder tiempo cocinando cada semana.</strong></p>
+          
+          <p>Queremos ayudarte a comer bien sin que la nutrición se convierta en otra tarea más.</p>
+
+          <div class="section">
+            <h3>Qué pasará ahora</h3>
+            <p>En los próximos días te enviaré un email con más detalles sobre el lanzamiento.</p>
+            <p>La primera versión de BatchFit se abrirá el <strong>miércoles 18 a las 23:59</strong>, y como miembro fundador tendrás acceso desde el primer minuto.</p>
           </div>
 
-          <div class="steps">
-            <h3>📋 Próximos pasos</h3>
-            <ol style="margin: 15px 0; padding-left: 20px;">
-              <li style="margin: 10px 0;"><strong>Te contactaremos en 24-48h</strong></li>
-              <li style="margin: 10px 0;"><strong>Te pediremos tus preferencias</strong></li>
-              <li style="margin: 10px 0;"><strong>Recibirás tu primer plan personalizado</strong></li>
-            </ol>
+          <div class="benefits">
+            <h3>Como miembro fundador tendrás:</h3>
+            <ul>
+              <li>✅ Acceso de por vida a BatchFit</li>
+              <li>✅ Soporte prioritario</li>
+              <li>✅ Influencia directa en el desarrollo del producto</li>
+            </ul>
+            <p>La primera versión de BatchFit se abrirá el <strong>miércoles 18 a las 23:59</strong>, y como fundador tendrás acceso desde el primer minuto.</p>
           </div>
 
-          <p>Como miembro fundador, tienes garantizado:</p>
-          <ul style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <li>✅ <span class="highlight">Acceso de por vida</span> en la versión final</li>
-            <li>✅ Participación en el beta testing</li>
-            <li>✅ Influencia directa en las características finales</li>
-            <li>✅ Soporte prioritario</li>
-          </ul>
+          <div class="section">
+            <p><strong>Por cierto, me encantaría saber:</strong></p>
+            <p>¿Qué fue lo que te hizo decidirte por BatchFit?</p>
+            <p>Si te apetece, responde a este email y cuéntamelo.</p>
+          </div>
 
-          <p><strong>Estimado de lanzamiento:</strong> Q2 2026</p>
-          
-          <p>¿Preguntas o sugerencias? Escríbenos a <strong>support@batchfit.app</strong> - ¡nos encanta escuchar de nuestros miembros fundadores!</p>
-          
-          <p>¡Gracias por ser parte de los fundadores! 🚀</p>
+          <div class="signature">
+            <p>Gracias por formar parte del inicio de BatchFit 🚀</p>
+            <p><strong>Miguel</strong><br>
+            Founder — BatchFit</p>
+          </div>
         </div>
 
         <div class="footer">
-          <p>BatchFit - Tu sistema de nutrición inteligente (próximamente)</p>
-          <p>¿Dudas? Escríbenos a support@batchfit.app</p>
+          <p>BatchFit - Tu sistema de nutrición inteligente</p>
         </div>
       </div>
     </body>
@@ -106,7 +96,7 @@ export async function sendPurchaseConfirmation({
     const info = await transporter.sendMail({
       from: process.env.EMAIL_FROM,
       to: to,
-      subject: '🎉 Ya eres parte de BatchFit',
+      subject: 'Bienvenido a BatchFit 🚀',
       html: emailHTML,
     })
 
