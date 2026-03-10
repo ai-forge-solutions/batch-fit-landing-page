@@ -17,7 +17,7 @@ export function UrgencyBar({ variants, spotsLeft = 45 }: UrgencyBarProps) {
     <motion.div variants={variants} className="bg-white rounded-2xl shadow-lg p-6 mb-6">
       <div className="text-center">
         <p className="text-lg font-medium text-dark mb-4">
-          🔥 Precio fundador termina en:
+          💰 Precio fundador termina en:
         </p>
         <CountdownTimer 
           targetDate={new Date('2026-03-19T23:59:59')} 
@@ -39,6 +39,13 @@ export function UrgencyBar({ variants, spotsLeft = 45 }: UrgencyBarProps) {
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
+        </div>
+        
+        {/* Indicador de actividad */}
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <p className="text-sm text-dark font-medium text-center">
+            🔥 3 personas se han unido hoy
+          </p>
         </div>
       </div>
     </motion.div>

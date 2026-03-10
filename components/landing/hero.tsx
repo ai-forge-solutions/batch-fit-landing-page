@@ -38,7 +38,7 @@ export function Hero() {
           </h1>
           
           <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
-            Planifica y cocina toda tu semana en 60 minutos.
+            ✓ Planifica y cocina toda tu semana en 60 minutos.
           </p>
           
           <div className="mt-6">
@@ -63,7 +63,8 @@ export function Hero() {
               alt="BatchFit App" 
               width={450} 
               height={340}
-              className="w-full h-auto rounded-lg shadow-lg"
+              className="w-full h-auto rounded-lg"
+              style={{ backgroundColor: 'unset' }}
               priority
             />
           </div>
@@ -76,7 +77,8 @@ export function Hero() {
             alt="BatchFit App" 
             width={380} 
             height={285}
-            className="rounded-lg shadow-xl"
+            className="rounded-lg"
+            style={{ backgroundColor: 'unset' }}
             priority
           />
         </div>

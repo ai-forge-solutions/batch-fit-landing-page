@@ -13,7 +13,7 @@ import { TrustFooter } from "@/components/checkout/trust-footer"
 import { FAQCard } from "@/components/checkout/faq-card"
 
 export default function CheckoutPage() {
-  const [spotsLeft, setSpotsLeft] = useState(45) // Configurable
+  const [spotsLeft, setSpotsLeft] = useState(17) // Configurable
   const [offerExpired, setOfferExpired] = useState(false)
 
   // Check if offer has expired
