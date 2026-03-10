@@ -33,16 +33,12 @@ export function Hero() {
         {/* Contenido de texto */}
         <div className="flex-1 text-center">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
-            Consigue tu objetivo fit<br />
-            sin perder el foco ni tu tiempo en la cocina
+            Consigue tu objetivo fitness<br />
+            sin perder tiempo en la cocina
           </h1>
           
           <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
-            Tu nutrición de alto rendimiento <span className="font-bold text-lg md:text-xl text-dark">automatizada</span> en una sola sesión semanal de{" "}
-            <span className="font-bold text-lg md:text-xl text-dark inline-flex items-center gap-1">
-              60 minutos
-              <span className="text-primary ml-1">✓</span>
-            </span>
+            Planifica y cocina toda tu semana en 60 minutos.
           </p>
           
           <div className="mt-6">
