@@ -27,12 +27,12 @@ export function Hero() {
   }
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-16 pb-6">
+    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-24 pb-6">
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
         <div className="flex-1 text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
             Consigue tu objetivo fit<br />
             sin perder el foco ni tu tiempo en la cocina
           </h1>
@@ -61,13 +61,13 @@ export function Hero() {
           </div>
           
           {/* Imagen en mobile (debajo del CTA) */}
-          <div className="mt-8 lg:hidden">
+          <div className="mt-8 lg:hidden w-full max-w-md mx-auto">
             <Image 
               src="/hero-page.webp" 
               alt="BatchFit App" 
-              width={350} 
-              height={265}
-              className="mx-auto rounded-lg shadow-lg"
+              width={450} 
+              height={340}
+              className="w-full h-auto rounded-lg shadow-lg"
               priority
             />
           </div>
