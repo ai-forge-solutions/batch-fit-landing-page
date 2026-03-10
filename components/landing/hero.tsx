@@ -41,6 +41,24 @@ export function Hero() {
             ✓ Planifica y cocina toda tu semana en 60 minutos.
           </p>
           
+          {/* Prueba social */}
+          <div className="mt-6 flex items-center justify-center">
+            <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-full px-4 py-1.5 shadow-sm border border-gray-100">
+              <div className="flex -space-x-2 mr-3">
+                <div className="w-5 h-5 rounded-full border border-white overflow-hidden">
+                  <Image src="/social-proof-1.webp" alt="Usuario" width={20} height={20} className="w-full h-full object-cover" style={{ filter: 'blur(1px)' }} />
+                </div>
+                <div className="w-5 h-5 rounded-full border border-white overflow-hidden">
+                  <Image src="/social-proof-2.webp" alt="Usuario" width={20} height={20} className="w-full h-full object-cover" style={{ filter: 'blur(1px)' }} />
+                </div>
+                <div className="w-5 h-5 rounded-full border border-white overflow-hidden">
+                  <Image src="/social-proof-3.webp" alt="Usuario" width={20} height={20} className="w-full h-full object-cover" style={{ filter: 'blur(1px)' }} />
+                </div>
+              </div>
+              <span className="text-sm font-medium text-dark">+30 fundadores ya dentro</span>
+            </div>
+          </div>
+          
           <div className="mt-6">
             <AppStoreButtons inView={true} />
           </div>
