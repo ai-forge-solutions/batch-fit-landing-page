@@ -27,10 +27,12 @@ export async function sendPurchaseConfirmation({
     <!DOCTYPE html>
     <html>
     <head>
+      <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
       <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
         .header { background: #1a1a1a; color: white; padding: 30px; text-align: center; }
+        .header h1 { font-family: 'Bebas Neue', Arial, sans-serif; font-size: 36px; margin: 0; letter-spacing: 2px; }
         .content { background: #f9f9f9; padding: 30px; }
         .section { background: white; padding: 25px; margin: 20px 0; border-radius: 8px; }
         .benefits { background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0; }
