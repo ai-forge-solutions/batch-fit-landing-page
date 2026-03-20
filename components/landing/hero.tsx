@@ -55,24 +55,19 @@ export function Hero() {
                   <Image src="/social-proof-3.webp" alt="Usuario" width={20} height={20} className="w-full h-full object-cover" style={{ filter: 'blur(1px)' }} />
                 </div>
               </div>
-              <span className="text-sm font-medium text-dark">+30 fundadores ya dentro</span>
+              <span className="text-sm font-medium text-dark">+40 fundadores ya están dentro</span>
             </div>
           </div>
           
+
           <div className="mt-6">
+            <p className="text-sm text-dark/70 mb-6 font-medium text-center">
+              Acceso fundador cerrado.
+            </p>
             <AppStoreButtons inView={true} />
           </div>
 
           {/* Countdown Timer */}
-          <div className="mt-6">
-            <p className="text-sm text-dark/70 mb-4 font-medium">
-              Acceso fundador termina en:
-            </p>
-            <CountdownTimer 
-              targetDate={new Date('2026-03-19T23:59:59')} 
-              className=""
-            />
-          </div>
           
           {/* Imagen en mobile (debajo del CTA) */}
           <div className="mt-8 lg:hidden w-full max-w-md mx-auto">
@@ -89,7 +84,7 @@ export function Hero() {
         </div>
         
         {/* Imagen en desktop (a la derecha) */}
-        <div className="hidden lg:block flex-shrink-0 mt-4">
+        <div className="hidden lg:block shrink-0 mt-4">
           <Image 
             src="/hero-page.webp" 
             alt="BatchFit App" 

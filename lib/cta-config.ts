@@ -55,7 +55,7 @@ export const defaultCTAConfig: CTAConfig = {
 // Configuración de Pricing (Single Button)
 export const pricingCTAConfig: CTAConfig = {
   primary: {
-    label: "Acceso fundador -50%",
+    label: "Únete al acceso anticipado",
     sublabel: "",
     action: () => {
       console.log("[BatchFit] Pricing CTA clicked")
@@ -64,7 +64,7 @@ export const pricingCTAConfig: CTAConfig = {
         cta_text: 'Acceso fundador -50%',
         cta_location: 'pricing'
       })
-      window.location.href = '/checkout'
+      window.location.href = '/waitlist'
     },
     iconName: "trending-up",
     trackingName: "Pricing CTA"
