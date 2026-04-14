@@ -37,7 +37,7 @@ export function NewSection() {
   
   return (
     <section className="py-12 px-4 sm:py-20 sm:px-6 bg-white" data-section="new-section">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         <div className="text-center relative">
           <h2 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-8 sm:mb-12 leading-tight">
             Todo lo que necesitas para lograr tus metas fitness, organizado para ti en tres sencillos pasos
@@ -60,7 +60,7 @@ export function NewSection() {
             
             {/* Step 1 */}
             <div className="text-center relative" data-step="1">
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-sm mx-auto">
                 <div className="relative">
                   <Image 
                     src="/batchfit-mockup-weekmeals.webp" 
@@ -71,7 +71,7 @@ export function NewSection() {
                     style={{ backgroundColor: 'unset' }}
                     priority
                   />
-                  <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-sm rounded-lg py-6 px-4 border border-white/20">
+                  <div className="absolute bottom-4 -left-4 -right-4 bg-white/90 backdrop-blur-sm rounded-xl py-8 px-6 border border-white/20 shadow-xl">
                     <div className="flex items-start gap-3">
                       <span className="text-black font-bold text-2xl shrink-0">1</span>
                       <div>
@@ -96,7 +96,7 @@ export function NewSection() {
             
             {/* Step 2 */}
             <div className="text-center relative" data-step="2">
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-sm mx-auto">
                 <div className="relative">
                   <Image 
                     src="/batchfi-mockup-shoppinglist.webp" 
@@ -107,7 +107,7 @@ export function NewSection() {
                     style={{ backgroundColor: 'unset' }}
                     priority
                   />
-                  <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-sm rounded-lg py-6 px-4 border border-white/20">
+                  <div className="absolute bottom-4 -left-4 -right-4 bg-white/90 backdrop-blur-sm rounded-xl py-8 px-6 border border-white/20 shadow-xl">
                     <div className="flex items-start gap-3">
                       <span className="text-black font-bold text-2xl shrink-0">2</span>
                       <div>
@@ -132,7 +132,7 @@ export function NewSection() {
 
             {/* Step 3 */}
             <div className="text-center relative" data-step="3">
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-sm mx-auto">
                 <div className="relative">
                   <Image 
                     src="/batchfi-mockup-batchstep.webp" 
@@ -143,7 +143,7 @@ export function NewSection() {
                     style={{ backgroundColor: 'unset' }}
                     priority
                   />
-                  <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-sm rounded-lg py-6 px-4 border border-white/20">
+                  <div className="absolute bottom-4 -left-4 -right-4 bg-white/90 backdrop-blur-sm rounded-xl py-8 px-6 border border-white/20 shadow-xl">
                     <div className="flex items-start gap-3">
                       <span className="text-black font-bold text-2xl shrink-0">3</span>
                       <div>
