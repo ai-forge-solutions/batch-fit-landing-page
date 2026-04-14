@@ -72,8 +72,8 @@ export function NewSection() {
                     priority
                   />
                   <div className="absolute bottom-4 -left-4 -right-4 bg-white/90 backdrop-blur-sm rounded-xl py-8 px-6 pb-6 border border-white/20 shadow-xl cursor-pointer hover:bg-white/95 transition-colors" onClick={() => scrollToStep(2)}>
-                    <div className="flex items-start gap-3 mb-3">
-                      <span className="text-black font-bold text-2xl shrink-0">1</span>
+                    <div className="text-center mb-3 relative">
+                      <span className="absolute top-0 left-0 text-black font-bold text-2xl">1</span>
                       <div>
                         <h4 className="font-bold text-2xl text-dark mb-2">Plan Semanal Personalizado</h4>
                         <p className="text-base text-dark/70">Menús adaptados a tus macros y preferencias</p>
@@ -101,8 +101,8 @@ export function NewSection() {
                     priority
                   />
                   <div className="absolute bottom-4 -left-4 -right-4 bg-white/90 backdrop-blur-sm rounded-xl py-8 px-6 pb-6 border border-white/20 shadow-xl cursor-pointer hover:bg-white/95 transition-colors" onClick={() => scrollToStep(3)}>
-                    <div className="flex items-start gap-3 mb-3">
-                      <span className="text-black font-bold text-2xl shrink-0">2</span>
+                    <div className="text-center mb-3 relative">
+                      <span className="absolute top-0 left-0 text-black font-bold text-2xl">2</span>
                       <div>
                         <h4 className="font-bold text-2xl text-dark mb-2">Lista Inteligente</h4>
                         <p className="text-base text-dark/70">Optimizada por ingredientes y cantidades exactas</p>
@@ -130,8 +130,8 @@ export function NewSection() {
                     priority
                   />
                   <div className="absolute bottom-4 -left-4 -right-4 bg-white/90 backdrop-blur-sm rounded-xl py-8 px-6 pb-6 border border-white/20 shadow-xl cursor-pointer hover:bg-white/95 transition-colors" onClick={scrollToNextSection}>
-                    <div className="flex items-start gap-3 mb-3">
-                      <span className="text-black font-bold text-2xl shrink-0">3</span>
+                    <div className="text-center mb-3 relative">
+                      <span className="absolute top-0 left-0 text-black font-bold text-2xl">3</span>
                       <div>
                         <h4 className="font-bold text-2xl text-dark mb-2">Guía Paso a Paso</h4>
                         <p className="text-base text-dark/70">Instrucciones claras para tu sesión de batch cooking</p>
