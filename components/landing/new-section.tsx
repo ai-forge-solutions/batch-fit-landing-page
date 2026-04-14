@@ -40,7 +40,7 @@ export function NewSection() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center relative">
           <h2 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-8 sm:mb-12 leading-tight">
-            Todo lo que necesitas para lograr tus metas fitness, organizado para ti en tres sencillos pasos
+            <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>Todo</span> lo que necesitas para lograr tus metas fitness, organizado para ti en <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>tres sencillos pasos</span>
           </h2>
           
           {/* Scroll indicator to first step */}
@@ -75,8 +75,8 @@ export function NewSection() {
                     <div className="text-center mb-3 relative">
                       <span className="absolute top-0 left-0 text-black font-bold text-2xl">1</span>
                       <div>
-                        <h4 className="font-bold text-2xl text-dark mb-2">Plan Semanal Personalizado</h4>
-                        <p className="text-base text-dark/70">Menús adaptados a tus macros y preferencias</p>
+                        <h4 className="font-bold text-2xl text-dark mb-2">BatchFit crea tu plan semanal</h4>
+                        <p className="text-base text-dark/70">Menús personalizados según tus <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>macros y objetivos</span>, gustos y preferencias</p>
                       </div>
                     </div>
                     <div className="flex justify-center">
@@ -104,8 +104,8 @@ export function NewSection() {
                     <div className="text-center mb-3 relative">
                       <span className="absolute top-0 left-0 text-black font-bold text-2xl">2</span>
                       <div>
-                        <h4 className="font-bold text-2xl text-dark mb-2">Lista Inteligente</h4>
-                        <p className="text-base text-dark/70">Optimizada por ingredientes y cantidades exactas</p>
+                        <h4 className="font-bold text-2xl text-dark mb-2">Genera tu lista de la compra</h4>
+                        <p className="text-base text-dark/70">Compra todo lo que necesitas para la semana <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>sin pensar</span> qué falta</p>
                       </div>
                     </div>
                     <div className="flex justify-center">
@@ -133,8 +133,8 @@ export function NewSection() {
                     <div className="text-center mb-3 relative">
                       <span className="absolute top-0 left-0 text-black font-bold text-2xl">3</span>
                       <div>
-                        <h4 className="font-bold text-2xl text-dark mb-2">Guía Paso a Paso</h4>
-                        <p className="text-base text-dark/70">Instrucciones claras para tu sesión de batch cooking</p>
+                        <h4 className="font-bold text-2xl text-dark mb-2">Te guía paso a paso en tu batchcooking</h4>
+                        <p className="text-base text-dark/70">Sigue instrucciones optimizadas para cocinar toda tu semana de forma <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>eficiente</span></p>
                       </div>
                     </div>
                     <div className="flex justify-center">
