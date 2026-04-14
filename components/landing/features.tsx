@@ -97,39 +97,53 @@ export function Features() {
         {/* Slider Container */}
         <div className="relative max-w-4xl mx-auto">
           <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 shadow-lg border border-gray-200 overflow-hidden">
-            <div className="flex flex-col md:flex-row items-center justify-between relative">
+            <div className="flex flex-col items-center justify-between relative">
               {/* Contenido del Slide con animación */}
-              <div className="w-full flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-2 sm:px-8 md:px-16 min-h-[300px]">
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -40 }}
-                    transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    className="w-full flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12"
-                  >
-                    {/* Imagen */}
-                    <div className="flex-shrink-0 w-full md:w-96 h-80 md:h-96 mb-4 md:mb-0 flex items-center justify-center">
+              <div className="w-full flex flex-col items-center justify-center gap-6 px-2 sm:px-8 md:px-16">
+                {/* Título arriba */}
+                <div className="min-h-[4rem] flex items-center justify-center">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.h3 
+                      key={`title-${currentSlide}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-2xl md:text-3xl font-bold text-gray-900 text-center"
+                    >
+                      {features[currentSlide].title}
+                    </motion.h3>
+                  </AnimatePresence>
+                </div>
+                
+                {/* Contenedor de imágenes - todas precargadas */}
+                <div className="relative w-full max-w-3xl min-h-[400px] md:min-h-[500px]">
+                  {features.map((feature, index) => (
+                    <div 
+                      key={feature.id}
+                      className={`absolute inset-0 transition-opacity duration-300 ${
+                        index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                      }`}
+                    >
                       <Image
-                        src={features[currentSlide].image}
-                        alt={features[currentSlide].title}
-                        width={400}
-                        height={400}
-                        className="w-auto h-full object-contain rounded-2xl"
+                        src={feature.image}
+                        alt={feature.title}
+                        width={800}
+                        height={600}
+                        className="w-full h-auto rounded-2xl"
+                        style={{ backgroundColor: 'unset' }}
+                        priority={index === 0} // Solo priority para la primera
                       />
+                      
+                      {/* Caja superpuesta con copy */}
+                      <div className="absolute bottom-8 left-8 right-8 bg-white/95 rounded-lg py-6 px-6 border border-gray-200/50 shadow-xl">
+                        <p className="text-base md:text-lg text-gray-700 leading-relaxed min-h-[3rem]">
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
-                    {/* Texto */}
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                        {features[currentSlide].title}
-                      </h3>
-                      <p className="text-lg text-gray-600 leading-relaxed">
-                        {features[currentSlide].description}
-                      </p>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

@@ -3,8 +3,8 @@ import { Hero } from "@/components/landing/hero"
 import { NewSection } from "@/components/landing/new-section"
 import { ProblemEmpathy } from "@/components/landing/problem-empathy"
 import { WhatIsBatchFit } from "@/components/landing/what-is-batchfit"
-import { BeforeAfter } from "@/components/landing/before-after"
-import { HowItWorks } from "@/components/landing/how-it-works"
+// import { BeforeAfter } from "@/components/landing/before-after"
+// import { HowItWorks } from "@/components/landing/how-it-works"
 import { Features } from "@/components/landing/features"
 import { Benefits } from "@/components/landing/benefits"
 import { FinalCTA } from "@/components/landing/final-cta"
@@ -24,17 +24,17 @@ export default function Home() {
       <section id="que-es">
         <WhatIsBatchFit />
       </section>
-      <section id="antes-despues">
+      {/* <section id="antes-despues">
         <BeforeAfter />
       </section>
       <section id="como-funciona">
         <HowItWorks />
+      </section> */}
+      <section id="beneficios">
+        <Benefits />
       </section>
       <section id="caracteristicas">
         <Features />
-      </section>
-      <section id="beneficios">
-        <Benefits />
       </section>
       <section id="cta">
         <FinalCTA />
