@@ -53,8 +53,8 @@ export function Features() {
     },
     {
       id: 4,
-      title: "Editor de Ingredientes",
-      description: "Personaliza y ajusta los ingredientes de tus recetas según tus preferencias. Modifica cantidades, sustituye ingredientes y adapta las recetas a tu gusto.",
+      title: "Editor de macros",
+      description: "Personaliza y ajusta los macronutrientes de tus recetas según tus preferencias. Asegúrate de que cada comida se adapte perfectamente a tus objetivos nutricionales y a tu objetivo deseado.",
       image: "/batchfit-mockup-edit-recipe-ingredients.webp",
     },
     {
