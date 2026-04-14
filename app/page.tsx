@@ -1,6 +1,6 @@
 import { Header } from "@/components/landing/header"
 import { Hero } from "@/components/landing/hero"
-import { PASSection } from "@/components/landing/pas-section"
+import { NewSection } from "@/components/landing/new-section"
 import { WhatIsBatchFit } from "@/components/landing/what-is-batchfit"
 import { BeforeAfter } from "@/components/landing/before-after"
 import { HowItWorks } from "@/components/landing/how-it-works"
@@ -15,7 +15,7 @@ export default function Home() {
       <Header />
       <Hero />
       <section id="pas">
-        <PASSection />
+        <NewSection />
       </section>
       <section id="que-es">
         <WhatIsBatchFit />

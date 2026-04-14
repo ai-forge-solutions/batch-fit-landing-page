@@ -38,7 +38,7 @@ export function Hero() {
           </h1>
           
           <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
-            ✓ Planifica y cocina toda tu semana en 60 minutos.
+            BatchFit crea tu plan nutricional con instrucciones batch cooking para que cocines toda tu semana en 60 minutos.
           </p>
           
           {/* Prueba social */}
@@ -61,9 +61,6 @@ export function Hero() {
           
 
           <div className="mt-6">
-            <p className="text-sm text-dark/70 mb-6 font-medium text-center">
-              Acceso fundador cerrado.
-            </p>
             <AppStoreButtons inView={true} />
           </div>
 
