@@ -143,19 +143,30 @@ export function Features() {
                       </div>
                     </div>
                   ))}
+                  
+                  {/* Flechas de navegación superpuestas */}
+                  <button
+                    onClick={() => setCurrentSlide((prev) => (prev - 1 + features.length) % features.length)}
+                    className="absolute left-4 top-[40%] -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200/50 flex items-center justify-center hover:bg-white/95 transition-all z-20 hover:scale-105"
+                    aria-label="Anterior"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-gray-700" />
+                  </button>
+                  
+                  <button
+                    onClick={() => setCurrentSlide((prev) => (prev + 1) % features.length)}
+                    className="absolute right-4 top-[40%] -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200/50 flex items-center justify-center hover:bg-white/95 transition-all z-20 hover:scale-105"
+                    aria-label="Siguiente"
+                  >
+                    <ChevronRight className="w-6 h-6 text-gray-700" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          {/* Botones de navegación fuera del slider */}
-          <div className="flex justify-center gap-8 mt-6">
-            <button
-              onClick={() => setCurrentSlide((prev) => (prev - 1 + features.length) % features.length)}
-              className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
-              aria-label="Anterior"
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-600" />
-            </button>
+          
+          {/* Indicadores de página debajo */}
+          <div className="flex justify-center mt-6">
             <div className="flex items-center space-x-2">
               {features.map((_, index) => (
                 <button
@@ -173,13 +184,6 @@ export function Features() {
                 />
               ))}
             </div>
-            <button
-              onClick={() => setCurrentSlide((prev) => (prev + 1) % features.length)}
-              className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
-              aria-label="Siguiente"
-            >
-              <ChevronRight className="w-6 h-6 text-gray-600" />
-            </button>
           </div>
         </div>
       </div>
