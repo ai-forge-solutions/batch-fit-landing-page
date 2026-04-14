@@ -129,7 +129,7 @@ export function Features() {
                 </div>
                 
                 {/* Contenedor de imágenes - todas precargadas */}
-                <div className="relative w-full max-w-3xl min-h-[400px] md:min-h-[500px]">
+                <div className="relative w-full max-w-md mx-auto aspect-[3/5] md:max-w-lg">
                   {features.map((feature, index) => (
                     <div 
                       key={feature.id}
@@ -140,9 +140,9 @@ export function Features() {
                       <Image
                         src={feature.image}
                         alt={feature.title}
-                        width={800}
-                        height={600}
-                        className="w-full h-auto rounded-2xl"
+                        width={400}
+                        height={800}
+                        className="w-full h-full object-contain rounded-2xl"
                         style={{ backgroundColor: 'unset' }}
                         priority={index === 0} // Solo priority para la primera
                       />
@@ -159,7 +159,7 @@ export function Features() {
                   {/* Flechas de navegación superpuestas */}
                   <button
                     onClick={() => setCurrentSlide((prev) => (prev - 1 + features.length) % features.length)}
-                    className="absolute left-4 top-[40%] -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200/50 flex items-center justify-center hover:bg-white/95 transition-all z-20 hover:scale-105"
+                    className="absolute -left-6 top-[40%] -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200/50 flex items-center justify-center hover:bg-white/95 transition-all z-20 hover:scale-105"
                     aria-label="Anterior"
                   >
                     <ChevronLeft className="w-6 h-6 text-gray-700" />
@@ -167,7 +167,7 @@ export function Features() {
                   
                   <button
                     onClick={() => setCurrentSlide((prev) => (prev + 1) % features.length)}
-                    className="absolute right-4 top-[40%] -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200/50 flex items-center justify-center hover:bg-white/95 transition-all z-20 hover:scale-105"
+                    className="absolute -right-6 top-[40%] -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200/50 flex items-center justify-center hover:bg-white/95 transition-all z-20 hover:scale-105"
                     aria-label="Siguiente"
                   >
                     <ChevronRight className="w-6 h-6 text-gray-700" />
