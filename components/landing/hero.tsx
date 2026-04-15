@@ -56,13 +56,18 @@ export function Hero() {
                   <Image src="/social-proof-3.webp" alt="Usuario" width={20} height={20} className="w-full h-full object-cover" style={{ filter: 'blur(1px)' }} />
                 </div>
               </div>
-              <span className="text-sm font-medium text-dark">+ 40 fundadores ya están dentro</span>
+              <span className="text-sm font-medium text-dark">+ 30 fundadores ya están dentro</span>
             </div>
           </div>
           
 
           <div className="mt-6 flex justify-start">
             <AppStoreButtons inView={true} />
+          </div>
+          
+          {/* Texto de urgencia */}
+          <div className="mt-3 flex justify-start">
+            <p className="text-sm text-dark/70 italic">Plazas limitadas</p>
           </div>
 
           {/* Countdown Timer */}
