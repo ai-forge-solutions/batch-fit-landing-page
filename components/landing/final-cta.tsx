@@ -17,7 +17,7 @@ export function FinalCTA() {
             alt="BatchFit hero"
             width={300}
             height={200}
-            className="w-full max-w-sm h-auto rounded-xl mx-auto"
+            className="w-full max-w-xs h-auto rounded-xl mx-auto"
             style={{ backgroundColor: 'unset' }}
             priority
           />

@@ -7,6 +7,7 @@ import { WhatIsBatchFit } from "@/components/landing/what-is-batchfit"
 // import { HowItWorks } from "@/components/landing/how-it-works"
 import { Features } from "@/components/landing/features"
 import { Benefits } from "@/components/landing/benefits"
+import { Testimonials } from "@/components/landing/testimonials"
 import { FinalCTA } from "@/components/landing/final-cta"
 import { Footer } from "@/components/landing/footer"
 
@@ -32,6 +33,9 @@ export default function Home() {
       </section> */}
       <section id="beneficios">
         <Benefits />
+      </section>
+      <section id="testimonials">
+        <Testimonials />
       </section>
       <section id="caracteristicas">
         <Features />

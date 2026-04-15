@@ -36,43 +36,43 @@ export function Features() {
     {
       id: 1,
       title: "Sesiones de Batch Cooking",
-      description: "Organiza y gestiona tus sesiones de batch cooking con cronómetros inteligentes, listas de tareas y guías paso a paso para maximizar tu eficiencia en la cocina.",
+      description: "Cocina toda tu semana con sesiones optimizadas, cronómetros inteligentes y flujo guiado paso a paso",
       image: "/batchfi-mockup-batchsession.webp",
     },
     {
       id: 2,
       title: "Instrucciones Paso a Paso", 
-      description: "Sigue cada paso de tus recetas con instrucciones detalladas y cronómetros integrados. Nunca te perderás en el proceso de preparación de tus comidas.",
+      description: "Sigue instrucciones claras durante cada preparación sin perderte en la cocina",
       image: "/batchfi-mockup-batchstep.webp",
     },
     {
       id: 3,
       title: "Lista de Compras Inteligente",
-      description: "Genera automáticamente tu lista de compras basada en tu planificación semanal. Organizada por categorías para hacer tu compra más eficiente y sin olvidar nada.",
+      description: "Tu compra semanal generada automáticamente con cantidades exactas y todo organizado",
       image: "/batchfi-mockup-shoppinglist.webp",
     },
     {
       id: 4,
       title: "Editor de macros",
-      description: "Personaliza y ajusta los macronutrientes de tus recetas según tus preferencias. Asegúrate de que cada comida se adapte perfectamente a tus objetivos nutricionales y a tu objetivo deseado.",
+      description: "Adapta las sugerencias de calorías y macronutrientes",
       image: "/batchfit-mockup-edit-recipe-ingredients.webp",
     },
     {
       id: 5,
       title: "Seguimiento de Progreso",
-      description: "Visualiza tu evolución con gráficos detallados y estadísticas. Monitorea tu adherencia al plan, progreso hacia tus objetivos y logros conseguidos.",
+      description: "Visualiza tu evolución y adaptamos el plan en base a tus resultados",
       image: "/batchfit-mockup-progress.webp",
     },
     {
       id: 6,
       title: "Planificación Semanal",
-      description: "Organiza todas tus comidas de la semana de un vistazo. Planifica desayunos, comidas, cenas y snacks con un calendario intuitivo y visual.",
+      description: "Visualiza y organiza toda tu semana nutricional de un vistazo",
       image: "/batchfit-mockup-weekmeals.webp",
     },
     {
       id: 7,
       title: "Editor de Recetas",
-      description: "Crea, modifica y personaliza tus recetas favoritas. Ajusta porciones, tiempos de cocción y técnicas para que se adapten perfectamente a tu estilo de vida.",
+      description: "Edita recetas, ajusta ingredientes y adapta el sistema a tus preferencias",
       image: "/batchfitmockup-edit-recipes.webp",
     },
   ]
@@ -94,8 +94,8 @@ export function Features() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
           >
-            Características que
-            <span style={{ color: '#4fe4b7' }}> transforman</span> tu alimentación
+            Todo lo que
+            <span style={{ color: '#4fe4b7' }}> BatchFit</span> ofrece
           </motion.h2>
         </div>
         {/* Slider Container */}
@@ -113,7 +113,7 @@ export function Features() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="text-2xl md:text-3xl font-bold text-gray-900 text-center"
+                      className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center"
                     >
                       {features[currentSlide].title}
                     </motion.h3>
@@ -141,7 +141,7 @@ export function Features() {
                       
                       {/* Caja superpuesta con copy */}
                       <div className="absolute bottom-8 left-8 right-8 bg-white/95 rounded-lg py-6 px-6 border border-gray-200/50 shadow-xl">
-                        <p className="text-base md:text-lg text-gray-700 leading-relaxed min-h-[3rem]">
+                        <p className="text-base md:text-lg text-gray-700 leading-relaxed min-h-[3rem] text-center">
                           {feature.description}
                         </p>
                       </div>
