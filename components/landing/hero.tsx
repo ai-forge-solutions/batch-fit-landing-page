@@ -72,9 +72,9 @@ export function Hero() {
             <Image 
               src="/hero-page.webp" 
               alt="BatchFit App" 
-              width={550} 
-              height={415}
-              className="w-96 h-auto rounded-lg ml-6"
+              width={650} 
+              height={490}
+              className="w-[28rem] h-auto rounded-lg ml-6"
               style={{ 
                 backgroundColor: 'unset',
                 transform: 'translateX(-1rem)'
@@ -89,8 +89,8 @@ export function Hero() {
           <Image 
             src="/hero-page.webp" 
             alt="BatchFit App" 
-            width={380} 
-            height={285}
+            width={450} 
+            height={340}
             className="rounded-lg"
             style={{ backgroundColor: 'unset' }}
             priority
