@@ -76,7 +76,7 @@ export function NewSection() {
                       <span className="absolute top-0 left-0 text-black font-bold text-2xl">1</span>
                       <div>
                         <h4 className="font-bold text-2xl text-dark mb-2">BatchFit crea tu plan semanal</h4>
-                        <p className="text-base text-dark/70">Menús personalizados según tus <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>macros y objetivos</span>, gustos y preferencias</p>
+                        <p className="text-base text-dark/70">Menús personalizados según tus <span className="font-bold">macros y objetivos</span>, gustos y preferencias</p>
                       </div>
                     </div>
                     <div className="flex justify-center">
@@ -105,7 +105,7 @@ export function NewSection() {
                       <span className="absolute top-0 left-0 text-black font-bold text-2xl">2</span>
                       <div>
                         <h4 className="font-bold text-2xl text-dark mb-2">Genera tu lista de la compra</h4>
-                        <p className="text-base text-dark/70">Compra todo lo que necesitas para la semana <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>sin pensar</span> qué falta</p>
+                        <p className="text-base text-dark/70">Compra todo lo que necesitas para la semana <span className="font-bold">sin pensar</span> qué falta</p>
                       </div>
                     </div>
                     <div className="flex justify-center">
@@ -134,7 +134,7 @@ export function NewSection() {
                       <span className="absolute top-0 left-0 text-black font-bold text-2xl">3</span>
                       <div>
                         <h4 className="font-bold text-2xl text-dark mb-2">Te guía paso a paso en tu batchcooking</h4>
-                        <p className="text-base text-dark/70">Sigue instrucciones optimizadas para cocinar toda tu semana de forma <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>eficiente</span></p>
+                        <p className="text-base text-dark/70">Sigue instrucciones optimizadas para cocinar toda tu semana de forma <span className="font-bold">eficiente</span></p>
                       </div>
                     </div>
                     <div className="flex justify-center">
