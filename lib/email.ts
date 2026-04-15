@@ -59,8 +59,8 @@ export async function sendPurchaseConfirmation({
 
           <div class="section">
             <h3>Qué pasará ahora</h3>
-            <p>En los próximos días te enviaré un email con más detalles sobre el lanzamiento.</p>
-            <p>La primera versión de BatchFit se abrirá el <strong>miércoles 18 a las 23:59</strong>, y como miembro fundador tendrás acceso desde el primer minuto.</p>
+            <p>Te habilitaremos el acceso a BatchFit en las próximas 24 horas.</p>
+            <p>Recibirás un nuevo email con las instrucciones de acceso y todo lo que necesitas para empezar.</p>
           </div>
 
           <div class="benefits">
@@ -70,12 +70,6 @@ export async function sendPurchaseConfirmation({
               <li>✅ Soporte prioritario</li>
               <li>✅ Influencia directa en el desarrollo del producto</li>
             </ul>
-          </div>
-
-          <div class="section">
-            <p><strong>Por cierto, me encantaría saber:</strong></p>
-            <p>¿Qué fue lo que te hizo decidirte por BatchFit?</p>
-            <p>Si te apetece, responde a este email y cuéntamelo 😁</p>
           </div>
 
           <div class="signature">
