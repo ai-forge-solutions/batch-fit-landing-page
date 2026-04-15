@@ -32,9 +32,11 @@ export function Hero() {
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
         <div className="flex-1 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
-            Consigue tu objetivo fitness<br />
-            sin perder tiempo en la cocina
+          <h1 className="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
+            Consigue tu <br />
+            objetivo fitness<br />
+            sin perder tiempo<br />
+            en la cocina<br />
           </h1>
           
           <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
