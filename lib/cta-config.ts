@@ -21,19 +21,19 @@ export interface CTAConfig {
 // Configuración por defecto (App Stores)
 export const defaultCTAConfig: CTAConfig = {
   primary: {
-    label: "App Store",
-    sublabel: "Descarga en",
+    label: "Quiero ser fundador",
+    sublabel: "",
     action: () => {
-      console.log("[BatchFit] App Store button clicked")
+      console.log("[BatchFit] Founder CTA clicked")
       trackEvent('cta_click', {
-        cta_id: 'app-store',
-        cta_text: 'App Store',
+        cta_id: 'founder-cta',
+        cta_text: 'Quiero ser fundador',
         cta_location: 'default'
       })
-      // TODO: window.open('https://apps.apple.com/app/batchfit', '_blank')
+      window.location.href = '/checkout'
     },
-    iconName: "apple",
-    trackingName: "App Store"
+    iconName: "trending-up",
+    trackingName: "Founder CTA"
   },
   secondary: {
     label: "Google Play",
@@ -55,16 +55,16 @@ export const defaultCTAConfig: CTAConfig = {
 // Configuración de Pricing (Single Button)
 export const pricingCTAConfig: CTAConfig = {
   primary: {
-    label: "Únete al acceso anticipado",
+    label: "Quiero ser fundador",
     sublabel: "",
     action: () => {
       console.log("[BatchFit] Pricing CTA clicked")
       trackEvent('cta_click', {
         cta_id: 'pricing-main',
-        cta_text: 'Acceso fundador -50%',
+        cta_text: 'Quiero ser fundador',
         cta_location: 'pricing'
       })
-      window.location.href = '/waitlist'
+      window.location.href = '/checkout'
     },
     iconName: "trending-up",
     trackingName: "Pricing CTA"
