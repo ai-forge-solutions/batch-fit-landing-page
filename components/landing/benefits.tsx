@@ -6,29 +6,24 @@ const interFont = { fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }
 export function Benefits() {
   const benefits = [
     {
-      emoji: "⚡️",
-      benefit: "Menos estrés diario",
-      meaning: "Deja de improvisar y de pensar qué comer cada día."
-    },
-    {
       emoji: "⏳",
-      benefit: "Más tiempo libre",
-      meaning: "Recupera horas cada semana para entrenar, trabajar o descansar."
+      benefit: "Recupera hasta 28 horas",
+      meaning: "Para entrenar, trabajar, descansar... tú decides"
     },
     {
       emoji: "💪",
-      benefit: "Mejor físico",
-      meaning: "Tu entrenamiento empieza a notarse en el espejo."
+      benefit: "Más músculo | Menos grasa",
+      meaning: "Tu entrenamiento empieza a notarse en el espejo"
     },
     {
       emoji: "💶",
-      benefit: "Más dinero en tu bolsillo",
-      meaning: "Optimiza compra, cantidades e ingredientes para gastar menos cada semana."
+      benefit: "Ahorra hasta 50€",
+      meaning: "Optimiza compra, cantidades e ingredientes para gastar menos cada semana"
     },
     {
       emoji: "📈",
-      benefit: "Más constancia",
-      meaning: "Por fin encuentras una forma de comer bien que puedes mantener."
+      benefit: "0 momentos de culpa",
+      meaning: "Asegura tu semana el domingo, sin decisiones de última hora"
     }
   ]
 

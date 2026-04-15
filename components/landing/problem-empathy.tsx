@@ -1,6 +1,9 @@
 "use client"
 
 export function ProblemEmpathy() {
+  // Temporalmente deshabilitado
+  return null
+
   return (
     <section className="py-20 bg-gradient-to-b from-slate-900 to-black">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">

@@ -27,7 +27,7 @@ export function Hero() {
   }
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-24 pb-6">
+    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-24 pb-24 lg:pb-32">
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}

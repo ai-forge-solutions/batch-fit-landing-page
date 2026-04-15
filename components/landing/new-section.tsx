@@ -60,7 +60,7 @@ export function NewSection() {
             
             {/* Step 1 */}
             <div className="text-center relative" data-step="1">
-              <div className="max-w-sm mx-auto">
+              <div className="max-w-xs mx-auto">
                 <div className="relative">
                   <Image 
                     src="/batchfit-mockup-weekmeals.webp" 
@@ -89,7 +89,7 @@ export function NewSection() {
             
             {/* Step 2 */}
             <div className="text-center relative" data-step="2">
-              <div className="max-w-sm mx-auto">
+              <div className="max-w-xs mx-auto">
                 <div className="relative">
                   <Image 
                     src="/batchfi-mockup-shoppinglist.webp" 
@@ -118,7 +118,7 @@ export function NewSection() {
 
             {/* Step 3 */}
             <div className="text-center relative" data-step="3">
-              <div className="max-w-sm mx-auto">
+              <div className="max-w-xs mx-auto">
                 <div className="relative">
                   <Image 
                     src="/batchfi-mockup-batchstep.webp" 
