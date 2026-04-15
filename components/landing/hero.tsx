@@ -31,19 +31,19 @@ export function Hero() {
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
-        <div className="flex-1 text-center">
-          <h1 className="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
+        <div className="flex-1 text-left">
+          <h1 className="text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
             Consigue tu <br />
             objetivo fitness<br />
             sin perder tiempo<br />
             en la cocina<br />
           </h1>
           
-          <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
+          <p className="mt-4 text-lg md:text-xl lg:text-2xl subtitle text-dark/80 max-w-2xl text-balance">
             Batchfit crea tu plan nutricional con instrucciones batch cooking para que cocines toda tu semana en 60 minutos          </p>
           
           {/* Prueba social */}
-          <div className="mt-6 flex items-center justify-center">
+          <div className="mt-6 flex items-center justify-start">
             <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-full px-4 py-1.5 shadow-sm border border-gray-100">
               <div className="flex -space-x-2 mr-3">
                 <div className="w-5 h-5 rounded-full border border-white overflow-hidden">
@@ -56,26 +56,29 @@ export function Hero() {
                   <Image src="/social-proof-3.webp" alt="Usuario" width={20} height={20} className="w-full h-full object-cover" style={{ filter: 'blur(1px)' }} />
                 </div>
               </div>
-              <span className="text-sm font-medium text-dark">+40 fundadores ya están dentro</span>
+              <span className="text-sm font-medium text-dark">+ 40 fundadores ya están dentro</span>
             </div>
           </div>
           
 
-          <div className="mt-6">
+          <div className="mt-6 flex justify-start">
             <AppStoreButtons inView={true} />
           </div>
 
           {/* Countdown Timer */}
           
           {/* Imagen en mobile (debajo del CTA) */}
-          <div className="mt-8 lg:hidden w-full max-w-md mx-auto">
+          <div className="mt-8 lg:hidden -mx-6 w-screen relative left-1/2 -translate-x-1/2">
             <Image 
               src="/hero-page.webp" 
               alt="BatchFit App" 
-              width={450} 
-              height={340}
-              className="w-full h-auto rounded-lg"
-              style={{ backgroundColor: 'unset' }}
+              width={550} 
+              height={415}
+              className="w-96 h-auto rounded-lg ml-6"
+              style={{ 
+                backgroundColor: 'unset',
+                transform: 'translateX(-1rem)'
+              }}
               priority
             />
           </div>
