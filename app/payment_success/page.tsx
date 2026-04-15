@@ -11,6 +11,13 @@ function PaymentSuccessContent() {
   const [recordError, setRecordError] = useState(false)
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [customerData, setCustomerData] = useState<{name: string, email: string} | null>(null)
+  
+  // Form states
+  const [deviceType, setDeviceType] = useState<'iPhone' | 'Android' | null>(null)
+  const [appStoreEmail, setAppStoreEmail] = useState('')
+  const [motivation, setMotivation] = useState('')
+  const [isSubmittingForm, setIsSubmittingForm] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   useEffect(() => {
     // Get session ID from sessionStorage
@@ -83,6 +90,57 @@ function PaymentSuccessContent() {
         })
     }
   }, [isRecorded])
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!deviceType || !appStoreEmail || !motivation) {
+      return
+    }
+
+    setIsSubmittingForm(true)
+    
+    try {
+      // Prepare data for Google Sheets (same format as waitlist)
+      const params = new URLSearchParams()
+      params.append('email', appStoreEmail)
+      params.append('plan', motivation) // Map motivation to plan field
+      params.append('fuente', deviceType === 'iPhone' ? 'iPhone App Store' : 'Android Play Store') // Map device to fuente field
+      params.append('timestamp', new Date().toISOString())
+      
+      console.log('[BatchFit] Sending form data to Google Sheets:', {
+        email: appStoreEmail,
+        plan: motivation,
+        fuente: deviceType === 'iPhone' ? 'iPhone App Store' : 'Android Play Store',
+        timestamp: new Date().toISOString()
+      })
+      
+      await fetch('https://script.google.com/macros/s/AKfycbzLk6T_w-EgWVNvBrv_tET9M8GK7C4orhYoHaHi-XSpoE6Xn3MV72zvHcNzIOAQ2FFH/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params.toString()
+      })
+      
+      console.log('[BatchFit] Form data sent successfully')
+      setFormSubmitted(true)
+      
+      // Track form submission
+      trackEvent('lead_submit', {
+        form_id: 'post-purchase-form',
+        lead_type: 'device_info',
+        device_type: deviceType,
+        email_domain: appStoreEmail.split('@')[1] || 'unknown'
+      })
+      
+    } catch (error) {
+      console.error('[BatchFit] Error sending form data:', error)
+    } finally {
+      setIsSubmittingForm(false)
+    }
+  }
 
   const containerVariants = {
     hidden: {},
@@ -165,16 +223,108 @@ function PaymentSuccessContent() {
               Tu pago se ha procesado correctamente.
             </p>
             
-            <p>
-              Recibirás un email de confirmación en <span className="font-semibold">{customerData?.email || 'tu correo'}</span> con todos los detalles de tu compra 
-              y las instrucciones para acceder a BatchFit.
-            </p>
-            
             <p className="font-semibold text-dark">
               ¡Prepárate para optimizar tu alimentación!
             </p>
           </div>
         </motion.div>
+
+        {/* Formulario de información adicional */}
+        {!formSubmitted && (
+          <motion.div variants={itemVariants} className="mt-12">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <p className="text-lg text-dark/80 mb-6 text-center">
+                Para completar tu acceso, necesitamos dos datos rápidos:
+              </p>
+              
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                {/* Device Type Selection */}
+                <div>
+                  <label className="block text-sm font-semibold text-dark mb-3">
+                    1️⃣ ¿Tu móvil es iPhone o Android?
+                  </label>
+                  <div className="grid grid-cols-2 gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setDeviceType('iPhone')}
+                      className={`p-4 rounded-xl border-2 transition-all ${
+                        deviceType === 'iPhone'
+                          ? 'border-blue-500 bg-blue-50 text-blue-700'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      iPhone
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDeviceType('Android')}
+                      className={`p-4 rounded-xl border-2 transition-all ${
+                        deviceType === 'Android'
+                          ? 'border-green-500 bg-green-50 text-green-700'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      Android
+                    </button>
+                  </div>
+                </div>
+
+                {/* App Store Email */}
+                {deviceType && (
+                  <div>
+                    <label className="block text-sm font-semibold text-dark mb-3">
+                      2️⃣ El email que usas en {deviceType === 'iPhone' ? 'la App Store' : 'Play Store'}
+                    </label>
+                    <input
+                      type="email"
+                      value={appStoreEmail}
+                      onChange={(e) => setAppStoreEmail(e.target.value)}
+                      placeholder={`Tu email de ${deviceType === 'iPhone' ? 'App Store' : 'Play Store'}`}
+                      className="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      required
+                    />
+                  </div>
+                )}
+
+                {/* Motivation Question */}
+                <div>
+                  <label className="block text-sm font-semibold text-dark mb-3">
+                    Por cierto, me encantaría saber: ¿Qué fue lo que te hizo decidirte por BatchFit?
+                  </label>
+                  <textarea
+                    value={motivation}
+                    onChange={(e) => setMotivation(e.target.value)}
+                    placeholder="Cuéntanos qué te motivó..."
+                    rows={3}
+                    className="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={!deviceType || !appStoreEmail || !motivation || isSubmittingForm}
+                  className="w-full py-4 text-white rounded-xl font-semibold transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  style={{
+                    backgroundColor: (!deviceType || !appStoreEmail || !motivation || isSubmittingForm) ? undefined : '#4fe4b7'
+                  }}
+                >
+                  {isSubmittingForm ? 'Enviando...' : 'Completar información'}
+                </button>
+              </form>
+            </div>
+          </motion.div>
+        )}
+
+        {formSubmitted && (
+          <motion.div variants={itemVariants} className="mt-8">
+            <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+              <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
+              <p className="text-green-800 font-semibold">¡Información completada!</p>
+              <p className="text-green-700 text-sm mt-1">Te contactaremos pronto con los detalles de acceso.</p>
+            </div>
+          </motion.div>
+        )}
 
         <motion.div variants={itemVariants} className="mt-8">
           <motion.a
