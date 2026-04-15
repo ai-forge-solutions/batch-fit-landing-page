@@ -40,7 +40,7 @@ export function NewSection() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center relative">
           <h2 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-8 sm:mb-12 leading-tight">
-            <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>Todo</span> lo que necesitas para lograr tus metas fitness, organizado para ti en <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>tres sencillos pasos</span>
+            Logra tus metas fitness con <span style={{color: '#4fe4b7', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.2)'}}>BatchFit</span> en tres sencillos pasos 🎯
           </h2>
           
           {/* Scroll indicator to first step */}

@@ -144,6 +144,19 @@ export function WhatIsBatchFit() {
                 </div>
               </div>
             </div>
+            
+            {/* Copy motivacional */}
+            <motion.div
+              variants={ctaVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              className="text-center mb-8 mt-12"
+            >
+              <p className="text-lg md:text-xl text-dark font-medium text-balance leading-relaxed">
+                BatchFit funciona incluso cuando baja tu motivación, pero tus metas siguen altas
+              </p>
+            </motion.div>
+            
             <motion.div
               variants={ctaVariants}
               initial="hidden"

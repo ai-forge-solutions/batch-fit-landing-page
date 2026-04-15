@@ -27,12 +27,12 @@ export function Hero() {
   }
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-24 pb-24 lg:pb-32">
+    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-16 pb-24 lg:pb-32">
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
         <div className="flex-1 text-left">
-          <h1 className="text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
+          <h1 className="text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-title tracking-tight text-dark text-balance leading-tight mt-4 lg:mt-0">
             Consigue tu <br />
             objetivo fitness<br />
             sin perder tiempo<br />
