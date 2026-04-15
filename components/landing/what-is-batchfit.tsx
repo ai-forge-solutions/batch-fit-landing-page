@@ -26,7 +26,7 @@ export function WhatIsBatchFit() {
       y: 0,
       transition: { 
         duration: 0.6, 
-        delay: 2.5, // 2.5 segundos de delay
+        delay: 0, // Delay eliminado
         ease: "easeOut" 
       }
     }

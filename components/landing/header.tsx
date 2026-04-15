@@ -31,7 +31,7 @@ export function Header() {
   const navLinks = [
     // { href: '#problema', label: 'El Problema' },
     { href: '#que-es', label: 'Qué es BatchFit' },
-    { href: '#como-funciona', label: 'Cómo Funciona' },
+    { href: '#pas', label: 'Cómo Funciona' },
     { href: '#caracteristicas', label: 'Características' },
     { href: '#beneficios', label: 'Beneficios' },
   ]
