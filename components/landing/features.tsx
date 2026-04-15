@@ -97,14 +97,6 @@ export function Features() {
             Características que
             <span style={{ color: '#4fe4b7' }}> transforman</span> tu alimentación
           </motion.h2>
-          <motion.p 
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
-            variants={subtitleVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-          >
-            BatchFit no es solo una app más. Es un sistema completo que convierte el caos alimentario en orden y simplicidad.
-          </motion.p>
         </div>
         {/* Slider Container */}
         <div className="relative max-w-4xl mx-auto">
