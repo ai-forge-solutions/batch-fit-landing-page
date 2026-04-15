@@ -9,7 +9,7 @@ interface TimelineCardProps {
 export function TimelineCard({ variants }: TimelineCardProps) {
   const steps = [
     "Hoy: confirmación por email + acceso reservado",
-    "Próximo jueves 19 de marzo: activamos tu cuenta",
+    "En menos de 24h: activamos tu cuenta",
     "A partir de ahí: mejoras y actualizaciones continuas"
   ]
 

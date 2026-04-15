@@ -3,7 +3,7 @@ import { sendPurchaseConfirmation } from '@/lib/email'
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, name, transactionId, amount = 17.90 } = await request.json()
+    const { email, name, transactionId, amount = 27.90 } = await request.json()
     
     if (!email) {
       return NextResponse.json(

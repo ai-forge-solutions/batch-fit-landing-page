@@ -20,7 +20,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     const checkOfferExpiry = () => {
       const now = new Date().getTime()
-      const endDate = new Date('2026-03-19T23:59:59').getTime()
+      const endDate = new Date('2026-04-30T23:59:59').getTime()
       setOfferExpired(now > endDate)
     }
 

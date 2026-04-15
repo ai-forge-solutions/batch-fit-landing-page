@@ -16,7 +16,7 @@ export function HeaderOffer({ variants }: HeaderOfferProps) {
         Acceso de por vida · Pago único
       </p>
       <div className="mb-2">
-        <span className="text-4xl font-bold text-dark">17,90€</span>
+        <span className="text-4xl font-bold text-dark">27,90€</span>
       </div>
       <p className="text-sm text-dark/60 mb-2">
         Tras lanzamiento: suscripción mensual desde 7,90€/mes
@@ -25,7 +25,7 @@ export function HeaderOffer({ variants }: HeaderOfferProps) {
         Hoy: pago único · sin suscripción
       </p>
       <p className="text-sm text-dark/70 bg-blue-50 rounded-lg px-4 py-2 inline-block">
-        Acceso activado el próximo jueves 19 de marzo
+        Acceso activado en menos de 24h
       </p>
     </motion.div>
   )

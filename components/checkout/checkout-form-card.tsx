@@ -27,10 +27,10 @@ export function CheckoutFormCard({ variants, spotsLeft, offerExpired }: Checkout
     try {
       trackEvent('begin_checkout', {
         currency: 'EUR',
-        value: 17.9,
+        value: 27.9,
         items: [{
           item_name: 'BatchFit Lifetime Access',
-          price: 17.9,
+          price: 27.9,
           quantity: 1
         }]
       })
@@ -89,13 +89,13 @@ export function CheckoutFormCard({ variants, spotsLeft, offerExpired }: Checkout
           <div className="text-center mb-6 p-6 bg-primary/10 rounded-xl">
             <div className="flex items-center justify-center gap-3 mb-2">
               {/* <span className="text-2xl text-gray-400 line-through">49€</span> */}
-              <span className="text-4xl font-bold text-primary">17,90€</span>
+              <span className="text-4xl font-bold text-primary">27,90€</span>
             </div>
             <p className="text-sm text-gray-600">
               Pago único • Acceso de por vida
             </p>
             {/* <p className="text-xs text-primary font-semibold mt-2">
-              Ahorra 31,10€ (63% descuento)
+              Ahorra 21,10€ (43% descuento)
             </p> */}
           </div>
 

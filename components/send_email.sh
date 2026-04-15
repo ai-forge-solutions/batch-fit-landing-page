@@ -5,7 +5,7 @@ curl -X POST http://localhost:3000/api/send-manual-email \
     "email": "uxiarodriguezfrancisco@gmail.com",
     "name": "Uxia",
     "transactionId": "cs_test_1234567890",
-    "amount": 17.90
+    "amount": 27.90
   }'
 
   

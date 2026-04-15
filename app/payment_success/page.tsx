@@ -72,11 +72,11 @@ function PaymentSuccessContent() {
           // Still track the event even if recording failed (without customer data)
           trackEvent('purchase', {
             transaction_id: storedSessionId,
-            value: 17.9,
+            value: 27.9,
             currency: 'EUR',
             items: [{
               item_name: 'BatchFit Lifetime Access',
-              price: 17.9,
+              price: 27.9,
               quantity: 1
             }]
           })

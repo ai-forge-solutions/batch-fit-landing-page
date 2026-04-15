@@ -14,7 +14,7 @@ export function FAQCard({ variants }: FAQCardProps) {
   const faqs = [
     {
       question: "¿Cuándo tendré acceso?",
-      answer: "Activamos tu cuenta el próximo jueves 19 de marzo. Te avisamos por email."
+      answer: "Activamos tu cuenta en menos de 24h. Te avisamos por email cuando esté listo."
     },
     {
       question: "¿Qué significa acceso de por vida?",

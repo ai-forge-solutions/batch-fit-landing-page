@@ -20,7 +20,7 @@ export function UrgencyBar({ variants, spotsLeft = 45 }: UrgencyBarProps) {
           💰 Precio fundador termina en:
         </p>
         <CountdownTimer 
-          targetDate={new Date('2026-03-19T23:59:59')} 
+          targetDate={new Date('2026-04-30T23:59:59')} 
           className="mb-4"
         />
         <p className="text-sm text-dark/70 mb-4">
