@@ -1,8 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import { useInView } from "react-intersection-observer"
-import { motion } from "framer-motion"
 
 const testimonials = [
   {
@@ -11,7 +9,7 @@ const testimonials = [
     age: 29,
     profession: "Diseñadora UX/UI",
     comment: "Pensaba que sería bastante más complicado, pero la verdad es que me sorprendió lo fácil que es seguir todo.",
-    image: "/testimonial-1.webp" // Placeholder - reemplazar con imagen real
+    image: "/testimonial-1.webp"
   },
   {
     id: 2,
@@ -19,7 +17,7 @@ const testimonials = [
     age: 34,
     profession: "Desarrollador de Software",
     comment: "Lo que más noto es que ya no tengo que pensar qué comer cada día. Me libera muchísimo entre semana.",
-    image: "/testimonial-2.webp" // Placeholder - reemplazar con imagen real
+    image: "/testimonial-2.webp"
   },
   {
     id: 3,
@@ -27,55 +25,28 @@ const testimonials = [
     age: 26,
     profession: "Emprendedora",
     comment: "Ahora sigo prácticamente todas mis comidas sin esfuerzo. Antes me costaba un montón organizarme.",
-    image: "/testimonial-3.webp" // Placeholder - reemplazar con imagen real
+    image: "/testimonial-3.webp"
   }
 ]
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      delay: index * 0.2,
-      ease: "easeOut"
-    }
-  })
-}
-
 export function Testimonials() {
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true
-  })
-
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Lo que dicen nuestros
             <span style={{ color: '#4fe4b7' }}> usuarios</span>
-          </motion.h2>
+          </h2>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
+          {testimonials.map((testimonial) => (
+            <div
               key={testimonial.id}
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200"
             >
               {/* Foto */}
               <div className="flex justify-center mb-6">
@@ -86,6 +57,7 @@ export function Testimonials() {
                     width={80}
                     height={80}
                     className="w-full h-full object-cover"
+                    priority={true}
                   />
                 </div>
               </div>
@@ -119,7 +91,7 @@ export function Testimonials() {
                   </svg>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
