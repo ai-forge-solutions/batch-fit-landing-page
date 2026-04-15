@@ -32,14 +32,13 @@ export function Hero() {
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
         <div className="flex-1 text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
             Consigue tu objetivo fitness<br />
             sin perder tiempo en la cocina
           </h1>
           
           <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
-            BatchFit crea tu plan nutricional con instrucciones batch cooking para que cocines toda tu semana en 60 minutos.
-          </p>
+            Batchfit crea tu plan nutricional con instrucciones batch cooking para que cocines toda tu semana en 60 minutos          </p>
           
           {/* Prueba social */}
           <div className="mt-6 flex items-center justify-center">
@@ -61,6 +60,9 @@ export function Hero() {
           
 
           <div className="mt-6">
+            <p className="text-sm text-dark/70 mb-6 font-medium text-center">
+              Acceso fundador cerrado.
+            </p>
             <AppStoreButtons inView={true} />
           </div>
 
