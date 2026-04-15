@@ -61,7 +61,7 @@ export function NewSection() {
             {/* Step 1 */}
             <div className="text-center relative" data-step="1">
               <div className="max-w-xs mx-auto">
-                <div className="relative">
+                <div className="relative" style={{filter: 'drop-shadow(8px 8px 16px rgba(0,0,0,0.4))'}}>
                   <Image 
                     src="/batchfit-mockup-weekmeals.webp" 
                     alt="BatchFit plan semanal mockup" 
@@ -90,7 +90,7 @@ export function NewSection() {
             {/* Step 2 */}
             <div className="text-center relative" data-step="2">
               <div className="max-w-xs mx-auto">
-                <div className="relative">
+                <div className="relative" style={{filter: 'drop-shadow(8px 8px 16px rgba(0,0,0,0.4))'}}>
                   <Image 
                     src="/batchfi-mockup-shoppinglist.webp" 
                     alt="Lista de compra optimizada" 
@@ -119,7 +119,7 @@ export function NewSection() {
             {/* Step 3 */}
             <div className="text-center relative" data-step="3">
               <div className="max-w-xs mx-auto">
-                <div className="relative">
+                <div className="relative" style={{filter: 'drop-shadow(8px 8px 16px rgba(0,0,0,0.4))'}}>
                   <Image 
                     src="/batchfi-mockup-batchstep.webp" 
                     alt="Guía paso a paso sesión batchfit" 
