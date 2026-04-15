@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
         },
       ],
       
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/payment_success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '')}/payment_success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '')}/checkout`,
     })
 
     return NextResponse.json({ 
