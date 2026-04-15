@@ -62,9 +62,6 @@ export function Hero() {
           
 
           <div className="mt-6">
-            <p className="text-sm text-dark/70 mb-6 font-medium text-center">
-              Acceso fundador cerrado.
-            </p>
             <AppStoreButtons inView={true} />
           </div>
 
