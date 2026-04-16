@@ -105,13 +105,13 @@ function PaymentSuccessContent() {
       const params = new URLSearchParams()
       params.append('email', appStoreEmail)
       params.append('plan', motivation) // Map motivation to plan field
-      params.append('fuente', deviceType === 'iPhone' ? 'iPhone App Store' : 'Android Play Store') // Map device to fuente field
+      params.append('source', deviceType === 'iPhone' ? 'iPhone App Store' : 'Android Play Store') // Map device to source field
       params.append('timestamp', new Date().toISOString())
       
       console.log('[BatchFit] Sending form data to Google Sheets:', {
         email: appStoreEmail,
         plan: motivation,
-        fuente: deviceType === 'iPhone' ? 'iPhone App Store' : 'Android Play Store',
+        source: deviceType === 'iPhone' ? 'iPhone App Store' : 'Android Play Store',
         timestamp: new Date().toISOString()
       })
       
