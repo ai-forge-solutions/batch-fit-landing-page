@@ -162,11 +162,11 @@ export function WhatIsBatchFit() {
                   <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed">
                     cuando baja tu motivación
                   </p>
-                  {/* <div className="flex justify-center">
+                  <div className="flex justify-center">
                     <div className="animate-pulse">
                       <div className="text-4xl md:text-6xl">🪫</div>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
                 <div className="mt-24">
                   <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed text-center">
