@@ -1,6 +1,7 @@
 "use client"
 
-import { Check } from "lucide-react"
+import Image from "next/image"
+import { Check, BatteryLow } from "lucide-react"
 import { PositiveGrowthRechart } from "@/components/ui/positive-growth-rechart"
 import { AppStoreButtons } from "./app-store-buttons"
 import { motion } from "framer-motion"
@@ -150,19 +151,70 @@ export function WhatIsBatchFit() {
               variants={ctaVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
-              className="text-center mb-8 mt-12"
+              className="text-center mb-12 mt-16 px-4"
             >
-              <p className="text-lg md:text-xl text-dark font-medium text-balance leading-relaxed">
-                BatchFit funciona incluso cuando baja tu motivación, pero tus metas siguen altas
-              </p>
+              <div className="space-y-3 max-w-2xl mx-auto">
+                <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed">
+                  BatchFit funciona incluso
+                </p>
+                <div className="space-y-2">
+                  <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed">
+                    cuando baja tu motivación
+                  </p>
+                  <div className="flex justify-center">
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.1, 1],
+                        opacity: [0.7, 1, 0.7]
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <BatteryLow className="w-12 h-12 md:w-16 md:h-16 text-red-500" />
+                    </motion.div>
+                  </div>
+                </div>
+                <div className="mt-24">
+                  <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed text-center">
+                    pero tus metas siguen altas
+                  </p>
+                </div>
+              </div>
             </motion.div>
             
             <motion.div
               variants={ctaVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
+              className="pb-8 relative w-full"
             >
-              <AppStoreButtons />
+              <div className="relative flex items-center justify-center">
+                {/* Laurel izquierdo pegado al borde de la pantalla */}
+                <Image 
+                  src="/laurel_left.webp" 
+                  alt="Laurel izquierdo" 
+                  width={60} 
+                  height={60}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-12 md:w-16 z-10 pointer-events-none"
+                  style={{ imageRendering: 'auto', height: 'auto' }}
+                />
+                
+                {/* CTA centrado */}
+                <AppStoreButtons />
+                
+                {/* Laurel derecho pegado al borde de la pantalla */}
+                <Image 
+                  src="/laurel_right.webp" 
+                  alt="Laurel derecho" 
+                  width={60} 
+                  height={60}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-12 md:w-16 z-10 pointer-events-none"
+                  style={{ imageRendering: 'auto', height: 'auto' }}
+                />
+              </div>
             </motion.div>
           </div>
         </div>
