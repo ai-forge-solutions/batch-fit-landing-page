@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { Check, BatteryLow } from "lucide-react"
+import { Check } from "lucide-react"
 import { PositiveGrowthRechart } from "@/components/ui/positive-growth-rechart"
 import { AppStoreButtons } from "./app-store-buttons"
 import { motion } from "framer-motion"
@@ -147,12 +147,13 @@ export function WhatIsBatchFit() {
             </div>
             
             {/* Copy motivacional */}
-            <motion.div
+            {/* <motion.div
               variants={ctaVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               className="text-center mb-12 mt-16 px-4"
-            >
+            > */}
+            <div className="text-center mb-12 mt-16 px-4">
               <div className="space-y-3 max-w-2xl mx-auto">
                 <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed">
                   BatchFit funciona incluso
@@ -161,21 +162,11 @@ export function WhatIsBatchFit() {
                   <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed">
                     cuando baja tu motivación
                   </p>
-                  <div className="flex justify-center">
-                    <motion.div
-                      animate={{ 
-                        scale: [1, 1.1, 1],
-                        opacity: [0.7, 1, 0.7]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      <BatteryLow className="w-12 h-12 md:w-16 md:h-16 text-red-500" />
-                    </motion.div>
-                  </div>
+                  {/* <div className="flex justify-center">
+                    <div className="animate-pulse">
+                      <div className="text-4xl md:text-6xl">🪫</div>
+                    </div>
+                  </div> */}
                 </div>
                 <div className="mt-24">
                   <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed text-center">
@@ -183,14 +174,16 @@ export function WhatIsBatchFit() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
+            {/* </motion.div> */}
             
-            <motion.div
+            {/* <motion.div
               variants={ctaVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               className="pb-8 relative w-full"
-            >
+            > */}
+            <div className="pb-8 relative w-full">
               <div className="relative flex items-center justify-center">
                 {/* Laurel izquierdo pegado al borde de la pantalla */}
                 <Image 
@@ -215,7 +208,8 @@ export function WhatIsBatchFit() {
                   style={{ imageRendering: 'auto', height: 'auto' }}
                 />
               </div>
-            </motion.div>
+            </div>
+            {/* </motion.div> */}
           </div>
         </div>
       </div>
