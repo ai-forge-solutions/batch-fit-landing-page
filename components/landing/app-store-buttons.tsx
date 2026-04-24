@@ -117,10 +117,13 @@ export function AppStoreButtons({
     <div className={`flex ${finalSingle ? 'justify-center' : layoutClass} items-center justify-center ${sizeClasses[size].container}`}>
       <motion.button
         onClick={finalConfig.primary.action}
-        className={`group relative overflow-hidden flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
+        className={`group relative overflow-hidden flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 shadow-lg ${sizeClasses[size].button}`}
+        style={{
+          boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06)"
+        }}
         whileHover={{
           y: -2,
-          boxShadow: "0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 8px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
           backgroundColor: "hsl(var(--primary) / 0.9)",
           transition: { duration: 0.2 }
         }}
@@ -133,14 +136,13 @@ export function AppStoreButtons({
           willChange: 'transform'
         }}
       >
-        <span className={sizeClasses[size].icon}>
-          {getIcon(finalConfig.primary.iconName, sizeClasses[size].icon)}
-        </span>
-        <div className="text-left">
-          {finalConfig.primary.sublabel && (
-            <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none`}>{finalConfig.primary.sublabel}</p>
-          )}
+        <div className="text-center">
           <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{finalConfig.primary.label}</p>
+          {finalConfig.primary.sublabel && (
+            <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none mt-1`}>
+              <span className="font-bold">HOY</span> 50% de descuento
+            </p>
+          )}
         </div>
         
         {/* Efecto destello */}

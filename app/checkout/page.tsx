@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
+import { getTodayEndSpainTime, isDailyOfferExpired } from "@/lib/countdown-utils"
 import { HeaderOffer } from "@/components/checkout/header-offer"
 import { UrgencyBar } from "@/components/checkout/urgency-bar"
 import { WhatsIncludedCard } from "@/components/checkout/whats-included-card"
@@ -16,12 +17,10 @@ export default function CheckoutPage() {
   const [spotsLeft, setSpotsLeft] = useState(17) // Configurable
   const [offerExpired, setOfferExpired] = useState(false)
 
-  // Check if offer has expired
+  // Check if daily offer has expired (resets at 23:59:59 Spain time)
   useEffect(() => {
     const checkOfferExpiry = () => {
-      const now = new Date().getTime()
-      const endDate = new Date('2026-04-30T23:59:59').getTime()
-      setOfferExpired(now > endDate)
+      setOfferExpired(isDailyOfferExpired())
     }
 
     checkOfferExpiry()

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { CountdownTimer } from "@/components/ui/countdown-timer"
+import { getTodayEndSpainTime } from "@/lib/countdown-utils"
 
 interface UrgencyBarProps {
   variants?: any
@@ -20,7 +21,7 @@ export function UrgencyBar({ variants, spotsLeft = 45 }: UrgencyBarProps) {
           💰 Precio fundador termina en:
         </p>
         <CountdownTimer 
-          targetDate={new Date('2026-04-30T23:59:59')} 
+          targetDate={getTodayEndSpainTime()} 
           className="mb-4"
         />
         <p className="text-sm text-dark/70 mb-4">

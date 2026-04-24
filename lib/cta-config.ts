@@ -21,13 +21,13 @@ export interface CTAConfig {
 // Configuración por defecto (App Stores)
 export const defaultCTAConfig: CTAConfig = {
   primary: {
-    label: "Quiero ser fundador",
-    sublabel: "",
+    label: "Acceder como fundador",
+    sublabel: "HOY 50% de descuento",
     action: () => {
       console.log("[BatchFit] Founder CTA clicked")
       trackEvent('cta_click', {
         cta_id: 'founder-cta',
-        cta_text: 'Quiero ser fundador',
+        cta_text: 'Acceder como fundador',
         cta_location: 'default'
       })
       window.location.href = '/checkout'
@@ -55,13 +55,13 @@ export const defaultCTAConfig: CTAConfig = {
 // Configuración de Pricing (Single Button)
 export const pricingCTAConfig: CTAConfig = {
   primary: {
-    label: "Quiero ser fundador",
-    sublabel: "",
+    label: "Acceder como fundador",
+    sublabel: "HOY 50% de descuento",
     action: () => {
       console.log("[BatchFit] Pricing CTA clicked")
       trackEvent('cta_click', {
         cta_id: 'pricing-main',
-        cta_text: 'Quiero ser fundador',
+        cta_text: 'Acceder como fundador',
         cta_location: 'pricing'
       })
       window.location.href = '/checkout'

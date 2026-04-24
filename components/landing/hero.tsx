@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react"
 import { AppStoreButtons } from "./app-store-buttons"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { CountdownTimer } from "@/components/ui/countdown-timer"
+import { getTodayEndSpainTime } from "@/lib/countdown-utils"
 
 export function Hero() {
   const isMobile = useIsMobile()
@@ -27,23 +28,22 @@ export function Hero() {
   }
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-16 pb-24 lg:pb-32">
+    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-24 pb-6">
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
-        <div className="flex-1 text-left">
-          <h1 className="text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-title tracking-tight text-dark text-balance leading-tight mt-4 lg:mt-0">
-            Consigue tu <br />
-            objetivo fitness<br />
-            sin perder tiempo<br />
-            en la cocina<br />
+        <div className="flex-1 text-center">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
+            Consigue tu objetivo fitness<br />
+            sin perder tiempo en la cocina
           </h1>
           
-          <p className="mt-4 text-lg md:text-xl lg:text-2xl subtitle text-dark/80 max-w-2xl text-balance">
-            Batchfit crea tu plan nutricional con instrucciones batch cooking para que cocines toda tu semana en 60 minutos          </p>
+          <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
+            ✓ Planifica y cocina toda tu semana en 60 minutos.
+          </p>
           
           {/* Prueba social */}
-          <div className="mt-6 flex items-center justify-start">
+          <div className="mt-6 flex items-center justify-center">
             <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-full px-4 py-1.5 shadow-sm border border-gray-100">
               <div className="flex -space-x-2 mr-3">
                 <div className="w-5 h-5 rounded-full border border-white overflow-hidden">
@@ -56,46 +56,46 @@ export function Hero() {
                   <Image src="/social-proof-3.webp" alt="Usuario" width={20} height={20} className="w-full h-full object-cover" style={{ filter: 'blur(1px)' }} />
                 </div>
               </div>
-              <span className="text-sm font-medium text-dark">+ 30 fundadores ya están dentro</span>
+              <span className="text-sm font-medium text-dark">+30 fundadores ya dentro</span>
             </div>
           </div>
           
-
-          <div className="mt-6 flex justify-start">
+          <div className="mt-6">
             <AppStoreButtons inView={true} />
-          </div>
-          
-          {/* Texto de urgencia */}
-          <div className="mt-3 flex justify-start">
-            <p className="text-sm text-dark/70 italic">Plazas limitadas</p>
           </div>
 
           {/* Countdown Timer */}
+          <div className="mt-6">
+            <p className="text-sm text-dark/70 mb-4 font-medium">
+              Acceso fundador termina en:
+            </p>
+            <CountdownTimer 
+              targetDate={getTodayEndSpainTime()} 
+              className=""
+            />
+          </div>
           
           {/* Imagen en mobile (debajo del CTA) */}
-          <div className="mt-8 lg:hidden -mx-6 w-screen relative left-1/2 -translate-x-1/2">
+          <div className="mt-8 lg:hidden w-full max-w-md mx-auto">
             <Image 
               src="/hero-page.webp" 
               alt="BatchFit App" 
-              width={650} 
-              height={490}
-              className="w-[28rem] h-auto rounded-lg ml-6"
-              style={{ 
-                backgroundColor: 'unset',
-                transform: 'translateX(-1rem)'
-              }}
+              width={450} 
+              height={340}
+              className="w-full h-auto rounded-lg"
+              style={{ backgroundColor: 'unset' }}
               priority
             />
           </div>
         </div>
         
         {/* Imagen en desktop (a la derecha) */}
-        <div className="hidden lg:block shrink-0 mt-4">
+        <div className="hidden lg:block flex-shrink-0 mt-4">
           <Image 
             src="/hero-page.webp" 
             alt="BatchFit App" 
-            width={450} 
-            height={340}
+            width={380} 
+            height={285}
             className="rounded-lg"
             style={{ backgroundColor: 'unset' }}
             priority
