@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { Check } from "lucide-react"
+import { Check, BatteryLow } from "lucide-react"
 import { PositiveGrowthRechart } from "@/components/ui/positive-growth-rechart"
 import { AppStoreButtons } from "./app-store-buttons"
 import { motion } from "framer-motion"
@@ -164,7 +164,7 @@ export function WhatIsBatchFit() {
                   </p>
                   <div className="flex justify-center">
                     <div className="animate-pulse">
-                      <div className="text-4xl md:text-6xl">🪫</div>
+                      <BatteryLow className="w-12 h-12 md:w-16 md:h-16 text-red-500" />
                     </div>
                   </div>
                 </div>
