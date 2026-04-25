@@ -5,7 +5,6 @@ import { ChevronDown } from "lucide-react"
 import { AppStoreButtons } from "./app-store-buttons"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { CountdownTimer } from "@/components/ui/countdown-timer"
-import { getTodayEndSpainTime } from "@/lib/countdown-utils"
 
 export function Hero() {
   const isMobile = useIsMobile()
@@ -70,7 +69,6 @@ export function Hero() {
               Acceso fundador termina en:
             </p>
             <CountdownTimer 
-              targetDate={getTodayEndSpainTime()} 
               className=""
             />
           </div>
@@ -90,7 +88,7 @@ export function Hero() {
         </div>
         
         {/* Imagen en desktop (a la derecha) */}
-        <div className="hidden lg:block flex-shrink-0 mt-4">
+        <div className="hidden lg:block shrink-0 mt-4">
           <Image 
             src="/hero-page.webp" 
             alt="BatchFit App" 
