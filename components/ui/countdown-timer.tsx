@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 interface CountdownTimerProps {
-  targetDate: Date
   className?: string
+  resetDaily?: boolean
 }
 
 interface TimeLeft {
@@ -15,7 +15,7 @@ interface TimeLeft {
   seconds: number
 }
 
-export function CountdownTimer({ targetDate, className = "" }: CountdownTimerProps) {
+export function CountdownTimer({ className = "", resetDaily = true }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -23,6 +23,13 @@ export function CountdownTimer({ targetDate, className = "" }: CountdownTimerPro
     seconds: 0
   })
   const [mounted, setMounted] = useState(false)
+  const [targetDate, setTargetDate] = useState<Date>(() => {
+    // Initialize target date
+    const now = new Date()
+    const endOfDay = new Date(now)
+    endOfDay.setHours(23, 59, 59, 999)
+    return endOfDay
+  })
 
   useEffect(() => {
     setMounted(true)
@@ -33,18 +40,46 @@ export function CountdownTimer({ targetDate, className = "" }: CountdownTimerPro
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime()
-      const target = targetDate.getTime()
-      const difference = target - now
+      
+      // If resetDaily is true, always target end of current day
+      if (resetDaily) {
+        const today = new Date()
+        const endOfToday = new Date(today)
+        endOfToday.setHours(23, 59, 59, 999)
+        
+        // If current time is past end of day, move to next day
+        if (now > endOfToday.getTime()) {
+          endOfToday.setDate(endOfToday.getDate() + 1)
+        }
+        
+        setTargetDate(endOfToday)
+        const difference = endOfToday.getTime() - now
+        
+        if (difference > 0) {
+          const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+          const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+          const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+          const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
-
-        setTimeLeft({ days, hours, minutes, seconds })
+          setTimeLeft({ days, hours, minutes, seconds })
+        } else {
+          setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        }
       } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        // Use the fixed target date
+        const target = targetDate.getTime()
+        const difference = target - now
+
+        if (difference > 0) {
+          const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+          const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+          const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+          const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+
+          setTimeLeft({ days, hours, minutes, seconds })
+        } else {
+          setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        }
       }
     }
 
@@ -52,7 +87,7 @@ export function CountdownTimer({ targetDate, className = "" }: CountdownTimerPro
     const timer = setInterval(calculateTimeLeft, 1000)
 
     return () => clearInterval(timer)
-  }, [targetDate, mounted])
+  }, [resetDaily, mounted])
 
   if (!mounted) {
     return (
