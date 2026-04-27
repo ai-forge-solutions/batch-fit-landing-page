@@ -180,13 +180,19 @@ export const initSectionTracking = () => {
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
+        const section = entry.target.getAttribute('data-section')
+        console.log(`[Section Tracking] Section: ${section}, isIntersecting: ${entry.isIntersecting}, intersectionRatio: ${entry.intersectionRatio}`)
+        
         if (entry.isIntersecting) {
-          const section = entry.target.getAttribute('data-section')
-          if (!section) return
+          if (!section) {
+            console.warn('[Section Tracking] No data-section attribute found on element:', entry.target)
+            return
+          }
           
           // Track section view (once per section)
           if (!sectionViewTracked.has(section)) {
             sectionViewTracked.add(section)
+            console.log(`[Section Tracking] Tracking section_view for: ${section}`)
             trackEvent('section_view', {
               section,
               page_type: 'landing',
@@ -202,7 +208,8 @@ export const initSectionTracking = () => {
       })
     },
     {
-      threshold: 0.5 // 50% of section must be visible
+      threshold: 0.3, // Reduced from 0.5 to 0.3 (30% of section must be visible)
+      rootMargin: '0px 0px -100px 0px' // Trigger when section is 100px from bottom of viewport
     }
   )
   

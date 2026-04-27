@@ -16,7 +16,9 @@ export default function Home() {
     <main>
       <LandingPageTracking />
       <Header />
-      <Hero />
+      <section data-section="hero">
+        <Hero />
+      </section>
       <section id="what-is-batchfit" data-section="what-is-batchfit">
         <NewSection />
       </section>
