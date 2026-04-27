@@ -1,6 +1,7 @@
 import { Header } from "@/components/landing/header"
 import { Hero } from "@/components/landing/hero"
 import { NewSection } from "@/components/landing/new-section"
+import { RealPlansCarousel } from "@/components/landing/real-plans-carousel"
 import { WhatIsBatchFit } from "@/components/landing/what-is-batchfit"
 // import { BeforeAfter } from "@/components/landing/before-after"
 // import { HowItWorks } from "@/components/landing/how-it-works"
@@ -21,6 +22,9 @@ export default function Home() {
       </section>
       <section id="what-is-batchfit" data-section="what-is-batchfit">
         <NewSection />
+      </section>
+      <section id="real-plans" data-section="real-plans">
+        <RealPlansCarousel />
       </section>
       <section id="comparison" data-section="comparison">
         <WhatIsBatchFit />
