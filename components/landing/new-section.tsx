@@ -36,7 +36,7 @@ export function NewSection() {
   }
   
   return (
-    <section className="py-12 px-4 sm:py-20 sm:px-6 bg-white" data-section="new-section">
+    <div className="py-12 px-4 sm:py-20 sm:px-6 bg-white">
       <div className="max-w-2xl mx-auto">
         <div className="text-center relative">
           <h2 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-8 sm:mb-12 leading-tight">
@@ -148,6 +148,6 @@ export function NewSection() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }

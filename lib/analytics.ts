@@ -111,6 +111,145 @@ export const trackLeadSubmit = (
   })
 }
 
+// Scroll depth tracking
+let scrollDepthTracked = new Set<number>()
+
+export const initScrollDepthTracking = () => {
+  if (typeof window === 'undefined') return
+  
+  const handleScroll = () => {
+    const scrollPercent = Math.round(
+      (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+    )
+    
+    const thresholds = [25, 50, 75, 100]
+    thresholds.forEach(threshold => {
+      if (scrollPercent >= threshold && !scrollDepthTracked.has(threshold)) {
+        scrollDepthTracked.add(threshold)
+        trackEvent('scroll_depth', {
+          percent: threshold,
+          page_type: 'landing',
+          page_version: 'v2'
+        })
+      }
+    })
+  }
+  
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  
+  // Cleanup function
+  return () => {
+    window.removeEventListener('scroll', handleScroll)
+    scrollDepthTracked.clear()
+  }
+}
+
+// Section tracking
+let sectionViewTracked = new Set<string>()
+let currentSection: string | null = null
+let sectionStartTime: number | null = null
+let observer: IntersectionObserver | null = null
+
+export const initSectionTracking = () => {
+  if (typeof window === 'undefined') return
+  
+  // Track section time when leaving a section
+  const trackSectionTime = (section: string, timeMs: number) => {
+    trackEvent('section_time', {
+      section,
+      time_ms: timeMs,
+      page_type: 'landing',
+      page_version: 'v2'
+    })
+  }
+  
+  // Handle section change
+  const handleSectionChange = (newSection: string) => {
+    // Track time for previous section
+    if (currentSection && sectionStartTime) {
+      const timeSpent = Date.now() - sectionStartTime
+      trackSectionTime(currentSection, timeSpent)
+    }
+    
+    // Set new section
+    currentSection = newSection
+    sectionStartTime = Date.now()
+  }
+  
+  // Intersection observer for section visibility
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const section = entry.target.getAttribute('data-section')
+        console.log(`[Section Tracking] Section: ${section}, isIntersecting: ${entry.isIntersecting}, intersectionRatio: ${entry.intersectionRatio}`)
+        
+        if (entry.isIntersecting) {
+          if (!section) {
+            console.warn('[Section Tracking] No data-section attribute found on element:', entry.target)
+            return
+          }
+          
+          // Track section view (once per section)
+          if (!sectionViewTracked.has(section)) {
+            sectionViewTracked.add(section)
+            console.log(`[Section Tracking] Tracking section_view for: ${section}`)
+            trackEvent('section_view', {
+              section,
+              page_type: 'landing',
+              page_version: 'v2'
+            })
+          }
+          
+          // Handle section change for timing
+          if (section !== currentSection) {
+            handleSectionChange(section)
+          }
+        }
+      })
+    },
+    {
+      threshold: 0.3, // Reduced from 0.5 to 0.3 (30% of section must be visible)
+      rootMargin: '0px 0px -100px 0px' // Trigger when section is 100px from bottom of viewport
+    }
+  )
+  
+  // Observe all sections with data-section attribute
+  const sections = document.querySelectorAll('[data-section]')
+  sections.forEach(section => observer?.observe(section))
+  
+  // Track final section time on page unload
+  const handleBeforeUnload = () => {
+    if (currentSection && sectionStartTime) {
+      const timeSpent = Date.now() - sectionStartTime
+      trackSectionTime(currentSection, timeSpent)
+    }
+  }
+  
+  window.addEventListener('beforeunload', handleBeforeUnload)
+  
+  // Cleanup function
+  return () => {
+    observer?.disconnect()
+    window.removeEventListener('beforeunload', handleBeforeUnload)
+    sectionViewTracked.clear()
+    currentSection = null
+    sectionStartTime = null
+  }
+}
+
+// Initialize all tracking for landing page
+export const initLandingPageTracking = () => {
+  if (typeof window === 'undefined') return
+  
+  const cleanupScroll = initScrollDepthTracking()
+  const cleanupSection = initSectionTracking()
+  
+  return () => {
+    cleanupScroll?.()
+    cleanupSection?.()
+  }
+}
+
 /**
  * Enhanced measurement events are handled automatically by GA4:
  * - scroll (90% page scroll)
