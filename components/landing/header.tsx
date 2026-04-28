@@ -38,6 +38,7 @@ export function Header() {
 
   return (
     <header 
+      data-section="header"
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/75 backdrop-blur-3xl border-b border-neutral-200' 

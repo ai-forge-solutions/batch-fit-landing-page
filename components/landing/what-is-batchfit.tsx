@@ -34,7 +34,7 @@ export function WhatIsBatchFit() {
   }
 
   return (
-    <section ref={ref} className="bg-gradient-to-b from-orange-100 to-white py-12 md:py-20 px-6">
+    <section data-section="what-is-batchfit" className="bg-gradient-to-b from-orange-100 to-white py-12 md:py-20 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Título principal centrado */}
         <div className="text-center mb-8 md:mb-16">

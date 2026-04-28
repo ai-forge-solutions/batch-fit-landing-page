@@ -28,7 +28,7 @@ export const defaultCTAConfig: CTAConfig = {
       trackEvent('cta_click', {
         cta_id: 'founder-cta',
         cta_text: 'Acceder como fundador',
-        cta_location: 'default'
+        cta_location: 'hero'
       })
       window.location.href = '/checkout'
     },
@@ -41,9 +41,9 @@ export const defaultCTAConfig: CTAConfig = {
     action: () => {
       console.log("[BatchFit] Google Play button clicked")
       trackEvent('cta_click', {
-        cta_id: 'google-play',
+        cta_id: 'founder-cta',
         cta_text: 'Google Play',
-        cta_location: 'default'
+        cta_location: 'hero'
       })
       // TODO: window.open('https://play.google.com/store/apps/details?id=com.batchfit', '_blank')
     },
@@ -60,9 +60,9 @@ export const pricingCTAConfig: CTAConfig = {
     action: () => {
       console.log("[BatchFit] Pricing CTA clicked")
       trackEvent('cta_click', {
-        cta_id: 'pricing-main',
+        cta_id: 'founder-cta',
         cta_text: 'Acceder como fundador',
-        cta_location: 'pricing'
+        cta_location: 'pricing-section'
       })
       window.location.href = '/checkout'
     },
@@ -86,9 +86,9 @@ export const ebookCTAConfig: CTAConfig = {
     action: () => {
       console.log("[BatchFit] Ebook download clicked")
       trackEvent('cta_click', {
-        cta_id: 'ebook-download',
+        cta_id: 'founder-cta',
         cta_text: 'Ebook Gratuito',
-        cta_location: 'ebook'
+        cta_location: 'what-is-batchfit'
       })
       // TODO: window.open('/ebook-batchfit.pdf', '_blank')
     },

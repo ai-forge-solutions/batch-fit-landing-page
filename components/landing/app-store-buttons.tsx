@@ -2,9 +2,10 @@
 
 import { Apple, Play, BookOpen, Video, Lock, Bell, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { defaultCTAConfig, type CTAConfig } from "@/lib/cta-config"
 import { useCTA } from "@/lib/cta-context"
+import { trackEvent } from "@/lib/analytics"
 
 interface AppStoreButtonsProps {
   size?: 'sm' | 'md' | 'lg'
@@ -25,7 +26,52 @@ export function AppStoreButtons({
 }: AppStoreButtonsProps) {
   const [shouldPulse, setShouldPulse] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const buttonRef = useRef<HTMLDivElement>(null)
   
+  // Auto-detect section location
+  const detectSectionLocation = (): string => {
+    if (!buttonRef.current) return 'unknown'
+    
+    // Find closest parent with data-section attribute
+    const sectionElement = buttonRef.current.closest('[data-section]')
+    if (sectionElement) {
+      return sectionElement.getAttribute('data-section') || 'unknown'
+    }
+    
+    // Fallback: detect by URL or component context (only on client side)
+    if (typeof window !== 'undefined') {
+      if (window.location.pathname.includes('/pricing')) return 'pricing-section'
+      if (window.location.pathname.includes('/checkout')) return 'checkout'
+    }
+    
+    return 'hero' // default fallback
+  }
+
+  // Dynamic onClick handlers with auto-detection
+  const handlePrimaryClick = () => {
+    const location = detectSectionLocation()
+    
+    console.log("[BatchFit] Founder CTA clicked from:", location)
+    trackEvent('cta_click', {
+      cta_id: 'founder-cta',
+      cta_text: 'Acceder como fundador',
+      cta_location: location
+    })
+    window.location.href = '/checkout'
+  }
+
+  const handleSecondaryClick = () => {
+    const location = detectSectionLocation()
+    
+    console.log("[BatchFit] Secondary CTA clicked from:", location)
+    trackEvent('cta_click', {
+      cta_id: 'founder-cta',
+      cta_text: 'Google Play',
+      cta_location: location
+    })
+    // TODO: window.open('https://play.google.com/store/apps/details?id=com.batchfit', '_blank')
+  }
+
   // Use global context or fallback to props/default
   let finalConfig = config || defaultCTAConfig
   let finalSingle = single || false
@@ -114,9 +160,9 @@ export function AppStoreButtons({
   const layoutClass = layout === 'horizontal' ? 'flex-row' : 'flex-col sm:flex-row'
 
   return (
-    <div className={`flex ${finalSingle ? 'justify-center' : layoutClass} items-center justify-center ${sizeClasses[size].container}`}>
+    <div ref={buttonRef} className={`flex ${finalSingle ? 'justify-center' : layoutClass} items-center justify-center ${sizeClasses[size].container}`}>
       <motion.button
-        onClick={finalConfig.primary.action}
+        onClick={handlePrimaryClick}
         className={`group relative overflow-hidden flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 shadow-lg ${sizeClasses[size].button}`}
         style={{
           boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06)"
@@ -167,7 +213,7 @@ export function AppStoreButtons({
 
       {!finalSingle && (
         <motion.button
-          onClick={finalConfig.secondary.action}
+          onClick={handleSecondaryClick}
           className={`group relative overflow-hidden flex items-center gap-3 bg-primary text-dark font-subtitle transition-colors duration-200 ${sizeClasses[size].button}`}
           whileHover={{
             y: -2,

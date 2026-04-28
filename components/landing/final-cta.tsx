@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export function FinalCTA() {
   return (
-    <section className="bg-background py-24 px-6">
+    <section data-section="final-cta" className="bg-background py-24 px-6">
       <div className="max-w-3xl mx-auto text-center">
         {/* Headline: Cocina vez */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground text-balance mb-8">
