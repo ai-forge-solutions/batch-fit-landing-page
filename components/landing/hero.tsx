@@ -83,6 +83,7 @@ export function Hero() {
               className="w-full h-auto rounded-lg"
               style={{ backgroundColor: 'unset' }}
               priority
+              fetchPriority="high"
             />
           </div>
         </div>
@@ -97,6 +98,7 @@ export function Hero() {
             className="rounded-lg"
             style={{ backgroundColor: 'unset' }}
             priority
+            fetchPriority="high"
           />
         </div>
       </div>
