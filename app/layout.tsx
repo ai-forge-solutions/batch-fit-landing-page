@@ -1,23 +1,22 @@
 import React from "react"
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { Bebas_Neue, Barlow_Semi_Condensed, Space_Mono } from 'next/font/google'
+import { Barlow_Semi_Condensed, Geist, Space_Mono } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next'
 import { CTAProvider } from '@/lib/cta-context'
 import ClientAnalytics from '@/components/client-analytics'
-import CriticalCSS from '@/components/critical-css'
 import './globals.css'
 
-const bebasNeue = Bebas_Neue({ 
-  subsets: ["latin"],
-  weight: "400",
-  display: 'swap',
-  variable: '--font-title'
-});
-
+// Barlow Semi Condensed from Google Fonts (keep optimized)
 const barlowSemiCondensed = Barlow_Semi_Condensed({ 
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: 'swap',
+  variable: '--font-subtitle'
+});
+
+const geist = Geist({ 
+  subsets: ["latin"],
   display: 'swap',
   variable: '--font-body'
 });
@@ -50,28 +49,44 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <CriticalCSS />
-        {/* Performance Optimizations */}
+        {/* DNS prefetch para dominios externos */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//connect.facebook.net" />
+        
+        {/* Performance Optimizations - Reduced Google Fonts dependency */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        
+        {/* Preload critical resources */}
+        <link rel="preload" as="font" href="/bebas-neue-v16-latin-regular.woff2" type="font/woff2" crossOrigin="" />
         <link rel="preload" as="image" href="/hero-page.webp" fetchPriority="high" />
         
-        {/* Google tag (gtag.js) */}
+        {/* Reduce Element Render Delay optimizations */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#ffffff" />
+        
+        {/* Google tag (gtag.js) - Optimized loading */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TY6H1011EB"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-TY6H1011EB');
+            gtag('config', 'G-TY6H1011EB', {
+              page_title: document.title,
+              page_location: window.location.href
+            });
           `}
         </Script>
 
-        {/* Meta Pixel Code */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        {/* Meta Pixel Code - Optimized loading */}
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -96,7 +111,7 @@ export default function RootLayout({
         </noscript>
         {/* End Meta Pixel Code */}
       </head>
-      <body className={`${bebasNeue.variable} ${barlowSemiCondensed.variable} ${spaceMono.variable} font-sans antialiased`} suppressHydrationWarning={true}>
+      <body className={`${barlowSemiCondensed.variable} ${geist.variable} ${spaceMono.variable} font-sans antialiased`} suppressHydrationWarning={true}>
         <CTAProvider mode="pricing" single={true}>
           {children}
           <ClientAnalytics />

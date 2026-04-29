@@ -1,9 +1,20 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* Self-hosted Bebas Neue for performance */
+@font-face {
+  font-family: 'Bebas Neue Local';
+  src: url('/bebas-neue-v16-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* CSS variables for self-hosted font */
+  --font-title: 'Bebas Neue Local', 'Bebas Neue', sans-serif;
   /* Light theme for BatchFit - #ffffff bg, #eaeaea secondary, #1d1a24 text, #4fe4b7 accent */
   --background: oklch(1 0 0);
   --foreground: oklch(0.18 0.02 300);
@@ -122,13 +133,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-mono), 'Space Mono', monospace;
+    font-family: var(--font-body), 'Geist', sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-title), 'Bebas Neue', sans-serif;
     font-weight: 400;
   }
   .subtitle {
-    font-family: var(--font-body), 'Barlow Semi Condensed', sans-serif;
+    font-family: var(--font-subtitle), 'Barlow Semi Condensed', sans-serif;
+  }
+  .font-mono, pre, code {
+    font-family: var(--font-mono), 'Space Mono', monospace;
   }
 }

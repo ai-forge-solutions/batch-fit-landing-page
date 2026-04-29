@@ -184,11 +184,6 @@ export function AppStoreButtons({
       >
         <div className="text-center">
           <p className={`${sizeClasses[size].textLarge} font-semibold leading-tight`}>{finalConfig.primary.label}</p>
-          {finalConfig.primary.sublabel && (
-            <p className={`${sizeClasses[size].textSmall} opacity-80 leading-none mt-1`}>
-              <span className="font-bold">HOY</span> 50% de descuento
-            </p>
-          )}
         </div>
         
         {/* Efecto destello */}
