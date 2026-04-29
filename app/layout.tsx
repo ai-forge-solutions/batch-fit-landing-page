@@ -1,20 +1,38 @@
 import React from "react"
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Bebas_Neue, Barlow_Semi_Condensed, Geist, Space_Mono } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next'
 import { CTAProvider } from '@/lib/cta-context'
 import ClientAnalytics from '@/components/client-analytics'
 import './globals.css'
 
-const bebasNeue = Geist({ 
+const bebasNeue = Bebas_Neue({ 
   subsets: ["latin"],
+  weight: "400",
   display: 'swap',
   variable: '--font-title'
 });
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const barlowSemiCondensed = Barlow_Semi_Condensed({ 
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: 'swap',
+  variable: '--font-subtitle'
+});
+
+const geist = Geist({ 
+  subsets: ["latin"],
+  display: 'swap',
+  variable: '--font-body'
+});
+
+const spaceMono = Space_Mono({ 
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: 'swap',
+  variable: '--font-mono'
+});
 
 export const metadata: Metadata = {
   title: 'BatchFit - Tu alimentación en piloto automático',
@@ -37,6 +55,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        {/* Performance Optimizations */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="preload" as="image" href="/hero-page.webp" fetchPriority="high" />
+        
         {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TY6H1011EB"
@@ -77,7 +100,7 @@ export default function RootLayout({
         </noscript>
         {/* End Meta Pixel Code */}
       </head>
-      <body className={`font-sans antialiased`} suppressHydrationWarning={true}>
+      <body className={`${bebasNeue.variable} ${barlowSemiCondensed.variable} ${geist.variable} ${spaceMono.variable} font-sans antialiased`} suppressHydrationWarning={true}>
         <CTAProvider mode="pricing" single={true}>
           {children}
           <ClientAnalytics />

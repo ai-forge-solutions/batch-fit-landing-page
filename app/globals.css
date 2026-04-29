@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Barlow+Semi+Condensed:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -123,13 +122,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-body), 'Geist', sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-title), 'Bebas Neue', sans-serif;
     font-weight: 400;
   }
   .subtitle {
-    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: var(--font-subtitle), 'Barlow Semi Condensed', sans-serif;
+  }
+  .font-mono, pre, code {
+    font-family: var(--font-mono), 'Space Mono', monospace;
   }
 }
