@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 import { AppStoreButtons } from "./app-store-buttons"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { CountdownTimer } from "@/components/ui/countdown-timer"
 
 export function Hero() {
   const isMobile = useIsMobile()
@@ -26,24 +27,19 @@ export function Hero() {
   }
   
   return (
-    <section data-section="hero" className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-24 pb-6">
+    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-24 pb-6">
       {/* Container principal con layout responsive */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-8">
         {/* Contenido de texto */}
         <div className="flex-1 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-title tracking-tight text-dark text-balance leading-tight mt-16 lg:mt-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-title tracking-tight text-dark text-balance leading-tight mt-8 lg:mt-0">
             Consigue tu objetivo fitness<br />
             sin perder tiempo en la cocina
           </h1>
           
-          <p className="mt-8 text-lg md:text-xl lg:text-2xl subtitle text-dark/80 max-w-3xl mx-auto text-balance leading-relaxed">
-            ✓ Planifica y cocina toda tu semana en 60 minutos.<br />
-            ✓ Batch cooking guiado paso a paso.
+          <p className="mt-4 text-base md:text-lg subtitle text-dark/80 max-w-2xl mx-auto text-balance">
+            ✓ Planifica y cocina toda tu semana en 60 minutos.
           </p>
-          
-          <div className="mt-6">
-            <AppStoreButtons inView={true} />
-          </div>
           
           {/* Prueba social */}
           <div className="mt-6 flex items-center justify-center">
@@ -63,8 +59,22 @@ export function Hero() {
             </div>
           </div>
           
+          <div className="mt-6">
+            <AppStoreButtons inView={true} />
+          </div>
+
+          {/* Countdown Timer */}
+          <div className="mt-6">
+            <p className="text-sm text-dark/70 mb-4 font-medium">
+              Acceso fundador termina en:
+            </p>
+            <CountdownTimer 
+              className=""
+            />
+          </div>
+          
           {/* Imagen en mobile (debajo del CTA) */}
-          <div className="mt-12 lg:hidden w-full max-w-lg mx-auto">
+          <div className="mt-8 lg:hidden w-full max-w-md mx-auto">
             <Image 
               src="/hero-page.webp" 
               alt="BatchFit App" 
@@ -73,7 +83,6 @@ export function Hero() {
               className="w-full h-auto rounded-lg"
               style={{ backgroundColor: 'unset' }}
               priority
-              fetchPriority="high"
             />
           </div>
         </div>
@@ -83,12 +92,11 @@ export function Hero() {
           <Image 
             src="/hero-page.webp" 
             alt="BatchFit App" 
-            width={450} 
-            height={338}
+            width={380} 
+            height={285}
             className="rounded-lg"
             style={{ backgroundColor: 'unset' }}
             priority
-            fetchPriority="high"
           />
         </div>
       </div>

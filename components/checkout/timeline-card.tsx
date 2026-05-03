@@ -20,8 +20,8 @@ export function TimelineCard({ variants }: TimelineCardProps) {
       </h2>
       <ol className="space-y-4">
         {steps.map((step, index) => (
-          <li key={index} className="flex items-start">
-            <span className="bg-primary text-dark rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">
+          <li key={index} className="flex items-center">
+            <span className="bg-primary text-dark rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
               {index + 1}
             </span>
             <span className="text-dark/80">{step}</span>

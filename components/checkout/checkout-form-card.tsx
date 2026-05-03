@@ -116,7 +116,7 @@ export function CheckoutFormCard({ variants, spotsLeft }: CheckoutFormCardProps)
         <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
           <div className="flex items-center gap-1">
             <span>✓</span>
-            <span>Garantía 30 días</span>
+            <span>Garantía 90 días</span>
           </div>
           <div className="flex items-center gap-1">
             <span>✓</span>

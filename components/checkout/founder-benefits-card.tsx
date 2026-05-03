@@ -20,8 +20,8 @@ export function FounderBenefitsCard({ variants }: FounderBenefitsCardProps) {
       </h2>
       <ul className="space-y-3">
         {benefits.map((benefit, index) => (
-          <li key={index} className="flex items-start">
-            <span className="text-primary mr-3 mt-1 text-lg">★</span>
+          <li key={index} className="flex items-center">
+            <span className="text-primary mr-3 text-lg flex-shrink-0">★</span>
             <span className="text-dark/80 font-medium">{benefit}</span>
           </li>
         ))}
