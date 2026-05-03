@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { CountdownTimer } from "@/components/ui/countdown-timer"
 
 interface UrgencyBarProps {
   variants?: any
@@ -17,13 +16,11 @@ export function UrgencyBar({ variants, spotsLeft = 45 }: UrgencyBarProps) {
     <motion.div variants={variants} className="bg-white rounded-2xl shadow-lg p-6 mb-6">
       <div className="text-center">
         <p className="text-lg font-medium text-dark mb-4">
-          💰 Precio fundador termina en:
+          🚀 Precio especial de lanzamiento
         </p>
-        <CountdownTimer 
-          className="mb-4"
-        />
         <p className="text-sm text-dark/70 mb-4">
-          Después sube a suscripción mensual.
+          Acceso de por vida por solo 27,90€<br/>
+          <strong>Después pasa a suscripción mensual</strong>
         </p>
         
         {/* Progress bar */}

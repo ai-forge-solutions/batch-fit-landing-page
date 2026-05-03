@@ -8,19 +8,13 @@ import { trackEvent } from '@/lib/analytics'
 interface CheckoutFormCardProps {
   variants: any
   spotsLeft: number
-  offerExpired: boolean
 }
 
-export function CheckoutFormCard({ variants, spotsLeft, offerExpired }: CheckoutFormCardProps) {
+export function CheckoutFormCard({ variants, spotsLeft }: CheckoutFormCardProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
   const handleCheckout = async () => {
-    if (offerExpired) {
-      setError('Esta oferta ha expirado')
-      return
-    }
-
     setIsLoading(true)
     setError('')
     
@@ -76,75 +70,64 @@ export function CheckoutFormCard({ variants, spotsLeft, offerExpired }: Checkout
         </div>
       )}
 
-      {offerExpired ? (
-        <div className="p-6 bg-gray-100 rounded-lg text-center">
-          <p className="text-gray-600 mb-2">Esta oferta ha expirado</p>
-          <p className="text-sm text-gray-500">
-            Contacta con nosotros para conocer las opciones actuales
-          </p>
+      {/* Price Display */}
+      <div className="text-center mb-6 p-6 bg-primary/10 rounded-xl">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          {/* <span className="text-2xl text-gray-400 line-through">49€</span> */}
+          <span className="text-4xl font-bold text-primary">27,90€</span>
         </div>
-      ) : (
-        <>
-          {/* Price Display */}
-          <div className="text-center mb-6 p-6 bg-primary/10 rounded-xl">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              {/* <span className="text-2xl text-gray-400 line-through">49€</span> */}
-              <span className="text-4xl font-bold text-primary">27,90€</span>
-            </div>
-            <p className="text-sm text-gray-600">
-              Pago único • Acceso de por vida
-            </p>
-            {/* <p className="text-xs text-primary font-semibold mt-2">
-              Ahorra 21,10€ (43% descuento)
-            </p> */}
+        <p className="text-sm text-gray-600">
+          Pago único • Acceso de por vida
+        </p>
+        <p className="text-xs text-primary font-semibold mt-2">
+          Después será suscripción desde 7,90€/mes
+        </p>
+      </div>
+
+      {/* Checkout Button */}
+      <motion.button
+        onClick={handleCheckout}
+        disabled={isLoading}
+        className={`w-full px-6 py-4 rounded-lg font-semibold text-lg transition-colors shadow-md hover:shadow-lg mb-4 ${
+          isLoading 
+            ? 'bg-gray-400 text-gray-700 cursor-not-allowed' 
+            : 'bg-primary text-dark hover:bg-primary/90'
+        }`}
+        whileHover={!isLoading ? { y: -2 } : {}}
+        whileTap={!isLoading ? { scale: 0.98 } : {}}
+      >
+        {isLoading ? (
+          <span className="flex items-center justify-center gap-2">
+            <Loader2 className="w-5 h-5 animate-spin" />
+            Redirigiendo...
+          </span>
+        ) : (
+          `Convertirme en miembro fundador`
+        )}
+      </motion.button>
+
+      <p className="text-center text-sm text-dark/60">
+        🔒 Pago 100% seguro procesado por Stripe<br/>
+        <span className="text-xs">Introduce tu email y tarjeta en la siguiente página</span>
+      </p>
+
+      {/* Trust Badges */}
+      <div className="mt-6 pt-6 border-t border-gray-200">
+        <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
+          <div className="flex items-center gap-1">
+            <span>✓</span>
+            <span>Garantía 30 días</span>
           </div>
-
-          {/* Checkout Button */}
-          <motion.button
-            onClick={handleCheckout}
-            disabled={isLoading}
-            className={`w-full px-6 py-4 rounded-lg font-semibold text-lg transition-colors shadow-md hover:shadow-lg mb-4 ${
-              isLoading 
-                ? 'bg-gray-400 text-gray-700 cursor-not-allowed' 
-                : 'bg-primary text-dark hover:bg-primary/90'
-            }`}
-            whileHover={!isLoading ? { y: -2 } : {}}
-            whileTap={!isLoading ? { scale: 0.98 } : {}}
-          >
-            {isLoading ? (
-              <span className="flex items-center justify-center gap-2">
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Redirigiendo...
-              </span>
-            ) : (
-              `Convertirme en miembro fundador`
-            )}
-          </motion.button>
-
-          <p className="text-center text-sm text-dark/60">
-            🔒 Pago 100% seguro procesado por Stripe<br/>
-            <span className="text-xs">Introduce tu email y tarjeta en la siguiente página</span>
-          </p>
-
-          {/* Trust Badges */}
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
-              <div className="flex items-center gap-1">
-                <span>✓</span>
-                <span>Garantía 30 días</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span>✓</span>
-                <span>Sin suscripción</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span>✓</span>
-                <span>Pago seguro</span>
-              </div>
-            </div>
+          <div className="flex items-center gap-1">
+            <span>✓</span>
+            <span>Sin suscripción</span>
           </div>
-        </>
-      )}
+          <div className="flex items-center gap-1">
+            <span>✓</span>
+            <span>Pago seguro</span>
+          </div>
+        </div>
+      </div>
     </motion.div>
   )
 }

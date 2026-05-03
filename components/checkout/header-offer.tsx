@@ -19,10 +19,10 @@ export function HeaderOffer({ variants }: HeaderOfferProps) {
         <span className="text-4xl font-bold text-dark">27,90€</span>
       </div>
       <p className="text-sm text-dark/60 mb-2">
-        Tras lanzamiento: suscripción mensual desde 7,90€/mes
+        Precio especial de lanzamiento
       </p>
       <p className="text-xs text-dark/50 mb-3">
-        Hoy: pago único · sin suscripción
+        Después: suscripción mensual desde 7,90€/mes
       </p>
       <p className="text-sm text-dark/70 bg-blue-50 rounded-lg px-4 py-2 inline-block">
         Acceso activado en menos de 24h

@@ -1,8 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState, useEffect } from "react"
-import { getTodayEndSpainTime, isDailyOfferExpired } from "@/lib/countdown-utils"
+import { useState } from "react"
 import { HeaderOffer } from "@/components/checkout/header-offer"
 import { UrgencyBar } from "@/components/checkout/urgency-bar"
 import { WhatsIncludedCard } from "@/components/checkout/whats-included-card"
@@ -15,19 +14,6 @@ import { FAQCard } from "@/components/checkout/faq-card"
 
 export default function CheckoutPage() {
   const [spotsLeft, setSpotsLeft] = useState(17) // Configurable
-  const [offerExpired, setOfferExpired] = useState(false)
-
-  // Check if daily offer has expired (resets at 23:59:59 Spain time)
-  useEffect(() => {
-    const checkOfferExpiry = () => {
-      setOfferExpired(isDailyOfferExpired())
-    }
-
-    checkOfferExpiry()
-    const interval = setInterval(checkOfferExpiry, 60000) // Check every minute
-
-    return () => clearInterval(interval)
-  }, [])
 
   const containerVariants = {
     hidden: {},
@@ -84,7 +70,6 @@ export default function CheckoutPage() {
         <CheckoutFormCard 
           variants={itemVariants} 
           spotsLeft={spotsLeft}
-          offerExpired={offerExpired}
         />
         
         {/* 8. FAQ */}
