@@ -10,12 +10,12 @@ export function WhatIsBatchFit() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
 
   const rows = [
-    { label: "Te ayudan con tus macros", other: true, batchfit: true },
-    { label: "Se adaptan a tus objetivos", other: true, batchfit: true },
-    { label: "Reducen el tiempo que dedicas a organizar tu comida", other: false, batchfit: true },
-    { label: "Eliminan la necesidad de pensar qué comer cada día", other: false, batchfit: true },
-    { label: "Es sostenible a largo plazo", other: false, batchfit: true },
-    { label: "Encajan con una agenda ocupada", other: "partial", batchfit: true },
+    { label: "Te ayuda con tus macros", other: true, batchfit: true },
+    { label: "Se adapta a tu objetivo", other: true, batchfit: true },
+    { label: "Reduce tu tiempo en la cocina", other: false, batchfit: true },
+    { label: "Elimina el \"¿qué como hoy?\"", other: false, batchfit: true },
+    { label: "Sostenible a largo plazo", other: false, batchfit: true },
+    { label: "Encaja con agenda ocupada", other: "partial", batchfit: true },
   ]
 
   const renderIndicator = (value: boolean | string, isBatchfit: boolean) => {
@@ -54,8 +54,7 @@ export function WhatIsBatchFit() {
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
           <h1 className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl font-title text-foreground tracking-tight leading-tight">
-            BatchFit no te da otra dieta<br />
-            te da el sistema que te falta
+            Por qué elegir BatchFit
           </h1>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto subtitle">
             Otras soluciones te ayudan a comer mejor.
