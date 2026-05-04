@@ -131,6 +131,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body), 'Geist', sans-serif;
@@ -144,5 +147,8 @@
   }
   .font-mono, pre, code {
     font-family: var(--font-mono), 'Space Mono', monospace;
+  }
+  ::selection {
+    background-color: rgba(79, 228, 183, 0.2);
   }
 }

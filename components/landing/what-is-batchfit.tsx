@@ -1,216 +1,147 @@
 "use client"
 
 import Image from "next/image"
-import { Check, BatteryLow } from "lucide-react"
-import { PositiveGrowthRechart } from "@/components/ui/positive-growth-rechart"
+import { BatteryLow } from "lucide-react"
 import { AppStoreButtons } from "./app-store-buttons"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 
-const highlights = [
-  "Cocina 1 vez por semana",
-  "Comes el resto sin decidir nada",
-  "Todo guiado paso a paso",
-  "Flexible, sin rigidez ni extremos",
-]
-
 export function WhatIsBatchFit() {
-  const [ref, inView] = useInView({
-    threshold: 0.3,
-    triggerOnce: true
-  })
+  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
 
-  const ctaVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.6, 
-        delay: 0, // Delay eliminado
-        ease: "easeOut" 
-      }
+  const rows = [
+    { label: "Te ayudan con tus macros", other: true, batchfit: true },
+    { label: "Se adaptan a tus objetivos", other: true, batchfit: true },
+    { label: "Reducen el tiempo que dedicas a organizar tu comida", other: false, batchfit: true },
+    { label: "Eliminan la necesidad de pensar qué comer cada día", other: false, batchfit: true },
+    { label: "Es sostenible a largo plazo", other: false, batchfit: true },
+    { label: "Encajan con una agenda ocupada", other: "partial", batchfit: true },
+  ]
+
+  const renderIndicator = (value: boolean | string, isBatchfit: boolean) => {
+    if (value === true) {
+      return (
+        <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-medium ${
+          isBatchfit
+            ? 'bg-primary/20 text-primary'
+            : 'bg-foreground/5 text-foreground/40'
+        }`}>
+          ✓
+        </span>
+      )
     }
+    if (value === "partial") {
+      return (
+        <span className="w-7 h-7 rounded-full bg-amber-50 text-amber-500/70 flex items-center justify-center text-sm font-medium">
+          △
+        </span>
+      )
+    }
+    return (
+      <span className="w-7 h-7 rounded-full bg-foreground/[0.03] text-foreground/20 flex items-center justify-center text-sm">
+        ✗
+      </span>
+    )
   }
 
   return (
-    <section data-section="what-is-batchfit" className="bg-gradient-to-b from-orange-100 to-white py-12 md:py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Título principal centrado */}
-        <div className="text-center mb-8 md:mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-title text-foreground text-balance leading-tight">
+    <section ref={ref} data-section="what-is-batchfit" className="bg-background py-28 md:py-36 px-6">
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 md:mb-20"
+        >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-title text-foreground tracking-tight leading-tight">
             BatchFit no te da otra dieta<br />
             te da el sistema que te falta
           </h1>
-        </div>
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto subtitle">
+            Otras soluciones te ayudan a comer mejor.
+            BatchFit hace que hacerlo sea realmente fácil.
+          </p>
+        </motion.div>
 
-        {/* Contenido centrado */}
-        <div className="flex justify-center">
-          {/* Subsección central - Subtítulo y CTA */}
-          <div className="w-full max-w-2xl flex flex-col justify-center items-center text-center">
-            <p className="text-base md:text-xl text-muted-foreground text-balance mb-8 md:mb-12 leading-relaxed">
-              Otras soluciones te ayudan a comer mejor<br />
-              BatchFit hace que hacerlo sea realmente fácil
-            </p>
-            
-            {/* Tabla comparativa */}
-            <div className="w-full max-w-4xl mb-8 md:mb-12">
-              <div className="overflow-x-auto">
-                <div className="bg-white rounded-2xl shadow-2xl overflow-hidden" style={{ boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05)' }}>
-                  {/* Header */}
-                  <div className="grid grid-cols-3 bg-gradient-to-r from-gray-50 to-gray-100">
-                    <div className="p-4 md:p-6"></div>
-                    <div className="p-4 md:p-6 text-center font-semibold text-gray-700 text-sm md:text-base">
-                      Otras soluciones
-                    </div>
-                    <div className="p-4 md:p-6 text-center font-bold text-emerald-800 bg-gradient-to-r from-emerald-50 to-emerald-100 text-sm md:text-base">
-                      BatchFit
-                    </div>
-                  </div>
-                  
-                  {/* Rows */}
-                  <div className="divide-y divide-gray-100">
-                    <div className="grid grid-cols-3 hover:bg-gray-50/50 transition-all duration-200 group">
-                      <div className="p-4 md:p-6 text-sm md:text-base text-gray-800 font-medium flex items-center">
-                        Te ayudan con tus macros
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center">
-                        <span className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg font-semibold">✓</span>
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center bg-gradient-to-r from-emerald-50/30 to-emerald-50/60">
-                        <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-lg font-semibold shadow-sm">✓</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-3 hover:bg-gray-50/50 transition-all duration-200 group">
-                      <div className="p-4 md:p-6 text-sm md:text-base text-gray-800 font-medium flex items-center">
-                        Se adaptan a tus objetivos
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center">
-                        <span className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg font-semibold">✓</span>
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center bg-gradient-to-r from-emerald-50/30 to-emerald-50/60">
-                        <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-lg font-semibold shadow-sm">✓</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-3 hover:bg-gray-50/50 transition-all duration-200 group">
-                      <div className="p-4 md:p-6 text-sm md:text-base text-gray-800 font-medium flex items-center">
-                        Reducen el tiempo que dedicas a organizar tu comida
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center">
-                        <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-lg font-semibold">✗</span>
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center bg-gradient-to-r from-emerald-50/30 to-emerald-50/60">
-                        <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-lg font-semibold shadow-sm">✓</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-3 hover:bg-gray-50/50 transition-all duration-200 group">
-                      <div className="p-4 md:p-6 text-sm md:text-base text-gray-800 font-medium flex items-center">
-                        Eliminan la necesidad de pensar qué comer cada día
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center">
-                        <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-lg font-semibold">✗</span>
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center bg-gradient-to-r from-emerald-50/30 to-emerald-50/60">
-                        <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-lg font-semibold shadow-sm">✓</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-3 hover:bg-gray-50/50 transition-all duration-200 group">
-                      <div className="p-4 md:p-6 text-sm md:text-base text-gray-800 font-medium flex items-center">
-                        Es sostenible a largo plazo
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center">
-                        <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-lg font-semibold">✗</span>
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center bg-gradient-to-r from-emerald-50/30 to-emerald-50/60">
-                        <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-lg font-semibold shadow-sm">✓</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-3 hover:bg-gray-50/50 transition-all duration-200 group">
-                      <div className="p-4 md:p-6 text-sm md:text-base text-gray-800 font-medium flex items-center">
-                        Encajan con una agenda ocupada
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center">
-                        <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-lg font-semibold">△</span>
-                      </div>
-                      <div className="p-4 md:p-6 flex items-center justify-center bg-gradient-to-r from-emerald-50/30 to-emerald-50/60">
-                        <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-lg font-semibold shadow-sm">✓</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="max-w-3xl mx-auto mb-20"
+        >
+          <div className="border border-border/50 rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-3 border-b border-border/50">
+              <div className="p-4 md:p-5" />
+              <div className="p-4 md:p-5 text-center">
+                <span className="text-xs font-medium text-muted-foreground tracking-wide uppercase subtitle">
+                  Otras soluciones
+                </span>
+              </div>
+              <div className="p-4 md:p-5 text-center bg-primary/[0.04]">
+                <span className="text-xs font-semibold text-primary tracking-wide uppercase subtitle">
+                  BatchFit
+                </span>
               </div>
             </div>
-            
-            {/* Copy motivacional */}
-            {/* <motion.div
-              variants={ctaVariants}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              className="text-center mb-12 mt-16 px-4"
-            > */}
-            <div className="text-center mb-12 mt-16 px-4">
-              <div className="space-y-3 max-w-2xl mx-auto">
-                <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed">
-                  BatchFit funciona incluso
-                </p>
-                <div className="space-y-2">
-                  <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed">
-                    cuando baja tu motivación
-                  </p>
-                  <div className="flex justify-center">
-                    <div className="animate-pulse">
-                      <BatteryLow className="w-12 h-12 md:w-16 md:h-16 text-red-500" />
-                    </div>
+
+            <div className="divide-y divide-border/30">
+              {rows.map((row, i) => (
+                <div key={i} className="grid grid-cols-3 hover:bg-foreground/[0.01] transition-colors duration-300">
+                  <div className="p-4 md:p-5 text-sm text-foreground/80 flex items-center leading-snug">
+                    {row.label}
+                  </div>
+                  <div className="p-4 md:p-5 flex items-center justify-center">
+                    {renderIndicator(row.other, false)}
+                  </div>
+                  <div className="p-4 md:p-5 flex items-center justify-center bg-primary/[0.02]">
+                    {renderIndicator(row.batchfit, true)}
                   </div>
                 </div>
-                <div className="mt-24">
-                  <p className="text-xl md:text-2xl text-dark font-medium leading-relaxed text-center">
-                    pero tus metas siguen altas
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
-            {/* </motion.div> */}
-            
-            {/* <motion.div
-              variants={ctaVariants}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              className="pb-8 relative w-full"
-            > */}
-            <div className="pb-8 relative w-full">
-              <div className="relative flex items-center justify-center">
-                {/* Laurel izquierdo pegado al borde de la pantalla */}
-                <Image 
-                  src="/laurel_left.webp" 
-                  alt="Laurel izquierdo" 
-                  width={60} 
-                  height={60}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 w-12 md:w-16 z-10 pointer-events-none"
-                  style={{ imageRendering: 'auto', height: 'auto' }}
-                />
-                
-                {/* CTA centrado */}
-                <AppStoreButtons />
-                
-                {/* Laurel derecho pegado al borde de la pantalla */}
-                <Image 
-                  src="/laurel_right.webp" 
-                  alt="Laurel derecho" 
-                  width={60} 
-                  height={60}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-12 md:w-16 z-10 pointer-events-none"
-                  style={{ imageRendering: 'auto', height: 'auto' }}
-                />
-              </div>
-            </div>
-            {/* </motion.div> */}
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mb-16"
+        >
+          <div className="space-y-3 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-foreground font-medium subtitle">
+              BatchFit funciona incluso
+            </p>
+            <p className="text-xl md:text-2xl text-foreground font-medium subtitle">
+              cuando baja tu motivación
+            </p>
+            <div className="flex justify-center py-2">
+              <BatteryLow className="w-10 h-10 md:w-12 md:h-12 text-red-400/70" />
+            </div>
+            <p className="text-xl md:text-2xl text-foreground font-medium subtitle pt-8">
+              pero tus metas siguen altas
+            </p>
+          </div>
+        </motion.div>
+
+        <div className="flex items-center justify-center relative">
+          <Image
+            src="/laurel_left.webp"
+            alt=""
+            width={48}
+            height={48}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 md:w-14 pointer-events-none opacity-60"
+            style={{ height: 'auto' }}
+          />
+          <AppStoreButtons />
+          <Image
+            src="/laurel_right.webp"
+            alt=""
+            width={48}
+            height={48}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 md:w-14 pointer-events-none opacity-60"
+            style={{ height: 'auto' }}
+          />
         </div>
       </div>
     </section>

@@ -1,17 +1,31 @@
+"use client"
+
 import { AppStoreButtons } from "./app-store-buttons"
 import Image from "next/image"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
 export function FinalCTA() {
-  return (
-    <section data-section="final-cta" className="bg-background py-24 px-6">
-      <div className="max-w-3xl mx-auto text-center">
-        {/* Headline: Cocina vez */}
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground text-balance mb-8">
-          Cocina una vez
-        </h2>
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true })
 
-        {/* Photo */}
-        <div className="mb-8">
+  return (
+    <section ref={ref} data-section="final-cta" className="bg-background py-32 md:py-40 px-6">
+      <div className="max-w-3xl mx-auto text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight mb-10"
+        >
+          Cocina una vez
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="mb-10"
+        >
           <Image
             src="/hero-page-v2026-03-10.webp"
             alt="BatchFit hero"
@@ -21,20 +35,24 @@ export function FinalCTA() {
             style={{ backgroundColor: 'unset' }}
             priority
           />
-        </div>
+        </motion.div>
 
-        {/* Vive toda la semana */}
-        <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground text-balance mb-10">
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight mb-14"
+        >
           Vive toda la semana
-        </h3>
+        </motion.h3>
 
-        {/* CTA */}
-        <div className="mt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.35 }}
+        >
           <AppStoreButtons />
-        </div>
-
-        <p className="mt-8 text-sm text-muted-foreground max-w-md mx-auto">
-        </p>
+        </motion.div>
       </div>
     </section>
   )

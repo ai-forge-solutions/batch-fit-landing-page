@@ -6,32 +6,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 
-// Variants para animación del header
-const titleVariants = {
-  hidden: { opacity: 0, x: -60 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
-  }
-}
-
-const subtitleVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: { duration: 0.4, delay: 1.2, ease: "easeOut" }
-  }
-}
-
 export function Features() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true
-  })
+  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true })
 
-  // Características principales de BatchFit
   const features = [
     {
       id: 1,
@@ -41,7 +19,7 @@ export function Features() {
     },
     {
       id: 2,
-      title: "Instrucciones Paso a Paso", 
+      title: "Instrucciones Paso a Paso",
       description: "Sigue instrucciones claras durante cada preparación sin perderte en la cocina",
       image: "/batchfi-mockup-batchstep.webp",
     },
@@ -77,53 +55,47 @@ export function Features() {
     },
   ]
 
-
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
-
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <motion.h2 
-            className="text-4xl font-bold text-gray-900 mb-4"
-            variants={titleVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-          >
-            Todo lo que
-            <span style={{ color: '#4fe4b7' }}> BatchFit</span> ofrece
-          </motion.h2>
-        </div>
-        {/* Slider Container */}
-        <div className="relative max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 shadow-lg border border-gray-200 overflow-hidden">
+    <section ref={ref} className="py-28 md:py-36 bg-background">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
+            Todo lo que <span className="text-primary">BatchFit</span> ofrece
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="relative max-w-4xl mx-auto"
+        >
+          <div className="border border-border/40 rounded-2xl p-6 sm:p-10 md:p-14 overflow-hidden">
             <div className="flex flex-col items-center justify-between relative">
-              {/* Contenido del Slide con animación */}
               <div className="w-full flex flex-col items-center justify-center gap-6 px-2 sm:px-8 md:px-16">
-                {/* Título arriba */}
                 <div className="min-h-[4rem] flex items-center justify-center">
                   <AnimatePresence mode="wait" initial={false}>
-                    <motion.h3 
+                    <motion.h3
                       key={`title-${currentSlide}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center"
+                      className="text-3xl md:text-4xl lg:text-5xl text-foreground text-center"
                     >
                       {features[currentSlide].title}
                     </motion.h3>
                   </AnimatePresence>
                 </div>
-                
-                {/* Contenedor de imágenes - todas precargadas */}
+
                 <div className="relative w-full max-w-md mx-auto aspect-[3/5] md:max-w-lg">
                   {features.map((feature, index) => (
-                    <div 
+                    <div
                       key={feature.id}
                       className={`absolute inset-0 transition-opacity duration-300 ${
                         index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
@@ -136,60 +108,54 @@ export function Features() {
                         height={800}
                         className="w-full h-full object-contain rounded-2xl"
                         style={{ backgroundColor: 'unset' }}
-                        priority={index === 0} // Solo priority para la primera
+                        priority={index === 0}
                       />
-                      
-                      {/* Caja superpuesta con copy */}
-                      <div className="absolute bottom-8 left-8 right-8 bg-white/95 rounded-lg py-6 px-6 border border-gray-200/50 shadow-xl">
-                        <p className="text-base md:text-lg text-gray-700 leading-relaxed min-h-[3rem] text-center">
+
+                      <div className="absolute bottom-8 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl py-5 px-5 border border-border/30">
+                        <p className="text-sm md:text-base text-foreground/70 leading-relaxed min-h-[2.5rem] text-center">
                           {feature.description}
                         </p>
                       </div>
                     </div>
                   ))}
-                  
-                  {/* Flechas de navegación superpuestas */}
+
                   <button
                     onClick={() => setCurrentSlide((prev) => (prev - 1 + features.length) % features.length)}
-                    className="absolute -left-6 top-[40%] -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200/50 flex items-center justify-center hover:bg-white/95 transition-all z-20 hover:scale-105"
+                    className="absolute -left-5 top-[40%] -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-border/40 flex items-center justify-center hover:border-border transition-colors duration-300 z-20"
                     aria-label="Anterior"
                   >
-                    <ChevronLeft className="w-6 h-6 text-gray-700" />
+                    <ChevronLeft className="w-5 h-5 text-foreground/60" />
                   </button>
-                  
+
                   <button
                     onClick={() => setCurrentSlide((prev) => (prev + 1) % features.length)}
-                    className="absolute -right-6 top-[40%] -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200/50 flex items-center justify-center hover:bg-white/95 transition-all z-20 hover:scale-105"
+                    className="absolute -right-5 top-[40%] -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-border/40 flex items-center justify-center hover:border-border transition-colors duration-300 z-20"
                     aria-label="Siguiente"
                   >
-                    <ChevronRight className="w-6 h-6 text-gray-700" />
+                    <ChevronRight className="w-5 h-5 text-foreground/60" />
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          
-          {/* Indicadores de página debajo */}
-          <div className="flex justify-center mt-6">
-            <div className="flex items-center space-x-2">
+
+          <div className="flex justify-center mt-8">
+            <div className="flex items-center gap-2">
               {features.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
+                  onClick={() => setCurrentSlide(index)}
+                  className={`rounded-full transition-all duration-300 ${
                     index === currentSlide
-                      ? ''
-                      : 'bg-gray-300 hover:bg-gray-400'
+                      ? 'w-6 h-2 bg-primary'
+                      : 'w-2 h-2 bg-foreground/15 hover:bg-foreground/25'
                   }`}
-                  style={{
-                    backgroundColor: index === currentSlide ? '#4fe4b7' : ''
-                  }}
                   aria-label={`Ir a la característica ${index + 1}`}
                 />
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
