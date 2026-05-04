@@ -35,28 +35,28 @@ export function Testimonials() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
 
   return (
-    <section ref={ref} className="py-28 md:py-36 bg-background">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="py-16 sm:py-24 md:py-36 bg-background">
+      <div className="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-16 md:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
+          <h2 className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
             Lo que dicen nuestros{" "}
             <span className="text-primary">usuarios</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.12 }}
-              className="border border-border/40 rounded-2xl p-8 hover:border-border/80 transition-colors duration-300"
+              className="border border-border/40 rounded-2xl p-6 sm:p-8 hover:border-border/80 transition-colors duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-border/20 shrink-0">

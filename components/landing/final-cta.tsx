@@ -9,13 +9,13 @@ export function FinalCTA() {
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true })
 
   return (
-    <section ref={ref} data-section="final-cta" className="bg-background py-32 md:py-40 px-6">
+    <section ref={ref} data-section="final-cta" className="bg-background py-20 sm:py-28 md:py-40 px-5 sm:px-6">
       <div className="max-w-3xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight mb-10"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight mb-7 sm:mb-10"
         >
           Cocina una vez
         </motion.h2>
@@ -24,7 +24,7 @@ export function FinalCTA() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="mb-10"
+          className="mb-7 sm:mb-10"
         >
           <Image
             src="/hero-page-v2026-03-10.webp"
@@ -41,7 +41,7 @@ export function FinalCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight mb-14"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight mb-10 sm:mb-14"
         >
           Vive toda la semana
         </motion.h3>

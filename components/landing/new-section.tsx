@@ -52,7 +52,7 @@ export function NewSection() {
   ]
 
   return (
-    <div ref={ref} className="py-24 md:py-32 px-6 bg-background">
+    <div ref={ref} className="py-16 sm:py-24 md:py-32 px-5 sm:px-6 bg-background">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -60,13 +60,13 @@ export function NewSection() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-foreground mb-4 tracking-tight leading-tight">
+          <h2 className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-4 tracking-tight leading-tight">
             Logra tus metas fitness con <span className="text-primary">BatchFit</span> en tres sencillos pasos
           </h2>
         </motion.div>
 
-        <div className="mt-20 md:mt-28">
-          <div className="space-y-24 md:space-y-32 lg:space-y-40">
+        <div className="mt-14 sm:mt-20 md:mt-28">
+          <div className="space-y-16 sm:space-y-24 md:space-y-32 lg:space-y-40">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
@@ -76,7 +76,7 @@ export function NewSection() {
                 className="text-center relative"
                 data-step={step.number}
               >
-                <div className="max-w-xs mx-auto">
+                <div className="max-w-[260px] sm:max-w-xs mx-auto">
                   <div className="relative" style={{ filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.12))' }}>
                     <Image
                       src={step.image}
@@ -88,20 +88,20 @@ export function NewSection() {
                       priority
                     />
                     <div
-                      className="absolute bottom-4 -left-4 -right-4 bg-white/95 backdrop-blur-sm rounded-xl py-8 px-6 pb-6 border border-border/30 shadow-sm cursor-pointer hover:bg-white transition-colors duration-300"
+                      className="absolute bottom-3 sm:bottom-4 -left-2 -right-2 sm:-left-4 sm:-right-4 bg-white/95 backdrop-blur-sm rounded-xl py-5 px-4 sm:py-8 sm:px-6 pb-4 sm:pb-6 border border-border/30 shadow-sm cursor-pointer hover:bg-white transition-colors duration-300"
                       onClick={step.onClick}
                     >
-                      <div className="text-center mb-3 relative">
-                        <span className="absolute top-0 left-0 text-xs font-medium text-primary tracking-widest subtitle">
+                      <div className="text-center mb-2 sm:mb-3 relative">
+                        <span className="absolute top-0 left-0 text-[10px] sm:text-xs font-medium text-primary tracking-widest subtitle">
                           {String(step.number).padStart(2, '0')}
                         </span>
                         <div>
-                          <h4 className="text-2xl text-foreground mb-2">{step.title}</h4>
-                          <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                          <h4 className="text-xl sm:text-2xl text-foreground mb-1.5 sm:mb-2">{step.title}</h4>
+                          <p className="text-[13px] sm:text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                         </div>
                       </div>
                       <div className="flex justify-center">
-                        <ChevronDown className="w-5 h-5 text-foreground/30" />
+                        <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/30" />
                       </div>
                     </div>
                   </div>

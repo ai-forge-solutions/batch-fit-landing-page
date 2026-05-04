@@ -56,15 +56,15 @@ export function Features() {
   ]
 
   return (
-    <section ref={ref} className="py-28 md:py-36 bg-background">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="py-16 sm:py-24 md:py-36 bg-background">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
+          <h2 className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
             Todo lo que <span className="text-primary">BatchFit</span> ofrece
           </h2>
         </motion.div>
@@ -75,10 +75,10 @@ export function Features() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="relative max-w-4xl mx-auto"
         >
-          <div className="border border-border/40 rounded-2xl p-6 sm:p-10 md:p-14 overflow-hidden">
+          <div className="border border-border/40 rounded-2xl p-4 sm:p-8 md:p-14 overflow-hidden">
             <div className="flex flex-col items-center justify-between relative">
-              <div className="w-full flex flex-col items-center justify-center gap-6 px-2 sm:px-8 md:px-16">
-                <div className="min-h-[4rem] flex items-center justify-center">
+              <div className="w-full flex flex-col items-center justify-center gap-4 sm:gap-6 px-1 sm:px-8 md:px-16">
+                <div className="min-h-[3rem] sm:min-h-[4rem] flex items-center justify-center">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.h3
                       key={`title-${currentSlide}`}
@@ -86,7 +86,7 @@ export function Features() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="text-3xl md:text-4xl lg:text-5xl text-foreground text-center"
+                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground text-center"
                     >
                       {features[currentSlide].title}
                     </motion.h3>
@@ -111,8 +111,8 @@ export function Features() {
                         priority={index === 0}
                       />
 
-                      <div className="absolute bottom-8 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl py-5 px-5 border border-border/30">
-                        <p className="text-sm md:text-base text-foreground/70 leading-relaxed min-h-[2.5rem] text-center">
+                      <div className="absolute bottom-4 sm:bottom-8 left-3 right-3 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-sm rounded-xl py-3 px-3 sm:py-5 sm:px-5 border border-border/30">
+                        <p className="text-[13px] sm:text-sm md:text-base text-foreground/70 leading-relaxed min-h-[2rem] sm:min-h-[2.5rem] text-center">
                           {feature.description}
                         </p>
                       </div>
@@ -121,18 +121,18 @@ export function Features() {
 
                   <button
                     onClick={() => setCurrentSlide((prev) => (prev - 1 + features.length) % features.length)}
-                    className="absolute -left-5 top-[40%] -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-border/40 flex items-center justify-center hover:border-border transition-colors duration-300 z-20"
+                    className="absolute -left-2 sm:-left-5 top-[40%] -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border border-border/40 flex items-center justify-center hover:border-border transition-colors duration-300 z-20 shadow-sm"
                     aria-label="Anterior"
                   >
-                    <ChevronLeft className="w-5 h-5 text-foreground/60" />
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/60" />
                   </button>
 
                   <button
                     onClick={() => setCurrentSlide((prev) => (prev + 1) % features.length)}
-                    className="absolute -right-5 top-[40%] -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-border/40 flex items-center justify-center hover:border-border transition-colors duration-300 z-20"
+                    className="absolute -right-2 sm:-right-5 top-[40%] -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border border-border/40 flex items-center justify-center hover:border-border transition-colors duration-300 z-20 shadow-sm"
                     aria-label="Siguiente"
                   >
-                    <ChevronRight className="w-5 h-5 text-foreground/60" />
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/60" />
                   </button>
                 </div>
               </div>

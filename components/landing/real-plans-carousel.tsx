@@ -63,18 +63,18 @@ export function RealPlansCarousel() {
   const [ref, inView] = useInView({ threshold: 0.15, triggerOnce: true })
 
   return (
-    <div ref={ref} className="py-24 md:py-32 px-6 bg-background">
+    <div ref={ref} className="py-16 sm:py-24 md:py-32 px-5 sm:px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-foreground mb-4 tracking-tight">
+          <h2 className="text-[1.6rem] sm:text-4xl lg:text-5xl text-foreground mb-3 sm:mb-4 tracking-tight leading-tight">
             Así queda una semana <span className="text-primary">BatchFit</span> en la vida real
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto subtitle">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto subtitle">
             Planes reales de nuestros miembros fundadores. Diferentes objetivos, misma eficiencia.
           </p>
         </motion.div>

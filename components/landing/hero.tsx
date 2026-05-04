@@ -19,14 +19,14 @@ export function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background px-6 pt-28 pb-16">
+    <section className="relative min-h-[85svh] sm:min-h-screen flex items-center justify-center bg-background px-5 sm:px-6 pt-20 sm:pt-28 pb-10 sm:pb-16">
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center lg:gap-16">
         <div className="flex-1 text-center lg:text-left">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-4xl md:text-5xl lg:text-6xl font-title tracking-tight text-foreground leading-[1.05]"
+            className="text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-title tracking-tight text-foreground leading-[1.08]"
           >
             Consigue tu objetivo fitness<br />
             sin perder tiempo en la cocina
@@ -36,7 +36,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
-            className="mt-6 text-lg md:text-xl subtitle text-muted-foreground max-w-xl mx-auto lg:mx-0"
+            className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl subtitle text-muted-foreground max-w-xl mx-auto lg:mx-0"
           >
             Planifica y cocina toda tu semana en 60 minutos.
           </motion.p>
@@ -45,7 +45,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
-            className="mt-8 flex items-center justify-center lg:justify-start"
+            className="mt-5 sm:mt-8 flex items-center justify-center lg:justify-start"
           >
             <div className="flex items-center border border-border/60 rounded-full px-4 py-2">
               <div className="flex -space-x-2 mr-3">
@@ -67,12 +67,12 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
-            className="mt-10"
+            className="mt-7 sm:mt-10"
           >
             <AppStoreButtons inView={true} />
           </motion.div>
 
-          <div className="mt-10 lg:hidden w-full max-w-sm mx-auto">
+          <div className="mt-8 sm:mt-10 lg:hidden w-full max-w-[280px] sm:max-w-sm mx-auto">
             <Image
               src="/hero-page.webp"
               alt="BatchFit App"
