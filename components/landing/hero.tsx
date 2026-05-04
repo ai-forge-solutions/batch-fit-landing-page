@@ -28,8 +28,8 @@ export function Hero() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-title tracking-tight text-foreground leading-[1.08]"
           >
-            Consigue tu objetivo fitness<br />
-            sin perder tiempo en la cocina
+            Come bien toda la semana<br />
+            sin pensar en ello
           </motion.h1>
 
           <motion.p
@@ -38,7 +38,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
             className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl subtitle text-muted-foreground max-w-xl mx-auto lg:mx-0"
           >
-            Planifica y cocina toda tu semana en 60 minutos.
+            BatchFit planifica, organiza tu compra y te guía en la cocina. Toda tu semana resuelta en 60 minutos.
           </motion.p>
 
           <motion.div

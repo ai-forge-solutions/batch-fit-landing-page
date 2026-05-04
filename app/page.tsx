@@ -1,13 +1,13 @@
 import { Header } from "@/components/landing/header"
 import { Hero } from "@/components/landing/hero"
+import { ProblemBridge } from "@/components/landing/problem-bridge"
 import { NewSection } from "@/components/landing/new-section"
 import { RealPlansCarousel } from "@/components/landing/real-plans-carousel"
 import { WhatIsBatchFit } from "@/components/landing/what-is-batchfit"
-// import { BeforeAfter } from "@/components/landing/before-after"
-// import { HowItWorks } from "@/components/landing/how-it-works"
 import { Features } from "@/components/landing/features"
 import { Benefits } from "@/components/landing/benefits"
 import { Testimonials } from "@/components/landing/testimonials"
+import { FAQ } from "@/components/landing/faq"
 import { FinalCTA } from "@/components/landing/final-cta"
 import { Footer } from "@/components/landing/footer"
 import { LandingPageTracking } from "@/components/landing-page-tracking"
@@ -19,6 +19,9 @@ export default function Home() {
       <Header />
       <section data-section="hero">
         <Hero />
+      </section>
+      <section id="problema" data-section="problema">
+        <ProblemBridge />
       </section>
       <section id="what-is-batchfit" data-section="what-is-batchfit">
         <NewSection />
@@ -37,6 +40,9 @@ export default function Home() {
       </section>
       <section id="caracteristicas" data-section="caracteristicas">
         <Features />
+      </section>
+      <section id="faq" data-section="faq">
+        <FAQ />
       </section>
       <section id="cta" data-section="cta">
         <FinalCTA />

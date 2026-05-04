@@ -13,44 +13,26 @@ export function Features() {
   const features = [
     {
       id: 1,
-      title: "Sesiones de Batch Cooking",
-      description: "Cocina toda tu semana con sesiones optimizadas, cronómetros inteligentes y flujo guiado paso a paso",
-      image: "/batchfi-mockup-batchsession.webp",
-    },
-    {
-      id: 2,
-      title: "Instrucciones Paso a Paso",
-      description: "Sigue instrucciones claras durante cada preparación sin perderte en la cocina",
-      image: "/batchfi-mockup-batchstep.webp",
-    },
-    {
-      id: 3,
-      title: "Lista de Compras Inteligente",
-      description: "Tu compra semanal generada automáticamente con cantidades exactas y todo organizado",
-      image: "/batchfi-mockup-shoppinglist.webp",
-    },
-    {
-      id: 4,
-      title: "Editor de macros",
-      description: "Adapta las sugerencias de calorías y macronutrientes",
-      image: "/batchfit-mockup-edit-recipe-ingredients.webp",
-    },
-    {
-      id: 5,
-      title: "Seguimiento de Progreso",
-      description: "Visualiza tu evolución y adaptamos el plan en base a tus resultados",
-      image: "/batchfit-mockup-progress.webp",
-    },
-    {
-      id: 6,
-      title: "Planificación Semanal",
-      description: "Visualiza y organiza toda tu semana nutricional de un vistazo",
+      title: "Tu semana en un vistazo",
+      description: "Visualiza y controla cada comida sin microgestionar. Todo planificado antes de que empiece la semana.",
       image: "/batchfit-mockup-weekmeals.webp",
     },
     {
-      id: 7,
-      title: "Editor de Recetas",
-      description: "Edita recetas, ajusta ingredientes y adapta el sistema a tus preferencias",
+      id: 2,
+      title: "Se adapta a ti, no al revés",
+      description: "Configura tus calorías, macros y objetivos. Ajusta ingredientes y cantidades cuando quieras.",
+      image: "/batchfit-mockup-edit-recipe-ingredients.webp",
+    },
+    {
+      id: 3,
+      title: "Ve que tu esfuerzo funciona",
+      description: "Seguimiento de progreso que te muestra resultados reales. Sin métricas innecesarias — solo lo que importa.",
+      image: "/batchfit-mockup-progress.webp",
+    },
+    {
+      id: 4,
+      title: "Hazlo tuyo",
+      description: "Edita recetas, cambia ingredientes y personaliza el sistema a tu gusto. No es un plan genérico.",
       image: "/batchfitmockup-edit-recipes.webp",
     },
   ]
@@ -65,8 +47,11 @@ export function Features() {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
-            Todo lo que <span className="text-primary">BatchFit</span> ofrece
+            Control total, <span className="text-primary">cero fricción</span>
           </h2>
+          <p className="text-base sm:text-lg text-muted-foreground subtitle max-w-lg mx-auto mt-3 sm:mt-4">
+            Todo lo que necesitas para que tu alimentación funcione en piloto automático
+          </p>
         </motion.div>
 
         <motion.div

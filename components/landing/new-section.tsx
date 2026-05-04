@@ -61,8 +61,11 @@ export function NewSection() {
           className="text-center"
         >
           <h2 className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-4 tracking-tight leading-tight">
-            Logra tus metas fitness con <span className="text-primary">BatchFit</span> en tres sencillos pasos
+            Así funciona <span className="text-primary">BatchFit</span>
           </h2>
+          <p className="text-base sm:text-lg text-muted-foreground subtitle max-w-lg mx-auto">
+            Tres pasos. Una sesión a la semana. Toda tu alimentación resuelta.
+          </p>
         </motion.div>
 
         <div className="mt-14 sm:mt-20 md:mt-28">
