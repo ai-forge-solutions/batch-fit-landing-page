@@ -4,7 +4,6 @@ import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 import { AppStoreButtons } from "./app-store-buttons"
 import { useIsMobile } from "@/hooks/use-mobile"
-import { CountdownTimer } from "@/components/ui/countdown-timer"
 import { motion } from "framer-motion"
 
 export function Hero() {
@@ -71,18 +70,6 @@ export function Hero() {
             className="mt-10"
           >
             <AppStoreButtons inView={true} />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-8"
-          >
-            <p className="text-xs text-muted-foreground mb-3 subtitle tracking-widest uppercase">
-              Acceso fundador termina en
-            </p>
-            <CountdownTimer className="" />
           </motion.div>
 
           <div className="mt-10 lg:hidden w-full max-w-sm mx-auto">
