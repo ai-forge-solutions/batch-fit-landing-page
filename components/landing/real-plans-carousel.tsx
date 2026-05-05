@@ -101,6 +101,8 @@ export function RealPlansCarousel() {
                         fill
                         className="object-cover hover:scale-[1.03] transition-transform duration-500 select-none"
                         draggable={false}
+                        loading="lazy"
+                        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                       <div className="absolute bottom-4 left-4 right-4 text-white">

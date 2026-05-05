@@ -88,7 +88,8 @@ export function NewSection() {
                       height={600}
                       className="w-full h-auto rounded-lg"
                       style={{ backgroundColor: 'unset' }}
-                      priority
+                      loading="lazy"
+                      sizes="(max-width: 640px) 260px, 320px"
                     />
                     <div
                       className="absolute bottom-3 sm:bottom-4 -left-2 -right-2 sm:-left-4 sm:-right-4 bg-white/95 backdrop-blur-sm rounded-xl py-5 px-4 sm:py-8 sm:px-6 pb-4 sm:pb-6 border border-border/30 shadow-sm cursor-pointer hover:bg-white transition-colors duration-300"

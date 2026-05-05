@@ -93,7 +93,8 @@ export function Features() {
                         height={800}
                         className="w-full h-full object-contain rounded-2xl"
                         style={{ backgroundColor: 'unset' }}
-                        priority={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        sizes="(max-width: 768px) 80vw, 400px"
                       />
 
                       <div className="absolute bottom-4 sm:bottom-8 left-3 right-3 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-sm rounded-xl py-3 px-3 sm:py-5 sm:px-5 border border-border/30">

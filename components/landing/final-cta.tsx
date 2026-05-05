@@ -40,7 +40,8 @@ export function FinalCTA() {
             height={200}
             className="w-full max-w-xs h-auto rounded-xl mx-auto"
             style={{ backgroundColor: 'unset' }}
-            priority
+            loading="lazy"
+            sizes="(max-width: 640px) 100vw, 320px"
           />
         </motion.div>
 

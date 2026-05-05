@@ -1,16 +1,18 @@
+import dynamic from "next/dynamic"
 import { Header } from "@/components/landing/header"
 import { Hero } from "@/components/landing/hero"
-import { ProblemBridge } from "@/components/landing/problem-bridge"
-import { NewSection } from "@/components/landing/new-section"
-import { RealPlansCarousel } from "@/components/landing/real-plans-carousel"
-import { WhatIsBatchFit } from "@/components/landing/what-is-batchfit"
-import { Features } from "@/components/landing/features"
-import { Benefits } from "@/components/landing/benefits"
-import { Testimonials } from "@/components/landing/testimonials"
-import { FAQ } from "@/components/landing/faq"
-import { FinalCTA } from "@/components/landing/final-cta"
-import { Footer } from "@/components/landing/footer"
 import { LandingPageTracking } from "@/components/landing-page-tracking"
+
+const ProblemBridge = dynamic(() => import("@/components/landing/problem-bridge").then(m => m.ProblemBridge))
+const NewSection = dynamic(() => import("@/components/landing/new-section").then(m => m.NewSection))
+const RealPlansCarousel = dynamic(() => import("@/components/landing/real-plans-carousel").then(m => m.RealPlansCarousel))
+const WhatIsBatchFit = dynamic(() => import("@/components/landing/what-is-batchfit").then(m => m.WhatIsBatchFit))
+const Benefits = dynamic(() => import("@/components/landing/benefits").then(m => m.Benefits))
+const Testimonials = dynamic(() => import("@/components/landing/testimonials").then(m => m.Testimonials))
+const Features = dynamic(() => import("@/components/landing/features").then(m => m.Features))
+const FAQ = dynamic(() => import("@/components/landing/faq").then(m => m.FAQ))
+const FinalCTA = dynamic(() => import("@/components/landing/final-cta").then(m => m.FinalCTA))
+const Footer = dynamic(() => import("@/components/landing/footer").then(m => m.Footer))
 
 export default function Home() {
   return (

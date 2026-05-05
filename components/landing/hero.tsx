@@ -81,6 +81,7 @@ export function Hero() {
               className="w-full h-auto rounded-xl"
               style={{ backgroundColor: 'unset' }}
               priority
+              sizes="(max-width: 640px) 280px, 384px"
             />
           </div>
         </div>
@@ -99,6 +100,7 @@ export function Hero() {
             className="rounded-xl"
             style={{ backgroundColor: 'unset' }}
             priority
+            sizes="400px"
           />
         </motion.div>
       </div>
