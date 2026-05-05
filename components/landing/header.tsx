@@ -14,7 +14,7 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -27,8 +27,8 @@ export function Header() {
   }
 
   const navLinks = [
-    { href: '#que-es', label: 'Qué es BatchFit' },
-    { href: '#pas', label: 'Cómo Funciona' },
+    { href: '#comparison', label: 'Qué es BatchFit' },
+    { href: '#what-is-batchfit', label: 'Cómo Funciona' },
     { href: '#caracteristicas', label: 'Características' },
     { href: '#beneficios', label: 'Beneficios' },
   ]
@@ -49,6 +49,8 @@ export function Header() {
               <img
                 src="/batchfit-logos-long.webp"
                 alt="BatchFit"
+                width={120}
+                height={56}
                 className="h-14 w-auto"
               />
             </Link>
