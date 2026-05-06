@@ -10,7 +10,7 @@ export function FinalCTA() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
 
   const guarantees = [
-    { icon: ShieldCheck, text: "30 días de garantía" },
+    { icon: ShieldCheck, text: "90 días de garantía" },
     { icon: Infinity, text: "Acceso de por vida" },
     { icon: Clock, text: "Configúralo en 5 minutos" },
   ]

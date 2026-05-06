@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "¿Qué pasa si no me convence?",
-    a: "Tienes 30 días para probarlo. Si no te funciona, te devolvemos el dinero sin preguntas. Creemos en el producto y en que los resultados hablan por sí solos.",
+    a: "Tienes 90 días para probarlo. Si no te funciona, te devolvemos el dinero sin preguntas. Creemos en el producto y en que los resultados hablan por sí solos.",
   },
 ]
 

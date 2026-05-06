@@ -23,7 +23,7 @@ export default function AvisoLegal() {
 
             <div>
               <h2 className="text-2xl font-semibold text-foreground mb-4">Finalidad del sitio web</h2>
-              <p>El presente sitio web tiene como finalidad ofrecer información sobre BatchFit, una herramienta digital orientada a la generación de planes de alimentación personalizados, recetas de batchcooking, listas de la compra y recomendaciones nutricionales automatizadas.</p>
+              <p>El presente sitio web tiene como finalidad ofrecer información y comercializar BatchFit, una herramienta digital orientada a la generación de planes de alimentación personalizados, recetas de batchcooking, listas de la compra y recomendaciones nutricionales automatizadas.</p>
             </div>
 
             <div>
@@ -39,7 +39,7 @@ export default function AvisoLegal() {
               <ul className="list-disc pl-6 space-y-2 mt-4">
                 <li>El uso indebido del contenido del sitio web.</li>
                 <li>Las decisiones alimentarias o de salud tomadas por el usuario.</li>
-                <li>Posibles interrupciones del servicio, especialmente durante la fase de prueba del producto.</li>
+                <li>Posibles interrupciones del servicio por motivos técnicos o de mantenimiento.</li>
               </ul>
             </div>
 
@@ -66,13 +66,15 @@ export default function AvisoLegal() {
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-semibold text-foreground mb-4">Estado actual del producto</h2>
-                  <p>BatchFit se encuentra en fase de prueba y validación:</p>
+                  <h2 className="text-2xl font-semibold text-foreground mb-4">Contratación y precios</h2>
+                  <p>BatchFit es un servicio completamente operativo que ofrece:</p>
                   <ul className="list-disc pl-6 space-y-2 mt-4">
-                    <li>Los precios mostrados son simulados.</li>
-                    <li>No existen cobros reales ni contratación efectiva en esta fase.</li>
-                    <li>El servicio puede modificarse o interrumpirse sin previo aviso.</li>
+                    <li>Acceso de por vida por 27,90€ (pago único) durante el periodo de lanzamiento.</li>
+                    <li>Cobros reales procesados a través de Stripe con garantía de 90 días.</li>
+                    <li>Contratación efectiva desde el momento del pago exitoso.</li>
+                    <li>El servicio puede evolucionar con nuevas funcionalidades sin coste adicional para usuarios con acceso de por vida.</li>
                   </ul>
+                  <p className="mt-4 font-semibold">Todos los precios incluyen IVA cuando sea aplicable según la legislación vigente.</p>
                 </div>
 
                 <div>
